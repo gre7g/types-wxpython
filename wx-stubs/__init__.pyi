@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from typing import Any, ContextManager, Optional, TypeAlias, Union
+from typing import Any, ContextManager, Optional, TypeAlias, Union, Iterator, Final
 
 from .ActivateEvent import Reason
 from .ConfigBase import EntryType
@@ -20305,7 +20305,7 @@ method.
             Source: https://docs.wxpython.org/wx.Sizer.html
         """
 
-    def __iter__(self) -> None:
+    def __iter__(self) -> Iterator[SizerItems]:
         """ A Python convenience method that allows Sizers to act as iterables that will yield their wx.SizerItems.
 
             Source: https://docs.wxpython.org/wx.Sizer.html
