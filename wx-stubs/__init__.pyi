@@ -9338,8 +9338,21 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def ClientToScreen(self, *args, **kw) -> tuple:
-        """ Overloaded Implementations:
+    @overload
+    def ClientToScreen(self, x: int, y: int) -> tuple[int, int]:
+        """ Converts to screen coordinates from coordinates relative to this window.
+
+        Parameters
+
+                x (int) – A pointer to an integer value for the x coordinate. Pass the client coordinate in, and a screen coordinate will be passed out.
+
+                y (int) – A pointer to an integer value for the y coordinate. Pass the client coordinate in, and a screen coordinate will be passed out.
+
+            Source: https://docs.wxpython.org/wx.Window.html
+        """
+    @overload
+    def ClientToScreen(self, pt: Point) -> Point:
+        """Converts to screen coordinates from coordinates relative to this window.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
