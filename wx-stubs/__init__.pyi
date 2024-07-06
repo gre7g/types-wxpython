@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # mypy: disable-error-code=override
-from typing import Any, ContextManager, Optional, TypeAlias, Union, Iterator, Final, Literal, overload
+from typing import Any, ContextManager, Callable, Optional, TypeAlias, Union, Iterator, Final, Literal, overload
 
 from .ActivateEvent import Reason
 from .ConfigBase import EntryType
@@ -613,372 +613,608 @@ FONTSTYLE_SLANT: int
 
 FONTSTYLE_MAX: int
 
-type _evt_aux1_dclick = Literal[10050]
-EVT_AUX1_DCLICK: _evt_aux1_dclick = 10050
-EVT_AUX1_DOWN: Final = 10048
-EVT_AUX1_UP: Final = 10049
 
-EVT_AUX2_DCLICK: Final = 10053
-EVT_AUX2_DOWN: Final = 10051
-EVT_AUX2_UP: Final = 10052
+type _TEVT_AUX1_DCLICK = Literal[10050]
+EVT_AUX1_DCLICK: _TEVT_AUX1_DCLICK = 10050
+type _TEVT_AUX1_DOWN = Literal[10048]
+EVT_AUX1_DOWN: _TEVT_AUX1_DOWN = 10048
+type _TEVT_AUX1_UP = Literal[10049]
+EVT_AUX1_UP: _TEVT_AUX1_UP = 10049
 
-EVT_BUTTON: Final = 10014   # Process a  wxEVT_BUTTON   event, when the button is clicked. ^^
-EVT_CHAR: Final = 10055  # Process a  wxEVT_CHAR   event. See    wx.KeyEvent.
-EVT_CHAR_HOOK: Final = 10057  # Process a  wxEVT_CHAR_HOOK   event. See    wx.KeyEvent.
+type _TEVT_AUX2_DCLICK = Literal[10053]
+EVT_AUX2_DCLICK: _TEVT_AUX2_DCLICK = 10053
+type _TEVT_AUX2_DOWN = Literal[10051]
+EVT_AUX2_DOWN: _TEVT_AUX2_DOWN = 10051
+type _TEVT_AUX2_UP = Literal[10052]
+EVT_AUX2_UP: _TEVT_AUX2_UP = 10052
 
-EVT_CHECKBOX: Final = 10015  # Process a  wxEVT_CHECKBOX   event, when the checkbox is clicked. ^^
-EVT_CHECKLISTBOX: Final = 10019  # Process a  wxEVT_CHECKLISTBOX   event, when an item in the check list box is checked or unchecked.  wx.CommandEvent.GetInt   will contain the index of the item that was checked or unchecked. wx.CommandEvent.IsChecked   is not valid! Use wx.CheckListBox.IsChecked   instead. ^^
+type _TEVT_BUTTON = Literal[10014]
+EVT_BUTTON: _TEVT_BUTTON = 10014   # Process a  wxEVT_BUTTON   event, when the button is clicked. ^^
+type _TEVT_CHAR = Literal[10055]
+EVT_CHAR: _TEVT_CHAR = 10055  # Process a  wxEVT_CHAR   event. See    wx.KeyEvent.
+type _TEVT_CHAR_HOOK = Literal[10057]
+EVT_CHAR_HOOK: _TEVT_CHAR_HOOK = 10057  # Process a  wxEVT_CHAR_HOOK   event. See    wx.KeyEvent.
 
-EVT_CHILD_FOCUS: Final = 10046
+type _TEVT_CHECKBOX = Literal[10015]
+EVT_CHECKBOX: _TEVT_CHECKBOX = 10015  # Process a  wxEVT_CHECKBOX   event, when the checkbox is clicked. ^^
+type _TEVT_CHECKLISTBOX = Literal[10019]
+EVT_CHECKLISTBOX: _TEVT_CHECKLISTBOX = 10019  # Process a  wxEVT_CHECKLISTBOX   event, when an item in the check list box is checked or unchecked.  wx.CommandEvent.GetInt   will contain the index of the item that was checked or unchecked. wx.CommandEvent.IsChecked   is not valid! Use wx.CheckListBox.IsChecked   instead. ^^
 
-EVT_CHOICE: Final = 10016  # Process a  wxEVT_CHOICE   event, when an item on the list is selected. ^^
+type _TEVT_CHILD_FOCUS = Literal[10046]
+EVT_CHILD_FOCUS: _TEVT_CHILD_FOCUS = 10046
 
-EVT_CHOICEBOOK_PAGE_CHANGED: Final = 10234  # The page selection was changed. Processes a  wxEVT_CHOICEBOOK_PAGE_CHANGED   event.
-EVT_CHOICEBOOK_PAGE_CHANGING: Final = 10233  # The page selection is about to be changed. Processes a  wxEVT_CHOICEBOOK_PAGE_CHANGING   event. This event can be vetoed (using  wx.NotifyEvent.Veto ). ^^
+type _TEVT_CHOICE = Literal[10016]
+EVT_CHOICE: _TEVT_CHOICE = 10016  # Process a  wxEVT_CHOICE   event, when an item on the list is selected. ^^
 
-EVT_CLIPBOARD_CHANGED: Final = 10149
+type _TEVT_CHOICEBOOK_PAGE_CHANGED = Literal[10234]
+EVT_CHOICEBOOK_PAGE_CHANGED: _TEVT_CHOICEBOOK_PAGE_CHANGED = 10234  # The page selection was changed. Processes a  wxEVT_CHOICEBOOK_PAGE_CHANGED   event.
+type _TEVT_CHOICEBOOK_PAGE_CHANGING = Literal[10233]
+EVT_CHOICEBOOK_PAGE_CHANGING: _TEVT_CHOICEBOOK_PAGE_CHANGING = 10233  # The page selection is about to be changed. Processes a  wxEVT_CHOICEBOOK_PAGE_CHANGING   event. This event can be vetoed (using  wx.NotifyEvent.Veto ). ^^
 
-EVT_CLOSE: Final = 10092  # Process a  wxEVT_CLOSE_WINDOW   command event, supplying the member function. This event applies to    wx.Frame  and   wx.Dialog  classes.
-EVT_CLOSE_WINDOW: Final = 10092
+type _TEVT_CLIPBOARD_CHANGED = Literal[10149]
+EVT_CLIPBOARD_CHANGED: _TEVT_CLIPBOARD_CHANGED = 10149
 
-EVT_COLLAPSIBLEHEADER_CHANGED: Final = 10235
+type _TEVT_CLOSE = Literal[10092]
+EVT_CLOSE: _TEVT_CLOSE = 10092  # Process a  wxEVT_CLOSE_WINDOW   command event, supplying the member function. This event applies to    wx.Frame  and   wx.Dialog  classes.
+EVT_CLOSE_WINDOW: _TEVT_CLOSE = 10092
 
-EVT_COLLAPSIBLEPANE_CHANGED: Final = 10147
+type _TEVT_COLLAPSIBLEHEADER_CHANGED = Literal[10235]
+EVT_COLLAPSIBLEHEADER_CHANGED: _TEVT_COLLAPSIBLEHEADER_CHANGED = 10235
 
-EVT_COLOURPICKER_CHANGED: Final = 10150
+type _TEVT_COLLAPSIBLEPANE_CHANGED = Literal[10147]
+EVT_COLLAPSIBLEPANE_CHANGED: _TEVT_COLLAPSIBLEPANE_CHANGED = 10147
 
-EVT_COLOURPICKER_CURRENT_CHANGED: Final = 10151
+type _TEVT_COLOURPICKER_CHANGED = Literal[10150]
+EVT_COLOURPICKER_CHANGED: _TEVT_COLOURPICKER_CHANGED = 10150
 
-EVT_COLOURPICKER_DIALOG_CANCELLED: Final = 10152
+type _TEVT_COLOURPICKER_CURRENT_CHANGED = Literal[10151]
+EVT_COLOURPICKER_CURRENT_CHANGED: _TEVT_COLOURPICKER_CURRENT_CHANGED = 10151
 
-EVT_COLOUR_CHANGED: Final = 10153
+type _TEVT_COLOURPICKER_DIALOG_CANCELLED = Literal[10152]
+EVT_COLOURPICKER_DIALOG_CANCELLED: _TEVT_COLOURPICKER_DIALOG_CANCELLED = 10152
+
+type _TEVT_COLOUR_CHANGED = Literal[10153]
+EVT_COLOUR_CHANGED: _TEVT_COLOUR_CHANGED = 10153
 
 EVT_COMBOBOX: Literal[10026] = 10026
 
-EVT_COMBOBOX_CLOSEUP: Final = 10031
-EVT_COMBOBOX_DROPDOWN: Final = 10030
+type _TEVT_COMBOBOX_CLOSEUP = Literal[10031]
+EVT_COMBOBOX_CLOSEUP: _TEVT_COMBOBOX_CLOSEUP = 10031
+type _TEVT_COMBOBOX_DROPDOWN = Literal[10030]
+EVT_COMBOBOX_DROPDOWN: _TEVT_COMBOBOX_DROPDOWN = 10030
+
+type _TEVT_COMMAND_ENTER = Literal[10134]
+EVT_COMMAND_ENTER: _TEVT_COMMAND_ENTER = 10134
+
+type _TEVT_COMMAND_KILL_FOCUS = Literal[10133]
+EVT_COMMAND_KILL_FOCUS: _TEVT_COMMAND_KILL_FOCUS = 10133
+
+type _TEVT_COMMAND_LEFT_CLICK = Literal[10128]
+EVT_COMMAND_LEFT_CLICK: _TEVT_COMMAND_LEFT_CLICK = 10128
+type _TEVT_COMMAND_LEFT_DCLICK = Literal[10129]
+EVT_COMMAND_LEFT_DCLICK: _TEVT_COMMAND_LEFT_DCLICK = 10129
+
+type _TEVT_COMMAND_RIGHT_CLICK = Literal[10130]
+EVT_COMMAND_RIGHT_CLICK: _TEVT_COMMAND_RIGHT_CLICK = 10130
+type _TEVT_COMMAND_RIGHT_DCLICK = Literal[10131]
+EVT_COMMAND_RIGHT_DCLICK: _TEVT_COMMAND_RIGHT_DCLICK = 10131
+
+type _TEVT_COMMAND_SET_FOCUS = Literal[10132]
+EVT_COMMAND_SET_FOCUS: _TEVT_COMMAND_SET_FOCUS = 10132
+
+type _TEVT_CONTEXT_MENU = Literal[10112]
+EVT_CONTEXT_MENU: _TEVT_CONTEXT_MENU = 10112
+
+type _TEVT_CREATE = Literal[10098]
+EVT_CREATE: _TEVT_CREATE = 10098
+type _TEVT_DESTROY = Literal[10099]
+EVT_DESTROY: _TEVT_DESTROY = 10099
+
+type _TEVT_DETAILED_HELP = Literal[10136]
+EVT_DETAILED_HELP: _TEVT_DETAILED_HELP = 10136
+
+type _TEVT_DIRCTRL_FILEACTIVATED = Literal[10237]
+EVT_DIRCTRL_FILEACTIVATED: _TEVT_DIRCTRL_FILEACTIVATED = 10237
+type _TEVT_DIRCTRL_SELECTIONCHANGED = Literal[10236]
+EVT_DIRCTRL_SELECTIONCHANGED: _TEVT_DIRCTRL_SELECTIONCHANGED = 10236
+
+type _TEVT_DIRPICKER_CHANGED = Literal[10165]
+EVT_DIRPICKER_CHANGED: _TEVT_DIRPICKER_CHANGED = 10165
+
+type _TEVT_DISPLAY_CHANGED = Literal[10114]
+EVT_DISPLAY_CHANGED: _TEVT_DISPLAY_CHANGED = 10114
+
+type _TEVT_DPI_CHANGED = Literal[10115]
+EVT_DPI_CHANGED: _TEVT_DPI_CHANGED = 10115
+
+type _TEVT_DROP_FILES = Literal[10122]
+EVT_DROP_FILES: _TEVT_DROP_FILES = 10122  # Process a  wxEVT_DROP_FILES   event. See    wx.DropFilesEvent.
+
+type _TEVT_END_PROCESS = Literal[10004]
+EVT_END_PROCESS: _TEVT_END_PROCESS = 10004
+type _TEVT_END_SESSION = Literal[10093]
+EVT_END_SESSION: _TEVT_END_SESSION = 10093  # Process a  wxEVT_END_SESSION   session event, supplying the member function. This event can be handled in App-derived class only. ^^
+
+type _TEVT_ENTER_WINDOW = Literal[10039]
+EVT_ENTER_WINDOW: _TEVT_ENTER_WINDOW = 10039
+
+type _TEVT_ERASE_BACKGROUND = Literal[10107]
+EVT_ERASE_BACKGROUND: _TEVT_ERASE_BACKGROUND = 10107  # Process a  wxEVT_ERASE_BACKGROUND   event. See    wx.EraseEvent.
+
+type _TEVT_FILECTRL_FILEACTIVATED = Literal[10161]
+EVT_FILECTRL_FILEACTIVATED: _TEVT_FILECTRL_FILEACTIVATED = 10161
+type _TEVT_FILECTRL_FILTERCHANGED = Literal[10163]
+EVT_FILECTRL_FILTERCHANGED: _TEVT_FILECTRL_FILTERCHANGED = 10163
+type _TEVT_FILECTRL_FOLDERCHANGED = Literal[10162]
+EVT_FILECTRL_FOLDERCHANGED: _TEVT_FILECTRL_FOLDERCHANGED = 10162
+type _TEVT_FILECTRL_SELECTIONCHANGED = Literal[10160]
+EVT_FILECTRL_SELECTIONCHANGED: _TEVT_FILECTRL_SELECTIONCHANGED = 10160
+
+type _TEVT_FILEPICKER_CHANGED = Literal[10164]
+EVT_FILEPICKER_CHANGED: _TEVT_FILEPICKER_CHANGED = 10164
+
+type _TEVT_FIND = Literal[10155]
+EVT_FIND: _TEVT_FIND = 10155  # Find button was pressed in the dialog.
+
+type _TEVT_FIND_CLOSE = Literal[10159]
+EVT_FIND_CLOSE: _TEVT_FIND_CLOSE = 10159  # The dialog is being destroyed, any pointers to it cannot be used any longer. ^^
+type _TEVT_FIND_NEXT = Literal[10156]
+EVT_FIND_NEXT: _TEVT_FIND_NEXT = 10156  # Find next button was pressed in the dialog.
+type _TEVT_FIND_REPLACE = Literal[10157]
+EVT_FIND_REPLACE: _TEVT_FIND_REPLACE = 10157  # Replace button was pressed in the dialog.
+type _TEVT_FIND_REPLACE_ALL = Literal[10158]
+EVT_FIND_REPLACE_ALL: _TEVT_FIND_REPLACE_ALL = 10158  # Replace all button was pressed in the dialog.
+
+
+type _TEVT_FONTPICKER_CHANGED = Literal[10166]
+EVT_FONTPICKER_CHANGED: _TEVT_FONTPICKER_CHANGED = 10166
+
+type _TEVT_FSWATCHER = Literal[10006]
+EVT_FSWATCHER: _TEVT_FSWATCHER = 10006
+type _TEVT_FULLSCREEN = Literal[10103]
+EVT_FULLSCREEN: _TEVT_FULLSCREEN = 10103
+
+type _TEVT_GESTURE_PAN = Literal[10080]
+EVT_GESTURE_PAN: _TEVT_GESTURE_PAN = 10080
+type _TEVT_GESTURE_ROTATE = Literal[10082]
+EVT_GESTURE_ROTATE: _TEVT_GESTURE_ROTATE = 10082
+type _TEVT_GESTURE_ZOOM = Literal[10081]
+EVT_GESTURE_ZOOM: _TEVT_GESTURE_ZOOM = 10081  # Process a  wxEVT_GESTURE_ZOOM . ^^
+
+type _TEVT_HEADER_BEGIN_REORDER = Literal[10177]
+EVT_HEADER_BEGIN_REORDER: _TEVT_HEADER_BEGIN_REORDER = 10177  # The user started to drag the column with the specified index (this can only happen for the controls with wx.HD_ALLOW_REORDER style). This event can be vetoed to prevent the column from being reordered, otherwise the end reorder message will be generated later.
+type _TEVT_HEADER_BEGIN_RESIZE = Literal[10174]
+EVT_HEADER_BEGIN_RESIZE: _TEVT_HEADER_BEGIN_RESIZE = 10174  # The user started to drag the separator to the right of the column with the specified index (this can only happen for the columns for which wx.HeaderColumn.IsResizeable   returns True). The event can be vetoed to prevent the column from being resized. If it isnât, the resizing and end resize (or dragging cancelled) events will be generated later.
+
+type _TEVT_HEADER_CLICK = Literal[10167]
+EVT_HEADER_CLICK: _TEVT_HEADER_CLICK = 10167  # A column heading was clicked.
+type _TEVT_HEADER_DCLICK = Literal[10170]
+EVT_HEADER_DCLICK: _TEVT_HEADER_DCLICK = 10170  # A column heading was double clicked.
+
+type _TEVT_HEADER_DRAGGING_CANCELLED = Literal[10179]
+EVT_HEADER_DRAGGING_CANCELLED: _TEVT_HEADER_DRAGGING_CANCELLED = 10179  # The resizing or reordering operation currently in progress was cancelled. This can happen if the user pressed Esc key while dragging the mouse or the mouse capture was lost for some other reason. You only need to handle this event if your application entered into some modal mode when resizing or reordering began, in which case it should handle this event in addition to the matching end resizing or reordering ones. ^^
+
+type _TEVT_HEADER_END_REORDER = Literal[10178]
+EVT_HEADER_END_REORDER: _TEVT_HEADER_END_REORDER = 10178  # The user dropped the column in its new location. The event can be vetoed to prevent the column from being placed at the new position or handled to update the display of the data in the associated control to match the new column location (available from wx.HeaderCtrlEvent.GetNewOrder ).
+type _TEVT_HEADER_END_RESIZE = Literal[10176]
+EVT_HEADER_END_RESIZE: _TEVT_HEADER_END_RESIZE = 10176  # The user stopped dragging the column by releasing the mouse. The column should normally be resized to the value of wx.HeaderCtrlEvent.GetWidth .
 
-EVT_COMMAND_ENTER: Final = 10134
+type _TEVT_HEADER_MIDDLE_CLICK = Literal[10169]
+EVT_HEADER_MIDDLE_CLICK: _TEVT_HEADER_MIDDLE_CLICK = 10169  # A column heading was clicked with the middle mouse button.
+type _TEVT_HEADER_MIDDLE_DCLICK = Literal[10172]
+EVT_HEADER_MIDDLE_DCLICK: _TEVT_HEADER_MIDDLE_DCLICK = 10172  # A column heading was double clicked with the middle mouse button.
+
+type _TEVT_HEADER_RESIZING = Literal[10175]
+EVT_HEADER_RESIZING: _TEVT_HEADER_RESIZING = 10175  # The user is dragging the column with the specified index resizing it and its current width is wx.HeaderCtrlEvent.GetWidth . The event can be vetoed to stop the dragging operation completely at any time.
 
-EVT_COMMAND_KILL_FOCUS: Final = 10133
+type _TEVT_HEADER_RIGHT_CLICK = Literal[10168]
+EVT_HEADER_RIGHT_CLICK: _TEVT_HEADER_RIGHT_CLICK = 10168  # A column heading was right clicked.
+type _TEVT_HEADER_RIGHT_DCLICK = Literal[10171]
+EVT_HEADER_RIGHT_DCLICK: _TEVT_HEADER_RIGHT_DCLICK = 10171  # A column heading was right double clicked.
+
+type _TEVT_HEADER_SEPARATOR_DCLICK = Literal[10173]
+EVT_HEADER_SEPARATOR_DCLICK: _TEVT_HEADER_SEPARATOR_DCLICK = 10173  # Separator to the right of the specified column was double clicked (this action is commonly used to resize the column to fit its contents width and the control provides UpdateColumnWidthToFit  method to make implementing this easier).
+
+
+type _TEVT_HELP = Literal[10135]
+EVT_HELP: _TEVT_HELP = 10135  # Process a  wxEVT_HELP   event. See    wx.HelpEvent.
+type _TEVT_HIBERNATE = Literal[10095]
+EVT_HIBERNATE: _TEVT_HIBERNATE = 10095
+type _TEVT_HOTKEY = Literal[10061]
+EVT_HOTKEY: _TEVT_HOTKEY = 10061
+type _TEVT_ICONIZE = Literal[10101]
+EVT_ICONIZE: _TEVT_ICONIZE = 10101
+type _TEVT_IDLE = Literal[10008]
+EVT_IDLE: _TEVT_IDLE = 10008  # Process a  wxEVT_IDLE   event. See    wx.IdleEvent.
+
+type _TEVT_INIT_DIALOG = Literal[10123]
+EVT_INIT_DIALOG: _TEVT_INIT_DIALOG = 10123
+
+type _TEVT_JOY_BUTTON_DOWN = Literal[10118]
+EVT_JOY_BUTTON_DOWN: _TEVT_JOY_BUTTON_DOWN = 10118
+type _TEVT_JOY_BUTTON_UP = Literal[10119]
+EVT_JOY_BUTTON_UP: _TEVT_JOY_BUTTON_UP = 10119
 
-EVT_COMMAND_LEFT_CLICK: Final = 10128
-EVT_COMMAND_LEFT_DCLICK: Final = 10129
-
-EVT_COMMAND_RIGHT_CLICK: Final = 10130
-EVT_COMMAND_RIGHT_DCLICK: Final = 10131
-
-EVT_COMMAND_SET_FOCUS: Final = 10132
-
-EVT_CONTEXT_MENU: Final = 10112
-
-EVT_CREATE: Final = 10098
-EVT_DESTROY: Final = 10099
-
-EVT_DETAILED_HELP: Final = 10136
-
-EVT_DIRCTRL_FILEACTIVATED: Final = 10237
-EVT_DIRCTRL_SELECTIONCHANGED: Final = 10236
-
-EVT_DIRPICKER_CHANGED: Final = 10165
-
-EVT_DISPLAY_CHANGED: Final = 10114
-
-EVT_DPI_CHANGED: Final = 10115
-
-EVT_DROP_FILES: Final = 10122  # Process a  wxEVT_DROP_FILES   event. See    wx.DropFilesEvent.
-
-EVT_END_PROCESS: Final = 10004
-EVT_END_SESSION: Final = 10093  # Process a  wxEVT_END_SESSION   session event, supplying the member function. This event can be handled in App-derived class only. ^^
-
-EVT_ENTER_WINDOW: Final = 10039
-
-EVT_ERASE_BACKGROUND: Final = 10107  # Process a  wxEVT_ERASE_BACKGROUND   event. See    wx.EraseEvent.
-
-EVT_FILECTRL_FILEACTIVATED: Final = 10161
-EVT_FILECTRL_FILTERCHANGED: Final = 10163
-EVT_FILECTRL_FOLDERCHANGED: Final = 10162
-EVT_FILECTRL_SELECTIONCHANGED: Final = 10160
-
-EVT_FILEPICKER_CHANGED: Final = 10164
-
-EVT_FIND: Final = 10155
-
-EVT_FIND_CLOSE: Final = 10159
-EVT_FIND_NEXT: Final = 10156
-EVT_FIND_REPLACE: Final = 10157
-
-EVT_FIND_REPLACE_ALL: Final = 10158
-
-EVT_FONTPICKER_CHANGED: Final = 10166
-
-EVT_FSWATCHER: Final = 10006
-EVT_FULLSCREEN: Final = 10103
-
-EVT_GESTURE_PAN: Final = 10080
-EVT_GESTURE_ROTATE: Final = 10082
-EVT_GESTURE_ZOOM: Final = 10081  # Process a  wxEVT_GESTURE_ZOOM . ^^
-
-EVT_HEADER_BEGIN_REORDER: Final = 10177
-EVT_HEADER_BEGIN_RESIZE: Final = 10174
-
-EVT_HEADER_CLICK: Final = 10167
-EVT_HEADER_DCLICK: Final = 10170
-
-EVT_HEADER_DRAGGING_CANCELLED: Final = 10179
-
-EVT_HEADER_END_REORDER: Final = 10178
-EVT_HEADER_END_RESIZE: Final = 10176
-
-EVT_HEADER_MIDDLE_CLICK: Final = 10169
-EVT_HEADER_MIDDLE_DCLICK: Final = 10172
-
-EVT_HEADER_RESIZING: Final = 10175
-
-EVT_HEADER_RIGHT_CLICK: Final = 10168
-EVT_HEADER_RIGHT_DCLICK: Final = 10171
-
-EVT_HEADER_SEPARATOR_DCLICK: Final = 10173
-
-EVT_HELP: Final = 10135  # Process a  wxEVT_HELP   event. See    wx.HelpEvent.
-EVT_HIBERNATE: Final = 10095
-EVT_HOTKEY: Final = 10061
-EVT_ICONIZE: Final = 10101
-EVT_IDLE: Final = 10008  # Process a  wxEVT_IDLE   event. See    wx.IdleEvent.
-
-EVT_INIT_DIALOG: Final = 10123
-
-EVT_JOY_BUTTON_DOWN: Final = 10118
-EVT_JOY_BUTTON_UP: Final = 10119
-
-EVT_JOY_MOVE: Final = 10120
-EVT_JOY_ZMOVE: Final = 10121
-
-EVT_KEY_DOWN: Final = 10059  # Process a  wxEVT_KEY_DOWN   event (any key has been pressed). See    wx.KeyEvent.
-EVT_KEY_UP: Final = 10060  # Process a  wxEVT_KEY_UP   event (any key has been released). See    wx.KeyEvent.
-
-EVT_KILL_FOCUS: Final = 10045  # Process a  wxEVT_KILL_FOCUS   event. See    wx.FocusEvent.
-
-EVT_LEAVE_WINDOW: Final = 10040
-
-EVT_LEFT_DCLICK: Final = 10041
-EVT_LEFT_DOWN: Final = 10032
-EVT_LEFT_UP: Final = 10033
-
-EVT_LISTBOOK_PAGE_CHANGED: Final = 10239  # The page selection was changed. Processes a  wxEVT_LISTBOOK_PAGE_CHANGED   event.
-EVT_LISTBOOK_PAGE_CHANGING: Final = 10238  # The page selection is about to be changed. Processes a  wxEVT_LISTBOOK_PAGE_CHANGING   event. This event can be vetoed. ^^
-
-EVT_LISTBOX: Final = 10017
-
-EVT_LISTBOX_DCLICK: Final = 10018
-
-EVT_LIST_BEGIN_DRAG: Final = 10180
-
-EVT_LIST_BEGIN_LABEL_EDIT: Final = 10182
-
-EVT_LIST_BEGIN_RDRAG: Final = 10181
-
-EVT_LIST_CACHE_HINT: Final = 10201
-
-EVT_LIST_COL_BEGIN_DRAG: Final = 10192
-
-EVT_LIST_COL_CLICK: Final = 10190
-EVT_LIST_COL_DRAGGING: Final = 10193
-
-EVT_LIST_COL_END_DRAG: Final = 10194
-
-EVT_LIST_COL_RIGHT_CLICK: Final = 10191
-
-EVT_LIST_DELETE_ALL_ITEMS: Final = 10185
-
-EVT_LIST_DELETE_ITEM: Final = 10184
-
-EVT_LIST_END_LABEL_EDIT: Final = 10183
-
-EVT_LIST_INSERT_ITEM: Final = 10189
-
-EVT_LIST_ITEM_ACTIVATED: Final = 10197
-EVT_LIST_ITEM_CHECKED: Final = 10199
-EVT_LIST_ITEM_DESELECTED: Final = 10187
-EVT_LIST_ITEM_FOCUSED: Final = 10198
-
-EVT_LIST_ITEM_MIDDLE_CLICK: Final = 10196
-
-EVT_LIST_ITEM_RIGHT_CLICK: Final = 10195
-
-EVT_LIST_ITEM_SELECTED: Final = 10186
-EVT_LIST_ITEM_UNCHECKED: Final = 10200
-
-EVT_LIST_KEY_DOWN: Final = 10188
-
-EVT_LONG_PRESS: Final = 10084
-
-EVT_MAGNIFY: Final = 10054
-EVT_MAXIMIZE: Final = 10102
-EVT_MENU: Final = 10020
-
-EVT_MENU_CLOSE: Final = 10110
-EVT_MENU_HIGHLIGHT: Final = 10111
-EVT_MENU_OPEN: Final = 10109
-
-EVT_MIDDLE_DCLICK: Final = 10042
-EVT_MIDDLE_DOWN: Final = 10034
-EVT_MIDDLE_UP: Final = 10035
-
-EVT_MOTION: Final = 10038
-EVT_MOUSEWHEEL: Final = 10047
-
-EVT_MOUSE_CAPTURE_CHANGED: Final = 10104  # Process a  wxEVT_MOUSE_CAPTURE_CHANGED   event. See    wx.MouseCaptureChangedEvent.
-EVT_MOUSE_CAPTURE_LOST: Final = 10105 # Process a  wxEVT_MOUSE_CAPTURE_LOST   event. See    wx.MouseCaptureLostEvent.
-
-EVT_MOVE: Final = 10088
-
-EVT_MOVE_END: Final = 10091
-EVT_MOVE_START: Final = 10090
-
-EVT_MOVING: Final = 10089
-
-EVT_NAVIGATION_KEY: Final = 10058
-
-EVT_NC_PAINT: Final = 10108
-
-EVT_NOTEBOOK_PAGE_CHANGED: Final = 10202  # The page selection was changed. Processes a  wxEVT_NOTEBOOK_PAGE_CHANGED   event.
-EVT_NOTEBOOK_PAGE_CHANGING: Final = 10203  # The page selection is about to be changed. Processes a  wxEVT_NOTEBOOK_PAGE_CHANGING   event. This event can be vetoed. ^^
-
-EVT_NULL: Final = 10007
-EVT_PAINT: Final = 10106  # Process a  wxEVT_PAINT   event. See    wx.PaintEvent.
-
-EVT_PALETTE_CHANGED: Final = 10117
-
-EVT_POWER_RESUME: Final = 10003
-EVT_POWER_SUSPENDED: Final = 10001
-EVT_POWER_SUSPENDING: Final = 10000
-
-EVT_POWER_SUSPEND_CANCEL: Final = 10002
-
-EVT_PRESS_AND_TAP: Final = 10085
-
-EVT_QUERY_END_SESSION: Final = 10094  # Process a  wxEVT_QUERY_END_SESSION   session event, supplying the member function. This event can be handled in App-derived class only.
-
-EVT_QUERY_NEW_PALETTE: Final = 10116
-
-EVT_RADIOBOX: Final = 10022
-EVT_RADIOBUTTON: Final = 10023
-
-EVT_RIGHT_DCLICK: Final = 10043
-EVT_RIGHT_DOWN: Final = 10036
-EVT_RIGHT_UP: Final = 10037
-
-EVT_SCROLLBAR: Final = 10024
-
-EVT_SCROLLWIN_BOTTOM: Final = 10073
-EVT_SCROLLWIN_LINEDOWN: Final = 10075
-EVT_SCROLLWIN_LINEUP: Final = 10074
-EVT_SCROLLWIN_PAGEDOWN: Final = 10077
-EVT_SCROLLWIN_PAGEUP: Final = 10076
-EVT_SCROLLWIN_THUMBRELEASE: Final = 10079
-EVT_SCROLLWIN_THUMBTRACK: Final = 10078
-EVT_SCROLLWIN_TOP: Final = 10072
-
-EVT_SCROLL_BOTTOM: Final = 10064
-EVT_SCROLL_CHANGED: Final = 10071
-EVT_SCROLL_LINEDOWN: Final = 10066
-EVT_SCROLL_LINEUP: Final = 10065
-EVT_SCROLL_PAGEDOWN: Final = 10068
-EVT_SCROLL_PAGEUP: Final = 10067
-EVT_SCROLL_THUMBRELEASE: Final = 10070
-EVT_SCROLL_THUMBTRACK: Final = 10069
-EVT_SCROLL_TOP: Final = 10063
-
-EVT_SEARCH: Final = 10207
-
-EVT_SEARCH_CANCEL: Final = 10206
-
-EVT_SET_CURSOR: Final = 10062  # Process a  wxEVT_SET_CURSOR   event. See wx.SetCursorEvent.
-EVT_SET_FOCUS: Final = 10044  # Process a  wxEVT_SET_FOCUS   event. See wx.FocusEvent.
-
-EVT_SHOW: Literal[10100] = 10100
-EVT_SIZE: Literal[10086] = 10086  # Process a  wxEVT_SIZE   event. See wx.SizeEvent.
-EVT_SIZING: Final = 10087
-EVT_SLIDER: Final = 10021
-EVT_SPIN: Final = 10069
-EVT_SPINCTRL: Final = 10204
-EVT_SPINCTRLDOUBLE: Final = 10205
-
-EVT_SPIN_DOWN: Final = 10066
-EVT_SPIN_UP: Final = 10065
-
-EVT_SPLITTER_DOUBLECLICKED: Final = 10243
-
-EVT_SPLITTER_SASH_POS_CHANGED: Final = 10240
-EVT_SPLITTER_SASH_POS_CHANGING: Final = 10241
-EVT_SPLITTER_SASH_POS_RESIZE: Final = 10242
-
-EVT_SPLITTER_UNSPLIT: Final = 10244
-
-EVT_SYS_COLOUR_CHANGED: Final = 10113  # Process a  wxEVT_SYS_COLOUR_CHANGED   event. See wx.SysColourChangedEvent. ^^
-
-EVT_TEXT: Final = 10208
-
-EVT_TEXT_COPY: Final = 10125
-EVT_TEXT_CUT: Final = 10126
-EVT_TEXT_ENTER: Final = 10209
-EVT_TEXT_MAXLEN: Final = 10211
-EVT_TEXT_PASTE: Final = 10127
-EVT_TEXT_URL: Final = 10210
-
-EVT_THREAD: Final = 10009
-EVT_TIMER: Final = 10005
-EVT_TOGGLEBUTTON: Final = 10148
-EVT_TOOL: Final = 10020
-
-EVT_TOOLBOOK_PAGE_CHANGED: Final = 10246
-EVT_TOOLBOOK_PAGE_CHANGING: Final = 10245
-
-EVT_TOOL_DROPDOWN: Final = 10029
-EVT_TOOL_ENTER: Final = 10028
-EVT_TOOL_RCLICKED: Final = 10027
-
-EVT_TREEBOOK_NODE_COLLAPSED: Final = 10249  # The page selection was changed. Processes a  wxEVT_TREEBOOK_PAGE_CHANGED   event.
-EVT_TREEBOOK_NODE_EXPANDED: Final = 10250  # The page selection is about to be changed. Processes a  wxEVT_TREEBOOK_PAGE_CHANGING   event. This event can be  vetoed.
-
-EVT_TREEBOOK_PAGE_CHANGED: Final = 10248  # The page node is going to be collapsed. Processes a  wxEVT_TREEBOOK_NODE_COLLAPSED   event.
-EVT_TREEBOOK_PAGE_CHANGING: Final = 10247  # The page node is going to be expanded. Processes a  wxEVT_TREEBOOK_NODE_EXPANDED   event. ^^
-
-EVT_TREE_STATE_IMAGE_CLICK: int  # The state image has been clicked. Processes a  wxEVT_TREE_STATE_IMAGE_CLICK   event type. ^^
-
-EVT_TREE_BEGIN_DRAG: Final = 10212  # Begin dragging with the left mouse button. If you want to enable left-dragging you need to intercept this event and explicitly call wx.TreeEvent.Allow , as itâs vetoed by default. Processes a  wxEVT_TREE_BEGIN_DRAG   event type.
-EVT_TREE_BEGIN_LABEL_EDIT: Final = 10214  # Begin editing a label. This can be prevented by calling Veto(). Processes a  wxEVT_TREE_BEGIN_LABEL_EDIT   event type.
-EVT_TREE_BEGIN_RDRAG: Final = 10213  # Begin dragging with the right mouse button. If you want to enable right-dragging you need to intercept this event and explicitly call wx.TreeEvent.Allow , as itâs vetoed by default. Processes a  wxEVT_TREE_BEGIN_RDRAG   event type.
-EVT_TREE_DELETE_ITEM: Final = 10216  # An item was deleted. Processes a  wxEVT_TREE_DELETE_ITEM   event type.
-EVT_TREE_END_DRAG: Final = 10229  # End dragging with the left or right mouse button. Processes a  wxEVT_TREE_END_DRAG   event type.
-EVT_TREE_END_LABEL_EDIT: Final = 10215  # Finish editing a label. This can be prevented by calling Veto(). Processes a  wxEVT_TREE_END_LABEL_EDIT   event type.
-EVT_TREE_GET_INFO: Final = 10217  # Request information from the application. Processes a  wxEVT_TREE_GET_INFO   event type.
-
-EVT_TREE_ITEM_ACTIVATED: Final = 10226  # The item has been activated, i.e. chosen by double clicking it with mouse or from keyboard. Processes a  wxEVT_TREE_ITEM_ACTIVATED   event type.
-EVT_TREE_ITEM_COLLAPSED: Final = 10221  # The item has been collapsed. Processes a  wxEVT_TREE_ITEM_COLLAPSED   event type.
-EVT_TREE_ITEM_COLLAPSING: Final = 10222  # The item is being collapsed. This can be prevented by calling Veto(). Processes a  wxEVT_TREE_ITEM_COLLAPSING   event type.
-EVT_TREE_ITEM_EXPANDED: Final = 10219  # The item has been expanded. Processes a  wxEVT_TREE_ITEM_EXPANDED   event type.
-EVT_TREE_ITEM_EXPANDING: Final = 10220  # The item is being expanded. This can be prevented by calling Veto(). Processes a  wxEVT_TREE_ITEM_EXPANDING   event type.
-EVT_TREE_ITEM_GETTOOLTIP: Final = 10231  # The opportunity to set the item tooltip is being given to the application (call wx.TreeEvent.SetToolTip ). Windows only. Processes a  wxEVT_TREE_ITEM_GETTOOLTIP   event type.
-EVT_TREE_ITEM_MENU: Final = 10232  # The context menu for the selected item has been requested, either by a right click or by using the menu key. Notice that these events always carry a valid tree item and so are not generated when (right) clicking outside of the items area. If you need to handle such events, consider using  wxEVT_CONTEXT_MENU   instead. Processes a   wxEVT_TREE_ITEM_MENU   event type.
-
-EVT_TREE_ITEM_MIDDLE_CLICK: Final = 10228  # The user has clicked the item with the middle mouse button. This is only supported by the generic control. Processes a  wxEVT_TREE_ITEM_MIDDLE_CLICK   event type.
-EVT_TREE_ITEM_RIGHT_CLICK: Final = 10227  # The user has clicked the item with the right mouse button. Processes a  wxEVT_TREE_ITEM_RIGHT_CLICK   event type.
-
-EVT_TREE_KEY_DOWN: Final = 10225  # A key has been pressed. Processes a  wxEVT_TREE_KEY_DOWN   event type.
-EVT_TREE_SEL_CHANGED: Final = 10223  # Selection has changed. Processes a  wxEVT_TREE_SEL_CHANGED   event type.
-EVT_TREE_SEL_CHANGING: Final = 10224  # Selection is changing. This can be prevented by calling Veto(). Processes a  wxEVT_TREE_SEL_CHANGING   event type.
-EVT_TREE_SET_INFO: Final = 10218  # Information is being supplied. Processes a  wxEVT_TREE_SET_INFO   event type.
-EVT_TREE_STATE_IMAGE_CLICK: Final = 10230
-
-EVT_TWO_FINGER_TAP: Final = 10083
-
-EVT_UPDATE_UI: Final = 10124
-
-EVT_VLBOX: Final = 10025
-
-EVT_WINDOW_MODAL_DIALOG_CLOSED: Final = 10154
+type _TEVT_JOY_MOVE = Literal[10120]
+EVT_JOY_MOVE: _TEVT_JOY_MOVE = 10120
+type _TEVT_JOY_ZMOVE = Literal[10121]
+EVT_JOY_ZMOVE: _TEVT_JOY_ZMOVE = 10121
+
+type _TEVT_KEY_DOWN = Literal[10059]
+EVT_KEY_DOWN: _TEVT_KEY_DOWN = 10059  # Process a  wxEVT_KEY_DOWN   event (any key has been pressed). See    wx.KeyEvent.
+type _TEVT_KEY_UP = Literal[10060]
+EVT_KEY_UP: _TEVT_KEY_UP = 10060  # Process a  wxEVT_KEY_UP   event (any key has been released). See    wx.KeyEvent.
+
+type _TEVT_KILL_FOCUS = Literal[10045]
+EVT_KILL_FOCUS: _TEVT_KILL_FOCUS = 10045  # Process a  wxEVT_KILL_FOCUS   event. See    wx.FocusEvent.
+
+type _TEVT_LEAVE_WINDOW = Literal[10040]
+EVT_LEAVE_WINDOW: _TEVT_LEAVE_WINDOW = 10040
+
+type _TEVT_LEFT_DCLICK = Literal[10041]
+EVT_LEFT_DCLICK: _TEVT_LEFT_DCLICK = 10041
+type _TEVT_LEFT_DOWN = Literal[10032]
+EVT_LEFT_DOWN: _TEVT_LEFT_DOWN = 10032
+type _TEVT_LEFT_UP = Literal[10033]
+EVT_LEFT_UP: _TEVT_LEFT_UP = 10033
+
+type _TEVT_LISTBOOK_PAGE_CHANGED = Literal[10239]
+EVT_LISTBOOK_PAGE_CHANGED: _TEVT_LISTBOOK_PAGE_CHANGED = 10239  # The page selection was changed. Processes a  wxEVT_LISTBOOK_PAGE_CHANGED   event.
+type _TEVT_LISTBOOK_PAGE_CHANGING = Literal[10238]
+EVT_LISTBOOK_PAGE_CHANGING: _TEVT_LISTBOOK_PAGE_CHANGING = 10238  # The page selection is about to be changed. Processes a  wxEVT_LISTBOOK_PAGE_CHANGING   event. This event can be vetoed. ^^
+
+type _TEVT_LISTBOX = Literal[10017]
+EVT_LISTBOX: _TEVT_LISTBOX = 10017
+
+type _TEVT_LISTBOX_DCLICK = Literal[10018]
+EVT_LISTBOX_DCLICK: _TEVT_LISTBOX_DCLICK = 10018
+
+type _TEVT_LIST_BEGIN_DRAG = Literal[10180]
+EVT_LIST_BEGIN_DRAG: _TEVT_LIST_BEGIN_DRAG = 10180
+
+type _TEVT_LIST_BEGIN_LABEL_EDIT = Literal[10182]
+EVT_LIST_BEGIN_LABEL_EDIT: _TEVT_LIST_BEGIN_LABEL_EDIT = 10182
+
+type _TEVT_LIST_BEGIN_RDRAG = Literal[10181]
+EVT_LIST_BEGIN_RDRAG: _TEVT_LIST_BEGIN_RDRAG = 10181
+
+type _TEVT_LIST_CACHE_HINT = Literal[10201]
+EVT_LIST_CACHE_HINT: _TEVT_LIST_CACHE_HINT = 10201
+
+type _TEVT_LIST_COL_BEGIN_DRAG = Literal[10192]
+EVT_LIST_COL_BEGIN_DRAG: _TEVT_LIST_COL_BEGIN_DRAG = 10192
+
+type _TEVT_LIST_COL_CLICK = Literal[10190]
+EVT_LIST_COL_CLICK: _TEVT_LIST_COL_CLICK = 10190
+type _TEVT_LIST_COL_DRAGGING = Literal[10193]
+EVT_LIST_COL_DRAGGING: _TEVT_LIST_COL_DRAGGING = 10193
+
+type _TEVT_LIST_COL_END_DRAG = Literal[10194]
+EVT_LIST_COL_END_DRAG: _TEVT_LIST_COL_END_DRAG = 10194
+
+type _TEVT_LIST_COL_RIGHT_CLICK = Literal[10191]
+EVT_LIST_COL_RIGHT_CLICK: _TEVT_LIST_COL_RIGHT_CLICK = 10191
+
+type _TEVT_LIST_DELETE_ALL_ITEMS = Literal[10185]
+EVT_LIST_DELETE_ALL_ITEMS: _TEVT_LIST_DELETE_ALL_ITEMS = 10185
+
+type _TEVT_LIST_DELETE_ITEM = Literal[10184]
+EVT_LIST_DELETE_ITEM: _TEVT_LIST_DELETE_ITEM = 10184
+
+type _TEVT_LIST_END_LABEL_EDIT = Literal[10183]
+EVT_LIST_END_LABEL_EDIT: _TEVT_LIST_END_LABEL_EDIT = 10183
+
+type _TEVT_LIST_INSERT_ITEM = Literal[10189]
+EVT_LIST_INSERT_ITEM: _TEVT_LIST_INSERT_ITEM = 10189
+
+type _TEVT_LIST_ITEM_ACTIVATED = Literal[10197]
+EVT_LIST_ITEM_ACTIVATED: _TEVT_LIST_ITEM_ACTIVATED = 10197
+type _TEVT_LIST_ITEM_CHECKED = Literal[10199]
+EVT_LIST_ITEM_CHECKED: _TEVT_LIST_ITEM_CHECKED = 10199
+type _TEVT_LIST_ITEM_DESELECTED = Literal[10187]
+EVT_LIST_ITEM_DESELECTED: _TEVT_LIST_ITEM_DESELECTED = 10187
+type _TEVT_LIST_ITEM_FOCUSED = Literal[10198]
+EVT_LIST_ITEM_FOCUSED: _TEVT_LIST_ITEM_FOCUSED = 10198
+
+type _TEVT_LIST_ITEM_MIDDLE_CLICK = Literal[10196]
+EVT_LIST_ITEM_MIDDLE_CLICK: _TEVT_LIST_ITEM_MIDDLE_CLICK = 10196
+
+type _TEVT_LIST_ITEM_RIGHT_CLICK = Literal[10195]
+EVT_LIST_ITEM_RIGHT_CLICK: _TEVT_LIST_ITEM_RIGHT_CLICK = 10195
+
+type _TEVT_LIST_ITEM_SELECTED = Literal[10186]
+EVT_LIST_ITEM_SELECTED: _TEVT_LIST_ITEM_SELECTED = 10186
+type _TEVT_LIST_ITEM_UNCHECKED = Literal[10200]
+EVT_LIST_ITEM_UNCHECKED: _TEVT_LIST_ITEM_UNCHECKED = 10200
+
+type _TEVT_LIST_KEY_DOWN = Literal[10188]
+EVT_LIST_KEY_DOWN: _TEVT_LIST_KEY_DOWN = 10188
+
+type _TEVT_LONG_PRESS = Literal[10084]
+EVT_LONG_PRESS: _TEVT_LONG_PRESS = 10084
+
+type _TEVT_MAGNIFY = Literal[10054]
+EVT_MAGNIFY: _TEVT_MAGNIFY = 10054
+type _TEVT_MAXIMIZE = Literal[10102]
+EVT_MAXIMIZE: _TEVT_MAXIMIZE = 10102
+type _TEVT_MENU = Literal[10020]
+EVT_MENU: _TEVT_MENU = 10020
+
+type _TEVT_MENU_CLOSE = Literal[10110]
+EVT_MENU_CLOSE: _TEVT_MENU_CLOSE = 10110
+type _TEVT_MENU_HIGHLIGHT = Literal[10111]
+EVT_MENU_HIGHLIGHT: _TEVT_MENU_HIGHLIGHT = 10111
+type _TEVT_MENU_OPEN = Literal[10109]
+EVT_MENU_OPEN: _TEVT_MENU_OPEN = 10109
+
+type _TEVT_MIDDLE_DCLICK = Literal[10042]
+EVT_MIDDLE_DCLICK: _TEVT_MIDDLE_DCLICK = 10042
+type _TEVT_MIDDLE_DOWN = Literal[10034]
+EVT_MIDDLE_DOWN: _TEVT_MIDDLE_DOWN = 10034
+type _TEVT_MIDDLE_UP = Literal[10035]
+EVT_MIDDLE_UP: _TEVT_MIDDLE_UP = 10035
+
+type _TEVT_MOTION = Literal[10038]
+EVT_MOTION: _TEVT_MOTION = 10038
+type _TEVT_MOUSEWHEEL = Literal[10047]
+EVT_MOUSEWHEEL: _TEVT_MOUSEWHEEL = 10047
+
+type _TEVT_MOUSE_CAPTURE_CHANGED = Literal[10104]
+EVT_MOUSE_CAPTURE_CHANGED: _TEVT_MOUSE_CAPTURE_CHANGED = 10104  # Process a  wxEVT_MOUSE_CAPTURE_CHANGED   event. See    wx.MouseCaptureChangedEvent.
+type _TEVT_MOUSE_CAPTURE_LOST = Literal[10105]
+EVT_MOUSE_CAPTURE_LOST: _TEVT_MOUSE_CAPTURE_LOST = 10105 # Process a  wxEVT_MOUSE_CAPTURE_LOST   event. See    wx.MouseCaptureLostEvent.
+
+type _TEVT_MOVE = Literal[10088]
+EVT_MOVE: _TEVT_MOVE = 10088
+
+type _TEVT_MOVE_END = Literal[10091]
+EVT_MOVE_END: _TEVT_MOVE_END = 10091
+type _TEVT_MOVE_START = Literal[10090]
+EVT_MOVE_START: _TEVT_MOVE_START = 10090
+
+type _TEVT_MOVING = Literal[10089]
+EVT_MOVING: _TEVT_MOVING = 10089
+
+type _TEVT_NAVIGATION_KEY = Literal[10058]
+EVT_NAVIGATION_KEY: _TEVT_NAVIGATION_KEY = 10058
+
+type _TEVT_NC_PAINT = Literal[10108]
+EVT_NC_PAINT: _TEVT_NC_PAINT = 10108
+
+type _TEVT_NOTEBOOK_PAGE_CHANGED = Literal[10202]
+EVT_NOTEBOOK_PAGE_CHANGED: _TEVT_NOTEBOOK_PAGE_CHANGED = 10202  # The page selection was changed. Processes a  wxEVT_NOTEBOOK_PAGE_CHANGED   event.
+type _TEVT_NOTEBOOK_PAGE_CHANGING = Literal[10203]
+EVT_NOTEBOOK_PAGE_CHANGING: _TEVT_NOTEBOOK_PAGE_CHANGING = 10203  # The page selection is about to be changed. Processes a  wxEVT_NOTEBOOK_PAGE_CHANGING   event. This event can be vetoed. ^^
+
+type _TEVT_NULL = Literal[10007]
+EVT_NULL: _TEVT_NULL = 10007
+type _TEVT_PAINT = Literal[10106]
+EVT_PAINT: _TEVT_PAINT = 10106  # Process a  wxEVT_PAINT   event. See    wx.PaintEvent.
+
+type _TEVT_PALETTE_CHANGED = Literal[10117]
+EVT_PALETTE_CHANGED: _TEVT_PALETTE_CHANGED = 10117
+
+type _TEVT_POWER_RESUME = Literal[10003]
+EVT_POWER_RESUME: _TEVT_POWER_RESUME = 10003
+type _TEVT_POWER_SUSPENDED = Literal[10001]
+EVT_POWER_SUSPENDED: _TEVT_POWER_SUSPENDED = 10001
+type _TEVT_POWER_SUSPENDING = Literal[10000]
+EVT_POWER_SUSPENDING: _TEVT_POWER_SUSPENDING = 10000
+
+type _TEVT_POWER_SUSPEND_CANCEL = Literal[10002]
+EVT_POWER_SUSPEND_CANCEL: _TEVT_POWER_SUSPEND_CANCEL = 10002
+
+type _TEVT_PRESS_AND_TAP = Literal[10085]
+EVT_PRESS_AND_TAP: _TEVT_PRESS_AND_TAP = 10085
+
+type _TEVT_QUERY_END_SESSION = Literal[10094]
+EVT_QUERY_END_SESSION: _TEVT_QUERY_END_SESSION = 10094  # Process a  wxEVT_QUERY_END_SESSION   session event, supplying the member function. This event can be handled in App-derived class only.
+
+type _TEVT_QUERY_NEW_PALETTE = Literal[10116]
+EVT_QUERY_NEW_PALETTE: _TEVT_QUERY_NEW_PALETTE = 10116
+
+type _TEVT_RADIOBOX = Literal[10022]
+EVT_RADIOBOX: _TEVT_RADIOBOX = 10022
+type _TEVT_RADIOBUTTON = Literal[10023]
+EVT_RADIOBUTTON: _TEVT_RADIOBUTTON = 10023
+
+type _TEVT_RIGHT_DCLICK = Literal[10043]
+EVT_RIGHT_DCLICK: _TEVT_RIGHT_DCLICK = 10043
+type _TEVT_RIGHT_DOWN = Literal[10036]
+EVT_RIGHT_DOWN: _TEVT_RIGHT_DOWN = 10036
+type _TEVT_RIGHT_UP = Literal[10037]
+EVT_RIGHT_UP: _TEVT_RIGHT_UP = 10037
+
+type _TEVT_SCROLLBAR = Literal[10024]
+EVT_SCROLLBAR: _TEVT_SCROLLBAR = 10024
+
+type _TEVT_SCROLLWIN_BOTTOM = Literal[10073]
+EVT_SCROLLWIN_BOTTOM: _TEVT_SCROLLWIN_BOTTOM = 10073
+type _TEVT_SCROLLWIN_LINEDOWN = Literal[10075]
+EVT_SCROLLWIN_LINEDOWN: _TEVT_SCROLLWIN_LINEDOWN = 10075
+type _TEVT_SCROLLWIN_LINEUP = Literal[10074]
+EVT_SCROLLWIN_LINEUP: _TEVT_SCROLLWIN_LINEUP = 10074
+type _TEVT_SCROLLWIN_PAGEDOWN = Literal[10077]
+EVT_SCROLLWIN_PAGEDOWN: _TEVT_SCROLLWIN_PAGEDOWN = 10077
+type _TEVT_SCROLLWIN_PAGEUP = Literal[10076]
+EVT_SCROLLWIN_PAGEUP: _TEVT_SCROLLWIN_PAGEUP = 10076
+type _TEVT_SCROLLWIN_THUMBRELEASE = Literal[10079]
+EVT_SCROLLWIN_THUMBRELEASE: _TEVT_SCROLLWIN_THUMBRELEASE = 10079
+type _TEVT_SCROLLWIN_THUMBTRACK = Literal[10078]
+EVT_SCROLLWIN_THUMBTRACK: _TEVT_SCROLLWIN_THUMBTRACK = 10078
+type _TEVT_SCROLLWIN_TOP = Literal[10072]
+EVT_SCROLLWIN_TOP: _TEVT_SCROLLWIN_TOP = 10072
+
+type _TEVT_SCROLL_BOTTOM = Literal[10064]
+EVT_SCROLL_BOTTOM: _TEVT_SCROLL_BOTTOM = 10064
+type _TEVT_SCROLL_CHANGED = Literal[10071]
+EVT_SCROLL_CHANGED: _TEVT_SCROLL_CHANGED = 10071
+type _TEVT_SCROLL_LINEDOWN = Literal[10066]
+EVT_SCROLL_LINEDOWN: _TEVT_SCROLL_LINEDOWN = 10066
+type _TEVT_SCROLL_LINEUP = Literal[10065]
+EVT_SCROLL_LINEUP: _TEVT_SCROLL_LINEUP = 10065
+type _TEVT_SCROLL_PAGEDOWN = Literal[10068]
+EVT_SCROLL_PAGEDOWN: _TEVT_SCROLL_PAGEDOWN = 10068
+type _TEVT_SCROLL_PAGEUP = Literal[10067]
+EVT_SCROLL_PAGEUP: _TEVT_SCROLL_PAGEUP = 10067
+type _TEVT_SCROLL_THUMBRELEASE = Literal[10070]
+EVT_SCROLL_THUMBRELEASE: _TEVT_SCROLL_THUMBRELEASE = 10070
+type _TEVT_SCROLL_THUMBTRACK = Literal[10069]
+EVT_SCROLL_THUMBTRACK: _TEVT_SCROLL_THUMBTRACK = 10069
+type _TEVT_SCROLL_TOP = Literal[10063]
+EVT_SCROLL_TOP: _TEVT_SCROLL_TOP = 10063
+
+type _TEVT_SEARCH = Literal[10207]
+EVT_SEARCH: _TEVT_SEARCH = 10207
+
+type _TEVT_SEARCH_CANCEL = Literal[10206]
+EVT_SEARCH_CANCEL: _TEVT_SEARCH_CANCEL = 10206
+
+type _TEVT_SET_CURSOR = Literal[10062]
+EVT_SET_CURSOR: _TEVT_SET_CURSOR = 10062  # Process a  wxEVT_SET_CURSOR   event. See wx.SetCursorEvent.
+type _TEVT_SET_FOCUS = Literal[10044]
+EVT_SET_FOCUS: _TEVT_SET_FOCUS = 10044  # Process a  wxEVT_SET_FOCUS   event. See wx.FocusEvent.
+
+type _TEVT_SHOW = Literal[100100]
+EVT_SHOW: _TEVT_SHOW = 10100
+type _TEVT_SIZE = Literal[10086]
+EVT_SIZE: _TEVT_SIZE = 10086  # Process a  wxEVT_SIZE   event. See wx.SizeEvent.
+type _TEVT_SIZING = Literal[10087]
+EVT_SIZING: _TEVT_SIZING = 10087
+type _TEVT_SLIDER = Literal[10021]
+EVT_SLIDER: _TEVT_SLIDER = 10021
+type _TEVT_SPIN = Literal[10069]
+EVT_SPIN: _TEVT_SPIN = 10069
+type _TEVT_SPINCTRL = Literal[10204]
+EVT_SPINCTRL: _TEVT_SPINCTRL = 10204
+type _TEVT_SPINCTRLDOUBLE = Literal[10205]
+EVT_SPINCTRLDOUBLE: _TEVT_SPINCTRLDOUBLE = 10205
+
+type _TEVT_SPIN_DOWN = Literal[10066]
+EVT_SPIN_DOWN: _TEVT_SPIN_DOWN = 10066
+type _TEVT_SPIN_UP = Literal[10065]
+EVT_SPIN_UP: _TEVT_SPIN_UP = 10065
+
+type _TEVT_SPLITTER_DOUBLECLICKED = Literal[10243]
+EVT_SPLITTER_DOUBLECLICKED: _TEVT_SPLITTER_DOUBLECLICKED = 10243
+
+type _TEVT_SPLITTER_SASH_POS_CHANGED = Literal[10240]
+EVT_SPLITTER_SASH_POS_CHANGED: _TEVT_SPLITTER_SASH_POS_CHANGED = 10240
+type _TEVT_SPLITTER_SASH_POS_CHANGING = Literal[10241]
+EVT_SPLITTER_SASH_POS_CHANGING: _TEVT_SPLITTER_SASH_POS_CHANGING = 10241
+type _TEVT_SPLITTER_SASH_POS_RESIZE = Literal[10242]
+EVT_SPLITTER_SASH_POS_RESIZE: _TEVT_SPLITTER_SASH_POS_RESIZE = 10242
+
+type _TEVT_SPLITTER_UNSPLIT = Literal[10244]
+EVT_SPLITTER_UNSPLIT: _TEVT_SPLITTER_UNSPLIT = 10244
+
+type _TEVT_SYS_COLOUR_CHANGED = Literal[10113]
+EVT_SYS_COLOUR_CHANGED: _TEVT_SYS_COLOUR_CHANGED = 10113  # Process a  wxEVT_SYS_COLOUR_CHANGED   event. See wx.SysColourChangedEvent. ^^
+
+type _TEVT_TEXT = Literal[10208]
+EVT_TEXT: _TEVT_TEXT = 10208
+
+type _TEVT_TEXT_COPY = Literal[10125]
+EVT_TEXT_COPY: _TEVT_TEXT_COPY = 10125
+type _TEVT_TEXT_CUT = Literal[10126]
+EVT_TEXT_CUT: _TEVT_TEXT_CUT = 10126
+type _TEVT_TEXT_ENTER = Literal[10209]
+EVT_TEXT_ENTER: _TEVT_TEXT_ENTER = 10209
+type _TEVT_TEXT_MAXLEN = Literal[10211]
+EVT_TEXT_MAXLEN: _TEVT_TEXT_MAXLEN = 10211
+type _TEVT_TEXT_PASTE = Literal[10127]
+EVT_TEXT_PASTE: _TEVT_TEXT_PASTE = 10127
+type _TEVT_TEXT_URL = Literal[10210]
+EVT_TEXT_URL: _TEVT_TEXT_URL = 10210
+
+type _TEVT_THREAD = Literal[10009]
+EVT_THREAD: _TEVT_THREAD = 10009
+type _TEVT_TIMER = Literal[10005]
+EVT_TIMER: _TEVT_TIMER = 10005
+type _TEVT_TOGGLEBUTTON = Literal[10148]
+EVT_TOGGLEBUTTON: _TEVT_TOGGLEBUTTON = 10148
+type _TEVT_TOOL = Literal[10020]
+EVT_TOOL: _TEVT_TOOL = 10020
+
+type _TEVT_TOOLBOOK_PAGE_CHANGED = Literal[10246]
+EVT_TOOLBOOK_PAGE_CHANGED: _TEVT_TOOLBOOK_PAGE_CHANGED = 10246
+type _TEVT_TOOLBOOK_PAGE_CHANGING = Literal[10245]
+EVT_TOOLBOOK_PAGE_CHANGING: _TEVT_TOOLBOOK_PAGE_CHANGING = 10245
+
+type _TEVT_TOOL_DROPDOWN = Literal[10029]
+EVT_TOOL_DROPDOWN: _TEVT_TOOL_DROPDOWN = 10029
+type _TEVT_TOOL_ENTER = Literal[10028]
+EVT_TOOL_ENTER: _TEVT_TOOL_ENTER = 10028
+type _TEVT_TOOL_RCLICKED = Literal[10027]
+EVT_TOOL_RCLICKED: _TEVT_TOOL_RCLICKED = 10027
+
+type _TEVT_TREEBOOK_NODE_COLLAPSED = Literal[10249]
+EVT_TREEBOOK_NODE_COLLAPSED: _TEVT_TREEBOOK_NODE_COLLAPSED = 10249  # The page selection was changed. Processes a  wxEVT_TREEBOOK_PAGE_CHANGED   event.
+type _TEVT_TREEBOOK_NODE_EXPANDED = Literal[10250]
+EVT_TREEBOOK_NODE_EXPANDED: _TEVT_TREEBOOK_NODE_EXPANDED = 10250  # The page selection is about to be changed. Processes a  wxEVT_TREEBOOK_PAGE_CHANGING   event. This event can be  vetoed.
+
+type _TEVT_TREEBOOK_PAGE_CHANGED = Literal[10248]
+EVT_TREEBOOK_PAGE_CHANGED: _TEVT_TREEBOOK_PAGE_CHANGED = 10248  # The page node is going to be collapsed. Processes a  wxEVT_TREEBOOK_NODE_COLLAPSED   event.
+type _TEVT_TREEBOOK_PAGE_CHANGING = Literal[10247]
+EVT_TREEBOOK_PAGE_CHANGING: _TEVT_TREEBOOK_PAGE_CHANGING = 10247  # The page node is going to be expanded. Processes a  wxEVT_TREEBOOK_NODE_EXPANDED   event. ^^
+
+type _TEVT_TREE_BEGIN_DRAG = Literal[10212]
+EVT_TREE_BEGIN_DRAG: _TEVT_TREE_BEGIN_DRAG = 10212  # Begin dragging with the left mouse button. If you want to enable left-dragging you need to intercept this event and explicitly call wx.TreeEvent.Allow , as itâs vetoed by default. Processes a  wxEVT_TREE_BEGIN_DRAG   event type.
+type _TEVT_TREE_BEGIN_LABEL_EDIT = Literal[10214]
+EVT_TREE_BEGIN_LABEL_EDIT: _TEVT_TREE_BEGIN_LABEL_EDIT = 10214  # Begin editing a label. This can be prevented by calling Veto(). Processes a  wxEVT_TREE_BEGIN_LABEL_EDIT   event type.
+type _TEVT_TREE_BEGIN_RDRAG = Literal[10213]
+EVT_TREE_BEGIN_RDRAG: _TEVT_TREE_BEGIN_RDRAG = 10213  # Begin dragging with the right mouse button. If you want to enable right-dragging you need to intercept this event and explicitly call wx.TreeEvent.Allow , as itâs vetoed by default. Processes a  wxEVT_TREE_BEGIN_RDRAG   event type.
+type _TEVT_TREE_DELETE_ITEM = Literal[10216]
+EVT_TREE_DELETE_ITEM: _TEVT_TREE_DELETE_ITEM = 10216  # An item was deleted. Processes a  wxEVT_TREE_DELETE_ITEM   event type.
+type _TEVT_TREE_END_DRAG = Literal[10229]
+EVT_TREE_END_DRAG: _TEVT_TREE_END_DRAG = 10229  # End dragging with the left or right mouse button. Processes a  wxEVT_TREE_END_DRAG   event type.
+type _TEVT_TREE_END_LABEL_EDIT = Literal[10215]
+EVT_TREE_END_LABEL_EDIT: _TEVT_TREE_END_LABEL_EDIT = 10215  # Finish editing a label. This can be prevented by calling Veto(). Processes a  wxEVT_TREE_END_LABEL_EDIT   event type.
+type _TEVT_TREE_GET_INFO = Literal[10217]
+EVT_TREE_GET_INFO: _TEVT_TREE_GET_INFO = 10217  # Request information from the application. Processes a  wxEVT_TREE_GET_INFO   event type.
+
+type _TEVT_TREE_ITEM_ACTIVATED = Literal[10226]
+EVT_TREE_ITEM_ACTIVATED: _TEVT_TREE_ITEM_ACTIVATED = 10226  # The item has been activated, i.e. chosen by double clicking it with mouse or from keyboard. Processes a  wxEVT_TREE_ITEM_ACTIVATED   event type.
+type _TEVT_TREE_ITEM_COLLAPSED = Literal[10221]
+EVT_TREE_ITEM_COLLAPSED: _TEVT_TREE_ITEM_COLLAPSED = 10221  # The item has been collapsed. Processes a  wxEVT_TREE_ITEM_COLLAPSED   event type.
+type _TEVT_TREE_ITEM_COLLAPSING = Literal[10222]
+EVT_TREE_ITEM_COLLAPSING: _TEVT_TREE_ITEM_COLLAPSING = 10222  # The item is being collapsed. This can be prevented by calling Veto(). Processes a  wxEVT_TREE_ITEM_COLLAPSING   event type.
+type _TEVT_TREE_ITEM_EXPANDED = Literal[10219]
+EVT_TREE_ITEM_EXPANDED: _TEVT_TREE_ITEM_EXPANDED = 10219  # The item has been expanded. Processes a  wxEVT_TREE_ITEM_EXPANDED   event type.
+type _TEVT_TREE_ITEM_EXPANDING = Literal[10220]
+EVT_TREE_ITEM_EXPANDING: _TEVT_TREE_ITEM_EXPANDING = 10220  # The item is being expanded. This can be prevented by calling Veto(). Processes a  wxEVT_TREE_ITEM_EXPANDING   event type.
+type _TEVT_TREE_ITEM_GETTOOLTIP = Literal[10231]
+EVT_TREE_ITEM_GETTOOLTIP: _TEVT_TREE_ITEM_GETTOOLTIP = 10231  # The opportunity to set the item tooltip is being given to the application (call wx.TreeEvent.SetToolTip ). Windows only. Processes a  wxEVT_TREE_ITEM_GETTOOLTIP   event type.
+type _TEVT_TREE_ITEM_MENU = Literal[10232]
+EVT_TREE_ITEM_MENU: _TEVT_TREE_ITEM_MENU = 10232  # The context menu for the selected item has been requested, either by a right click or by using the menu key. Notice that these events always carry a valid tree item and so are not generated when (right) clicking outside of the items area. If you need to handle such events, consider using  wxEVT_CONTEXT_MENU   instead. Processes a   wxEVT_TREE_ITEM_MENU   event type.
+
+type _TEVT_TREE_ITEM_MIDDLE_CLICK = Literal[10228]
+EVT_TREE_ITEM_MIDDLE_CLICK: _TEVT_TREE_ITEM_MIDDLE_CLICK = 10228  # The user has clicked the item with the middle mouse button. This is only supported by the generic control. Processes a  wxEVT_TREE_ITEM_MIDDLE_CLICK   event type.
+type _TEVT_TREE_ITEM_RIGHT_CLICK = Literal[10227]
+EVT_TREE_ITEM_RIGHT_CLICK: _TEVT_TREE_ITEM_RIGHT_CLICK = 10227  # The user has clicked the item with the right mouse button. Processes a  wxEVT_TREE_ITEM_RIGHT_CLICK   event type.
+
+type _TEVT_TREE_KEY_DOWN = Literal[10225]
+EVT_TREE_KEY_DOWN: _TEVT_TREE_KEY_DOWN = 10225  # A key has been pressed. Processes a  wxEVT_TREE_KEY_DOWN   event type.
+type _TEVT_TREE_SEL_CHANGED = Literal[10223]
+EVT_TREE_SEL_CHANGED: _TEVT_TREE_SEL_CHANGED = 10223  # Selection has changed. Processes a  wxEVT_TREE_SEL_CHANGED   event type.
+type _TEVT_TREE_SEL_CHANGING = Literal[10224]
+EVT_TREE_SEL_CHANGING: _TEVT_TREE_SEL_CHANGING = 10224  # Selection is changing. This can be prevented by calling Veto(). Processes a  wxEVT_TREE_SEL_CHANGING   event type.
+type _TEVT_TREE_SET_INFO = Literal[10218]
+EVT_TREE_SET_INFO: _TEVT_TREE_SET_INFO = 10218  # Information is being supplied. Processes a  wxEVT_TREE_SET_INFO   event type.
+type _TEVT_TREE_STATE_IMAGE_CLICK = Literal[10230]
+EVT_TREE_STATE_IMAGE_CLICK: _TEVT_TREE_STATE_IMAGE_CLICK = 10230  # The state image has been clicked. Processes a  wxEVT_TREE_STATE_IMAGE_CLICK   event type. ^^
+
+type _TEVT_TWO_FINGER_TAP = Literal[10083]
+EVT_TWO_FINGER_TAP: _TEVT_TWO_FINGER_TAP = 10083
+
+type _TEVT_UPDATE_UI = Literal[10124]
+EVT_UPDATE_UI: _TEVT_UPDATE_UI = 10124
+
+type _TEVT_VLBOX = Literal[10025]
+EVT_VLBOX: _TEVT_VLBOX = 10025
+
+type _TEVT_WINDOW_MODAL_DIALOG_CLOSED = Literal[10154]
+EVT_WINDOW_MODAL_DIALOG_CLOSED: _TEVT_WINDOW_MODAL_DIALOG_CLOSED = 10154
 
 
 EVT_HELP_RANGE: int  # Process a  wxEVT_HELP   event for a range of ids. See    wx.HelpEvent.
@@ -14529,33 +14765,33 @@ class EvtHandler(Object,Trackable):
         """
 
     @overload
-    def Bind(self, event: Literal[EVT_SIZE], handler: Callable[[wx.SizeEvent], object], source: EvtHandler | None = None) -> None: ...
+    def Bind(self, event: Literal[_TEVT_SIZE], handler: Callable[[SizeEvent], object], source: EvtHandler | None = None) -> None: ...
     @overload
-    def Bind(self, event: Literal[EVT_CLOSE], handler: Callable[[wx.CloseEvent], object], source: EvtHandler | None = None) -> None: ...
+    def Bind(self, event: Literal[_TEVT_CLOSE], handler: Callable[[CloseEvent], object], source: EvtHandler | None = None) -> None: ...
     @overload
-    def Bind(self, event: Literal[EVT_MOUSE_CAPTURE_CHANGED], handler: Callable[[wx.MouseCaptureChangedEvent], object], source: EvtHandler | None = None) -> None: ...
+    def Bind(self, event: Literal[_TEVT_MOUSE_CAPTURE_CHANGED], handler: Callable[[MouseCaptureChangedEvent], object], source: EvtHandler | None = None) -> None: ...
     @overload
-    def Bind(self, event: Literal[EVT_MOUSE_CAPTURE_LOST], handler: Callable[[wx.MouseCaptureLostEvent], object], source: EvtHandler | None = None) -> None: ...
+    def Bind(self, event: Literal[_TEVT_MOUSE_CAPTURE_LOST], handler: Callable[[MouseCaptureLostEvent], object], source: EvtHandler | None = None) -> None: ...
     @overload
-    def Bind(self, event: Literal[EVT_SET_FOCUS, EVT_KILL_FOCUS], handler: Callable[[wx.FocusEvent], object], source: EvtHandler | None = None) -> None: ...
+    def Bind(self, event: Literal[_TEVT_SET_FOCUS, _TEVT_KILL_FOCUS], handler: Callable[[FocusEvent], object], source: EvtHandler | None = None) -> None: ...
     @overload
-    def Bind(self, event: Literal[EVT_PAINT], handler: Callable[[wx.PaintEvent], object], source: EvtHandler | None = None) -> None: ...
+    def Bind(self, event: Literal[_TEVT_PAINT], handler: Callable[[PaintEvent], object], source: EvtHandler | None = None) -> None: ...
     @overload
-    def Bind(self, event: Literal[EVT_IDLE], handler: Callable[[wx.IdleEvent], object], source: EvtHandler | None = None) -> None: ...
+    def Bind(self, event: Literal[_TEVT_IDLE], handler: Callable[[IdleEvent], object], source: EvtHandler | None = None) -> None: ...
     @overload
-    def Bind(self, event: Literal[EVT_KEY_DOWN, EVT_KEY_UP, EVT_CHAR, EVT_CHAR_HOOK], handler: Callable[[wx.KeyEvent], object], source: EvtHandler | None = None) -> None: ...
+    def Bind(self, event: Literal[_TEVT_KEY_DOWN, _TEVT_KEY_UP, _TEVT_CHAR, _TEVT_CHAR_HOOK], handler: Callable[[KeyEvent], object], source: EvtHandler | None = None) -> None: ...
     @overload
     def Bind(self, event: Literal[
-        EVT_LEFT_DOWN, EVT_LEFT_UP, EVT_LEFT_DCLICK, 
-        EVT_MIDDLE_DOWN, EVT_MIDDLE_UP, EVT_MIDDLE_DCLICK,
-        EVT_RIGHT_DOWN, EVT_RIGHT_UP, EVT_RIGHT_DCLICK,
-        EVT_MOUSE_AUX1_UP, EVT_MOUSE_AUX1_DOWN, EVT_MOUSE_AUX1_DCLICK,
-        EVT_MOUSE_AUX2_UP, EVT_MOUSE_AUX2_DOWN, EVT_MOUSE_AUX2_DCLICK,
-        EVT_MOTION, EVT_ENTER_WINDOW, EVT_LEAVE_WINDOW, EVT_MOUSEWHEEL, EVT_MAGNIFY,
-    ], handler: Callable[[wx.MouseEvent], object], source: EvtHandler | None = None) -> None: ...
+        _TEVT_LEFT_DOWN, _TEVT_LEFT_UP, _TEVT_LEFT_DCLICK, 
+        _TEVT_MIDDLE_DOWN, _TEVT_MIDDLE_UP, _TEVT_MIDDLE_DCLICK,
+        _TEVT_RIGHT_DOWN, _TEVT_RIGHT_UP, _TEVT_RIGHT_DCLICK,
+        # _TEVT_MOUSE_AUX1_UP, _TEVT_MOUSE_AUX1_DOWN, _TEVT_MOUSE_AUX1_DCLICK,
+        # _TEVT_MOUSE_AUX2_UP, _TEVT_MOUSE_AUX2_DOWN, _TEVT_MOUSE_AUX2_DCLICK,
+        _TEVT_MOTION, _TEVT_ENTER_WINDOW, _TEVT_LEAVE_WINDOW, _TEVT_MOUSEWHEEL, _TEVT_MAGNIFY,
+    ], handler: Callable[[MouseEvent], object], source: EvtHandler | None = None) -> None: ...
 
     @overload
-    def Bind(self, event: int, handler: Callable[[wx.Event], object] | None, source: EvtHandler | None = None, id: int=wx.ID_ANY, id2: int=wx.ID_ANY) -> None:
+    def Bind(self, event: int, handler: Callable[[Event], object] | None, source: EvtHandler | None = None, id: int=wx.ID_ANY, id2: int=wx.ID_ANY) -> None:
         """ Bind an event to an event handler.
 
             Source: https://docs.wxpython.org/wx.EvtHandler.html
@@ -16261,17 +16497,6 @@ class FindDialogEvent(CommandEvent):
     Flags: int  # See GetFlags
     ReplaceString: str  # See GetReplaceString
 
-
-
-EVT_FIND: int  # Find button was pressed in the dialog.
-
-EVT_FIND_NEXT: int  # Find next button was pressed in the dialog.
-
-EVT_FIND_REPLACE: int  # Replace button was pressed in the dialog.
-
-EVT_FIND_REPLACE_ALL: int  # Replace all button was pressed in the dialog.
-
-EVT_FIND_CLOSE: int  # The dialog is being destroyed, any pointers to it cannot be used any longer. ^^
 
 class FindReplaceDialog(Dialog):
     """ FindReplaceDialog is a standard modeless dialog which is used to
@@ -21152,32 +21377,6 @@ HD_ALLOW_HIDE: int  # If this style is specified, the control shows a popup menu
 HD_BITMAP_ON_RIGHT: int  # The column image, if any, will be shown on the right side if this style is used. Note that this style is only implemented in wxMSW currently and doesnât do anything under the other platforms. It is available since wxWidgets 3.1.1.
 
 HD_DEFAULT_STYLE: int  # Symbolic name for the default control style, currently equal to  HD_ALLOW_REORDER . ^^
-
-EVT_HEADER_CLICK: int  # A column heading was clicked.
-
-EVT_HEADER_RIGHT_CLICK: int  # A column heading was right clicked.
-
-EVT_HEADER_MIDDLE_CLICK: int  # A column heading was clicked with the middle mouse button.
-
-EVT_HEADER_DCLICK: int  # A column heading was double clicked.
-
-EVT_HEADER_RIGHT_DCLICK: int  # A column heading was right double clicked.
-
-EVT_HEADER_MIDDLE_DCLICK: int  # A column heading was double clicked with the middle mouse button.
-
-EVT_HEADER_SEPARATOR_DCLICK: int  # Separator to the right of the specified column was double clicked (this action is commonly used to resize the column to fit its contents width and the control provides UpdateColumnWidthToFit  method to make implementing this easier).
-
-EVT_HEADER_BEGIN_RESIZE: int  # The user started to drag the separator to the right of the column with the specified index (this can only happen for the columns for which wx.HeaderColumn.IsResizeable   returns True). The event can be vetoed to prevent the column from being resized. If it isnât, the resizing and end resize (or dragging cancelled) events will be generated later.
-
-EVT_HEADER_RESIZING: int  # The user is dragging the column with the specified index resizing it and its current width is wx.HeaderCtrlEvent.GetWidth . The event can be vetoed to stop the dragging operation completely at any time.
-
-EVT_HEADER_END_RESIZE: int  # The user stopped dragging the column by releasing the mouse. The column should normally be resized to the value of wx.HeaderCtrlEvent.GetWidth .
-
-EVT_HEADER_BEGIN_REORDER: int  # The user started to drag the column with the specified index (this can only happen for the controls with wx.HD_ALLOW_REORDER style). This event can be vetoed to prevent the column from being reordered, otherwise the end reorder message will be generated later.
-
-EVT_HEADER_END_REORDER: int  # The user dropped the column in its new location. The event can be vetoed to prevent the column from being placed at the new position or handled to update the display of the data in the associated control to match the new column location (available from wx.HeaderCtrlEvent.GetNewOrder ).
-
-EVT_HEADER_DRAGGING_CANCELLED: int  # The resizing or reordering operation currently in progress was cancelled. This can happen if the user pressed Esc key while dragging the mouse or the mouse capture was lost for some other reason. You only need to handle this event if your application entered into some modal mode when resizing or reordering began, in which case it should handle this event in addition to the matching end resizing or reordering ones. ^^
 
 class HeaderCtrlEvent(NotifyEvent):
     """ Event class representing the events generated by HeaderCtrl.
@@ -46380,8 +46579,6 @@ CONTENT_PROTECTION_NONE: int
 
 CONTENT_PROTECTION_ENABLED: int
 
-EVT_TREE_ITEM_EXPANDING: int
-
 UpdateUIMode: TypeAlias = int  # Enumeration
 
 _FileSystem: TypeAlias = FileSystem
@@ -46510,8 +46707,6 @@ CYAN: 'Colour'
 OPEN: int
 
 NullBitmap: 'Bitmap'
-
-EVT_TIMER: int
 
 class FrozenWindow(ContextManager):
     """ Freeze the window and all its children.
