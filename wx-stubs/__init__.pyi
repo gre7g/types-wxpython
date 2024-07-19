@@ -1,6 +1,7 @@
-# -*- coding: utf-8 -*-
+    # -*- coding: utf-8 -*-
 # mypy: disable-error-code=override
 from typing import Any, ContextManager, Callable, Optional, TypeAlias, Union, Iterator, Final, Literal, overload
+from enum import IntEnum, auto
 
 from .ActivateEvent import Reason
 from .ConfigBase import EntryType
@@ -17,224 +18,209 @@ wxEVT_NULL: Final = 0
 import wx
 
 
-FontFamily: TypeAlias = int  # Enumeration
+class FontFamily(int):
+    """FONTFAMILY_* enumeration."""
 
-FONTFAMILY_DEFAULT: int
+FONTFAMILY_DEFAULT: Final[FontFamily]
+FONTFAMILY_DECORATIVE: Final[FontFamily]
+FONTFAMILY_ROMAN: Final[FontFamily]
+FONTFAMILY_SCRIPT: Final[FontFamily]
+FONTFAMILY_SWISS: Final[FontFamily]
+FONTFAMILY_MODERN: Final[FontFamily]
+FONTFAMILY_TELETYPE: Final[FontFamily]
+FONTFAMILY_MAX: Final[FontFamily]
+FONTFAMILY_UNKNOWN: Final[FontFamily]
 
-FONTFAMILY_DECORATIVE: int
+class FontWeight(int):
+    """FONTWEIGHT_* enumeration."""
 
-FONTFAMILY_ROMAN: int
+FONTWEIGHT_INVALID: Final[FontWeight]
+FONTWEIGHT_THIN: Final[FontWeight]
+FONTWEIGHT_EXTRALIGHT: Final[FontWeight]
+FONTWEIGHT_LIGHT: Final[FontWeight]
+FONTWEIGHT_NORMAL: Final[FontWeight]
+FONTWEIGHT_MEDIUM: Final[FontWeight]
+FONTWEIGHT_SEMIBOLD: Final[FontWeight]
+FONTWEIGHT_BOLD: Final[FontWeight]
+FONTWEIGHT_EXTRABOLD: Final[FontWeight]
+FONTWEIGHT_HEAVY: Final[FontWeight]
+FONTWEIGHT_EXTRAHEAVY: Final[FontWeight]
+FONTWEIGHT_MAX: Final[FontWeight]
 
-FONTFAMILY_SCRIPT: int
+class StockCursor(int):
+    """CURSOR_* enumeration."""
 
-FONTFAMILY_SWISS: int
+CURSOR_NONE: Final[StockCursor]
+CURSOR_ARROW: Final[StockCursor]
+CURSOR_RIGHT_ARROW: Final[StockCursor]
+CURSOR_BULLSEYE: Final[StockCursor]
+CURSOR_CHAR: Final[StockCursor]
+CURSOR_CROSS: Final[StockCursor]
+CURSOR_HAND: Final[StockCursor]
+CURSOR_IBEAM: Final[StockCursor]
+CURSOR_LEFT_BUTTON: Final[StockCursor]
+CURSOR_MAGNIFIER: Final[StockCursor]
+CURSOR_MIDDLE_BUTTON: Final[StockCursor]
+CURSOR_NO_ENTRY: Final[StockCursor]
+CURSOR_PAINT_BRUSH: Final[StockCursor]
+CURSOR_PENCIL: Final[StockCursor]
+CURSOR_POINT_LEFT: Final[StockCursor]
+CURSOR_POINT_RIGHT: Final[StockCursor]
+CURSOR_QUESTION_ARROW: Final[StockCursor]
+CURSOR_RIGHT_BUTTON: Final[StockCursor]
+CURSOR_SIZENESW: Final[StockCursor]
+CURSOR_SIZENS: Final[StockCursor]
+CURSOR_SIZENWSE: Final[StockCursor]
+CURSOR_SIZEWE: Final[StockCursor]
+CURSOR_SIZING: Final[StockCursor]
+CURSOR_SPRAYCAN: Final[StockCursor]
+CURSOR_WAIT: Final[StockCursor]
+CURSOR_WATCH: Final[StockCursor]
+CURSOR_BLANK: Final[StockCursor]
+CURSOR_DEFAULT: Final[StockCursor]
+CURSOR_COPY_ARROW: Final[StockCursor]
+CURSOR_ARROWWAIT: Final[StockCursor]
+CURSOR_MAX: Final[StockCursor]
 
-FONTFAMILY_MODERN: int
+class StandardID(int):
+    """ID_* enumeration."""
 
-FONTFAMILY_TELETYPE: int
-
-FONTFAMILY_MAX: int
-
-FONTFAMILY_UNKNOWN: int
-
-FontWeight: TypeAlias = int  # Enumeration
-
-FONTWEIGHT_INVALID: int
-
-FONTWEIGHT_THIN: int
-
-FONTWEIGHT_EXTRALIGHT: int
-
-FONTWEIGHT_LIGHT: int
-
-FONTWEIGHT_NORMAL: int
-
-FONTWEIGHT_MEDIUM: int
-
-FONTWEIGHT_SEMIBOLD: int
-
-FONTWEIGHT_BOLD: int
-
-FONTWEIGHT_EXTRABOLD: int
-
-FONTWEIGHT_HEAVY: int
-
-FONTWEIGHT_EXTRAHEAVY: int
-
-FONTWEIGHT_MAX: int
-
-StockCursor: TypeAlias = int  # Enumeration
-
-CURSOR_NONE: int
-CURSOR_ARROW: int
-CURSOR_RIGHT_ARROW: int
-CURSOR_BULLSEYE: int
-CURSOR_CHAR: int
-CURSOR_CROSS: int
-CURSOR_HAND: int
-CURSOR_IBEAM: int
-CURSOR_LEFT_BUTTON: int
-CURSOR_MAGNIFIER: int
-CURSOR_MIDDLE_BUTTON: int
-CURSOR_NO_ENTRY: int
-CURSOR_PAINT_BRUSH: int
-CURSOR_PENCIL: int
-CURSOR_POINT_LEFT: int
-CURSOR_POINT_RIGHT: int
-CURSOR_QUESTION_ARROW: int
-CURSOR_RIGHT_BUTTON: int
-CURSOR_SIZENESW: int
-CURSOR_SIZENS: int
-CURSOR_SIZENWSE: int
-CURSOR_SIZEWE: int
-CURSOR_SIZING: int
-CURSOR_SPRAYCAN: int
-CURSOR_WAIT: int
-CURSOR_WATCH: int
-CURSOR_BLANK: int
-CURSOR_DEFAULT: int
-CURSOR_COPY_ARROW: int
-CURSOR_ARROWWAIT: int
-CURSOR_MAX: int
-
-StandardID: TypeAlias = int  # Enumeration
-
-ID_AUTO_LOWEST: int
-ID_ANY: int
-ID_AUTO_HIGHEST: int
-ID_NONE: int
-ID_SEPARATOR: int
-ID_LOWEST: int
-ID_OPEN: int
-ID_CLOSE: int
-ID_NEW: int
-ID_SAVE: int
-ID_SAVEAS: int
-ID_REVERT: int
-ID_EXIT: int
-ID_UNDO: int
-ID_REDO: int
-ID_HELP: int
-ID_PRINT: int
-ID_PRINT_SETUP: int
-ID_PAGE_SETUP: int
-ID_PREVIEW: int
-ID_ABOUT: int
-ID_HELP_CONTENTS: int
-ID_HELP_INDEX: int
-ID_HELP_SEARCH: int
-ID_HELP_COMMANDS: int
-ID_HELP_PROCEDURES: int
-ID_HELP_CONTEXT: int
-ID_CLOSE_ALL: int
-ID_PREFERENCES: int
-ID_EDIT: int
-ID_CUT: int
-ID_COPY: int
-ID_PASTE: int
-ID_CLEAR: int
-ID_FIND: int
-ID_DUPLICATE: int
-ID_SELECTALL: int
-ID_DELETE: int
-ID_REPLACE: int
-ID_REPLACE_ALL: int
-ID_PROPERTIES: int
-ID_VIEW_DETAILS: int
-ID_VIEW_LARGEICONS: int
-ID_VIEW_SMALLICONS: int
-ID_VIEW_LIST: int
-ID_VIEW_SORTDATE: int
-ID_VIEW_SORTNAME: int
-ID_VIEW_SORTSIZE: int
-ID_VIEW_SORTTYPE: int
-ID_FILE: int
-ID_FILE1: int
-ID_FILE2: int
-ID_FILE3: int
-ID_FILE4: int
-ID_FILE5: int
-ID_FILE6: int
-ID_FILE7: int
-ID_FILE8: int
-ID_FILE9: int
-ID_OK: int
-ID_CANCEL: int
-ID_APPLY: int
-ID_YES: int
-ID_NO: int
-ID_STATIC: int
-ID_FORWARD: int
-ID_BACKWARD: int
-ID_DEFAULT: int
-ID_MORE: int
-ID_SETUP: int
-ID_RESET: int
-ID_CONTEXT_HELP: int
-ID_YESTOALL: int
-ID_NOTOALL: int
-ID_ABORT: int
-ID_RETRY: int
-ID_IGNORE: int
-ID_ADD: int
-ID_REMOVE: int
-ID_UP: int
-ID_DOWN: int
-ID_HOME: int
-ID_REFRESH: int
-ID_STOP: int
-ID_INDEX: int
-ID_BOLD: int
-ID_ITALIC: int
-ID_JUSTIFY_CENTER: int
-ID_JUSTIFY_FILL: int
-ID_JUSTIFY_RIGHT: int
-ID_JUSTIFY_LEFT: int
-ID_UNDERLINE: int
-ID_INDENT: int
-ID_UNINDENT: int
-ID_ZOOM_100: int
-ID_ZOOM_FIT: int
-ID_ZOOM_IN: int
-ID_ZOOM_OUT: int
-ID_UNDELETE: int
-ID_REVERT_TO_SAVED: int
-ID_CDROM: int
-ID_CONVERT: int
-ID_EXECUTE: int
-ID_FLOPPY: int
-ID_HARDDISK: int
-ID_BOTTOM: int
-ID_FIRST: int
-ID_LAST: int
-ID_TOP: int
-ID_INFO: int
-ID_JUMP_TO: int
-ID_NETWORK: int
-ID_SELECT_COLOR: int
-ID_SELECT_FONT: int
-ID_SORT_ASCENDING: int
-ID_SORT_DESCENDING: int
-ID_SPELL_CHECK: int
-ID_STRIKETHROUGH: int
-ID_SYSTEM_MENU: int
-ID_CLOSE_FRAME: int
-ID_MOVE_FRAME: int
-ID_RESIZE_FRAME: int
-ID_MAXIMIZE_FRAME: int
-ID_ICONIZE_FRAME: int
-ID_RESTORE_FRAME: int
-ID_MDI_WINDOW_FIRST: int
-ID_MDI_WINDOW_CASCADE: int
-ID_MDI_WINDOW_TILE_HORZ: int
-ID_MDI_WINDOW_TILE_VERT: int
-ID_MDI_WINDOW_ARRANGE_ICONS: int
-ID_MDI_WINDOW_PREV: int
-ID_MDI_WINDOW_NEXT: int
-ID_MDI_WINDOW_LAST: int
-ID_FILEDLGG: int
-ID_FILECTRL: int
-ID_HIGHEST: int
+ID_AUTO_LOWEST: Final[StockID]
+ID_ANY: Final[StockID]
+ID_AUTO_HIGHEST: Final[StockID]
+ID_NONE: Final[StockID]
+ID_SEPARATOR: Final[StockID]
+ID_LOWEST: Final[StockID]
+ID_OPEN: Final[StockID]
+ID_CLOSE: Final[StockID]
+ID_NEW: Final[StockID]
+ID_SAVE: Final[StockID]
+ID_SAVEAS: Final[StockID]
+ID_REVERT: Final[StockID]
+ID_EXIT: Final[StockID]
+ID_UNDO: Final[StockID]
+ID_REDO: Final[StockID]
+ID_HELP: Final[StockID]
+ID_PRINT: Final[StockID]
+ID_PRINT_SETUP: Final[StockID]
+ID_PAGE_SETUP: Final[StockID]
+ID_PREVIEW: Final[StockID]
+ID_ABOUT: Final[StockID]
+ID_HELP_CONTENTS: Final[StockID]
+ID_HELP_INDEX: Final[StockID]
+ID_HELP_SEARCH: Final[StockID]
+ID_HELP_COMMANDS: Final[StockID]
+ID_HELP_PROCEDURES: Final[StockID]
+ID_HELP_CONTEXT: Final[StockID]
+ID_CLOSE_ALL: Final[StockID]
+ID_PREFERENCES: Final[StockID]
+ID_EDIT: Final[StockID]
+ID_CUT: Final[StockID]
+ID_COPY: Final[StockID]
+ID_PASTE: Final[StockID]
+ID_CLEAR: Final[StockID]
+ID_FIND: Final[StockID]
+ID_DUPLICATE: Final[StockID]
+ID_SELECTALL: Final[StockID]
+ID_DELETE: Final[StockID]
+ID_REPLACE: Final[StockID]
+ID_REPLACE_ALL: Final[StockID]
+ID_PROPERTIES: Final[StockID]
+ID_VIEW_DETAILS: Final[StockID]
+ID_VIEW_LARGEICONS: Final[StockID]
+ID_VIEW_SMALLICONS: Final[StockID]
+ID_VIEW_LIST: Final[StockID]
+ID_VIEW_SORTDATE: Final[StockID]
+ID_VIEW_SORTNAME: Final[StockID]
+ID_VIEW_SORTSIZE: Final[StockID]
+ID_VIEW_SORTTYPE: Final[StockID]
+ID_FILE: Final[StockID]
+ID_FILE1: Final[StockID]
+ID_FILE2: Final[StockID]
+ID_FILE3: Final[StockID]
+ID_FILE4: Final[StockID]
+ID_FILE5: Final[StockID]
+ID_FILE6: Final[StockID]
+ID_FILE7: Final[StockID]
+ID_FILE8: Final[StockID]
+ID_FILE9: Final[StockID]
+ID_OK: Final[StockID]
+ID_CANCEL: Final[StockID]
+ID_APPLY: Final[StockID]
+ID_YES: Final[StockID]
+ID_NO: Final[StockID]
+ID_STATIC: Final[StockID]
+ID_FORWARD: Final[StockID]
+ID_BACKWARD: Final[StockID]
+ID_DEFAULT: Final[StockID]
+ID_MORE: Final[StockID]
+ID_SETUP: Final[StockID]
+ID_RESET: Final[StockID]
+ID_CONTEXT_HELP: Final[StockID]
+ID_YESTOALL: Final[StockID]
+ID_NOTOALL: Final[StockID]
+ID_ABORT: Final[StockID]
+ID_RETRY: Final[StockID]
+ID_IGNORE: Final[StockID]
+ID_ADD: Final[StockID]
+ID_REMOVE: Final[StockID]
+ID_UP: Final[StockID]
+ID_DOWN: Final[StockID]
+ID_HOME: Final[StockID]
+ID_REFRESH: Final[StockID]
+ID_STOP: Final[StockID]
+ID_INDEX: Final[StockID]
+ID_BOLD: Final[StockID]
+ID_ITALIC: Final[StockID]
+ID_JUSTIFY_CENTER: Final[StockID]
+ID_JUSTIFY_FILL: Final[StockID]
+ID_JUSTIFY_RIGHT: Final[StockID]
+ID_JUSTIFY_LEFT: Final[StockID]
+ID_UNDERLINE: Final[StockID]
+ID_INDENT: Final[StockID]
+ID_UNINDENT: Final[StockID]
+ID_ZOOM_100: Final[StockID]
+ID_ZOOM_FIT: Final[StockID]
+ID_ZOOM_IN: Final[StockID]
+ID_ZOOM_OUT: Final[StockID]
+ID_UNDELETE: Final[StockID]
+ID_REVERT_TO_SAVED: Final[StockID]
+ID_CDROM: Final[StockID]
+ID_CONVERT: Final[StockID]
+ID_EXECUTE: Final[StockID]
+ID_FLOPPY: Final[StockID]
+ID_HARDDISK: Final[StockID]
+ID_BOTTOM: Final[StockID]
+ID_FIRST: Final[StockID]
+ID_LAST: Final[StockID]
+ID_TOP: Final[StockID]
+ID_INFO: Final[StockID]
+ID_JUMP_TO: Final[StockID]
+ID_NETWORK: Final[StockID]
+ID_SELECT_COLOR: Final[StockID]
+ID_SELECT_FONT: Final[StockID]
+ID_SORT_ASCENDING: Final[StockID]
+ID_SORT_DESCENDING: Final[StockID]
+ID_SPELL_CHECK: Final[StockID]
+ID_STRIKETHROUGH: Final[StockID]
+ID_SYSTEM_MENU: Final[StockID]
+ID_CLOSE_FRAME: Final[StockID]
+ID_MOVE_FRAME: Final[StockID]
+ID_RESIZE_FRAME: Final[StockID]
+ID_MAXIMIZE_FRAME: Final[StockID]
+ID_ICONIZE_FRAME: Final[StockID]
+ID_RESTORE_FRAME: Final[StockID]
+ID_MDI_WINDOW_FIRST: Final[StockID]
+ID_MDI_WINDOW_CASCADE: Final[StockID]
+ID_MDI_WINDOW_TILE_HORZ: Final[StockID]
+ID_MDI_WINDOW_TILE_VERT: Final[StockID]
+ID_MDI_WINDOW_ARRANGE_ICONS: Final[StockID]
+ID_MDI_WINDOW_PREV: Final[StockID]
+ID_MDI_WINDOW_NEXT: Final[StockID]
+ID_MDI_WINDOW_LAST: Final[StockID]
+ID_FILEDLGG: Final[StockID]
+ID_FILECTRL: Final[StockID]
+ID_HIGHEST: Final[StockID]
 
 FontEncoding: TypeAlias = int  # Enumeration
 FontStyle: TypeAlias = int  # Enumeration
@@ -452,6 +438,9 @@ FONTSTYLE_ITALIC: int
 FONTSTYLE_SLANT: int
 
 FONTSTYLE_MAX: int
+
+
+# TODO: These aren't actually ints, they're PyEventBinder objects.
 
 
 type _TEVT_AUX1_DCLICK = Literal[10050]
