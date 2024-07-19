@@ -1480,7 +1480,7 @@ def FileSelectorEx(message=FileSelectorPromptStr, default_path="", default_filen
 
 
 def FindMenuItemId(frame, menuString, itemString) -> int:
-    """ Find a menu item identifier associated with the given frameâs menu bar.
+    """ Find a menu item identifier associated with the given frame's menu bar.
 
         Source: https://docs.wxpython.org/wx.functions.html
     """
@@ -1522,7 +1522,7 @@ def FindWindowByName(name, parent=None) -> 'Window':
 
 
 def GetAccelFromString(label) -> None:
-    """ 
+    """
 
         Source: https://docs.wxpython.org/wx.functions.html
     """
@@ -1592,7 +1592,7 @@ def GetDisplaySizeMM() -> 'Size':
 
 
 def GetEmailAddress() -> str:
-    """ Copies the userâs email address into the supplied buffer, by concatenating the values returned by wx.GetFullHostName       and wx.GetUserId     .
+    """ Copies the user's email address into the supplied buffer, by concatenating the values returned by wx.GetFullHostName       and wx.GetUserId     .
 
         Source: https://docs.wxpython.org/wx.functions.html
     """
@@ -1613,14 +1613,14 @@ def GetFullHostName() -> str:
 
 
 def GetHomeDir() -> str:
-    """ Return the (current) userâs home directory.
+    """ Return the (current) user's home directory.
 
         Source: https://docs.wxpython.org/wx.functions.html
     """
 
 
 def GetHostName() -> str:
-    """ Copies the current host machineâs name into the supplied buffer.
+    """ Copies the current host machine's name into the supplied buffer.
 
         Source: https://docs.wxpython.org/wx.functions.html
     """
@@ -1739,7 +1739,7 @@ def GetTopLevelParent(window: 'Window') -> 'Window':
 
 
 def GetTopLevelWindows() -> 'WindowList':
-    """ Returns a list-like object of the the applicationâs top-level windows, (frames,dialogs, etc.)
+    """ Returns a list-like object of the the application's top-level windows, (frames,dialogs, etc.)
 
         Source: https://docs.wxpython.org/wx.functions.html
     """
@@ -1808,7 +1808,7 @@ def ImageFromBuffer(width, height, dataBuffer, alphaBuffer=None) -> None:
 parameter must be a Python object that implements the buffer interface,
 such as a string, array, etc.  The dataBuffer object is expected to
 contain a series of RGB bytes and be width*height*3 bytes long.  A buffer
-object can optionally be supplied for the imageâs alpha channel data, and
+object can optionally be supplied for the image's alpha channel data, and
 it is expected to be width*height bytes long.
 
         Source: https://docs.wxpython.org/wx.functions.html
@@ -1915,7 +1915,7 @@ def LaunchDefaultApplication(document, flags=0) -> bool:
 
 
 def LaunchDefaultBrowser(url, flags=0) -> bool:
-    """ Opens the url  in userâs default browser.
+    """ Opens the url  in user's default browser.
 
         Source: https://docs.wxpython.org/wx.functions.html
     """
@@ -1992,7 +1992,7 @@ def LogVerbose(message: str) -> None:
 
 
 def LogWarning(message: str) -> None:
-    """ For warnings - they are also normally shown to the user, but donât interrupt the program work.
+    """ For warnings - they are also normally shown to the user, but don't interrupt the program work.
 
         Source: https://docs.wxpython.org/wx.functions.html
     """
@@ -2771,7 +2771,7 @@ class AffineMatrix2DBase:
 
 
 class AlphaPixelData:
-    """ A class providing direct access to a wx.Bitmapâs
+    """ A class providing direct access to a wx.Bitmap's
 internal data including the alpha channel (RGBA).
 
         Source: https://docs.wxpython.org/wx.AlphaPixelData.html
@@ -2812,7 +2812,7 @@ _Size: TypeAlias = Size
 
 class Bitmap(GDIObject):
     """ This class encapsulates the concept of a platform-dependent bitmap,
-either monochrome or colour or colour with alpha channel support.
+either monochrome, colour or colour with alpha channel support.
 
         Source: https://docs.wxpython.org/wx.Bitmap.html
     """
@@ -2891,9 +2891,9 @@ parameters must be a Python object that implements the buffer
 interface, such as a string, bytearray, etc.  The data object
 is expected to contain a series of RGB bytes and be at least
 (widthÂ  heightÂ  3) bytes long, while the alpha object is expected
-to be (widthÂ  height) bytes long and represents the imageâs alpha
+to be (widthÂ  height) bytes long and represents the image's alpha
 channel.  On Windows and Mac the RGB values will be
-âpremultipliedâ by the alpha values.  (The other platforms do
+âpremultiplied' by the alpha values.  (The other platforms do
 the multiplication themselves.)
 
             Source: https://docs.wxpython.org/wx.Bitmap.html
@@ -2905,7 +2905,7 @@ the multiplication themselves.)
 must be a Python object that implements the buffer interface, such
 as a string, bytearray, etc.  The data object is expected to contain
 a series of RGBA bytes and be at least (widthÂ  heightÂ  4) bytes long.
-On Windows and Mac the RGB values will be âpremultipliedâ by the
+On Windows and Mac the RGB values will be âpremultiplied' by the
 alpha values.  (The other platforms do the multiplication themselves.)
 
             Source: https://docs.wxpython.org/wx.Bitmap.html
@@ -3417,7 +3417,7 @@ this method from there.
         """
 
     def RestoreStdio(self) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.App.html
         """
@@ -3439,7 +3439,7 @@ an explicit parent set.
         """
 
     def __del__(self) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.App.html
         """
@@ -3480,7 +3480,7 @@ class PyApp(AppConsole):
     @staticmethod
     def GetComCtl32Version() -> int:
         """ Returns 400, 470, 471, etc. for comctl32.dll 4.00, 4.70, 4.71 or 0 if
-it wasnât found at all.  Raises an exception on non-Windows platforms.
+it wasn't found at all.  Raises an exception on non-Windows platforms.
 
             Source: https://docs.wxpython.org/wx.PyApp.html
         """
@@ -3498,7 +3498,7 @@ it wasnât found at all.  Raises an exception on non-Windows platforms.
         """
 
     def GetLayoutDirection(self) -> int:
-        """ Return the layout direction for the current locale or  Layout_Default   if itâs unknown.
+        """ Return the layout direction for the current locale or  Layout_Default   if it's unknown.
 
             Source: https://docs.wxpython.org/wx.PyApp.html
         """
@@ -3530,7 +3530,7 @@ it wasnât found at all.  Raises an exception on non-Windows platforms.
 
     @staticmethod
     def IsDisplayAvailable() -> bool:
-        """ Returns True if the application is able to connect to the systemâs
+        """ Returns True if the application is able to connect to the system's
 display, or whatever the equivallent is for the platform.
 
             Source: https://docs.wxpython.org/wx.PyApp.html
@@ -3629,7 +3629,7 @@ statements. Valid settings are a combination of these flags:
         """
 
     def SetTopWindow(self, window: 'Window') -> None:
-        """ Sets the âtopâ window.
+        """ Sets the âtop' window.
 
             Source: https://docs.wxpython.org/wx.PyApp.html
         """
@@ -3717,7 +3717,7 @@ without having to define USE_GUI=0.
         """
 
     def GetVendorName(self) -> str:
-        """ Returns the applicationâs vendor name.
+        """ Returns the application's vendor name.
 
             Source: https://docs.wxpython.org/wx.AppConsole.html
         """
@@ -3766,7 +3766,7 @@ without having to define USE_GUI=0.
         """
 
     def OnInit(self) -> bool:
-        """ This must be provided by the application, and will usually create the applicationâs main window, optionally calling SetTopWindow().
+        """ This must be provided by the application, and will usually create the application's main window, optionally calling SetTopWindow().
 
             Source: https://docs.wxpython.org/wx.AppConsole.html
         """
@@ -3821,7 +3821,7 @@ without having to define USE_GUI=0.
 
     @staticmethod
     def SetInstance(app: 'AppConsole') -> None:
-        """ Allows external code to modify global wx.TheApp     , but you should really know what youâre doing if you call it.
+        """ Allows external code to modify global wx.TheApp     , but you should really know what you're doing if you call it.
 
             Source: https://docs.wxpython.org/wx.AppConsole.html
         """
@@ -3833,7 +3833,7 @@ without having to define USE_GUI=0.
         """
 
     def SetVendorName(self, name: str) -> None:
-        """ Sets the name of applicationâs vendor.
+        """ Sets the name of application's vendor.
 
             Source: https://docs.wxpython.org/wx.AppConsole.html
         """
@@ -3953,13 +3953,13 @@ class ArchiveFSHandler(FileSystemHandler):
         Source: https://docs.wxpython.org/wx.ArchiveFSHandler.html
     """
     def __init__(self) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.ArchiveFSHandler.html
         """
 
     def Cleanup(self) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.ArchiveFSHandler.html
         """
@@ -4649,7 +4649,7 @@ significant performance increase over the standard DrawLines function.
         """
 
     def GetMultiLineTextExtent(self, st: Any) -> None:
-        """ Return the dimensions of the given stringâs text extent using the
+        """ Return the dimensions of the given string's text extent using the
 currently selected font, taking into account multiple lines if
 present in the string.
 
@@ -4705,7 +4705,7 @@ present in the string.
         """
 
     def GetTextExtent(self, st: Any) -> 'Size':
-        """ Return the dimensions of the given stringâs text extent using the
+        """ Return the dimensions of the given string's text extent using the
 currently selected font.
 
             Source: https://docs.wxpython.org/wx.DC.html
@@ -4808,7 +4808,7 @@ currently selected font.
         """
 
     def ResetBoundingBox(self) -> None:
-        """ Resets the bounding box: after a call to this function, the bounding box doesnât contain anything.
+        """ Resets the bounding box: after a call to this function, the bounding box doesn't contain anything.
 
             Source: https://docs.wxpython.org/wx.DC.html
         """
@@ -4934,7 +4934,7 @@ currently selected font.
         """
 
     def SetUserScale(self, xScale, yScale) -> None:
-        """ Sets the user scaling factor, useful for applications which require âzoomingâ.
+        """ Sets the user scaling factor, useful for applications which require âzooming'.
 
             Source: https://docs.wxpython.org/wx.DC.html
         """
@@ -5821,7 +5821,7 @@ windows with associated tabs.
         """
 
     def SetPadding(self, padding: Union[tuple[int, int], 'Size']) -> None:
-        """ Sets the amount of space around each pageâs icon and label, in pixels.
+        """ Sets the amount of space around each page's icon and label, in pixels.
 
             Source: https://docs.wxpython.org/wx.Notebook.html
         """
@@ -6075,7 +6075,7 @@ column or several hierarchies of either.
         """
 
     def CalcMin(self) -> 'Size':
-        """ Implements the calculation of a box sizerâs minimal.
+        """ Implements the calculation of a box sizer's minimal.
 
             Source: https://docs.wxpython.org/wx.BoxSizer.html
         """
@@ -6331,7 +6331,7 @@ temporarily busy.
         """
 
     def UpdateLabel(self, str: str) -> None:
-        """ Same as UpdateText   but doesnât interpret the string as containing markup.
+        """ Same as UpdateText   but doesn't interpret the string as containing markup.
 
             Source: https://docs.wxpython.org/wx.BusyInfo.html
         """
@@ -6386,7 +6386,7 @@ class BusyInfoFlags:
         """
 
     def Label(self, label: str) -> 'BusyInfoFlags':
-        """ Same as Text   but doesnât interpret the string as containing markup.
+        """ Same as Text   but doesn't interpret the string as containing markup.
 
             Source: https://docs.wxpython.org/wx.BusyInfoFlags.html
         """
@@ -6828,7 +6828,7 @@ CHK_2STATE: int  # Create a 2-state checkbox. This is the default.
 
 CHK_3STATE: int  # Create a 3-state checkbox.
 
-CHK_ALLOW_3RD_STATE_FOR_USER: int  # By default a user canât set a 3-state checkbox to the third state. It can only be done from code. Using this flags allows the user to set the checkbox to the third state by clicking.
+CHK_ALLOW_3RD_STATE_FOR_USER: int  # By default a user can't set a 3-state checkbox to the third state. It can only be done from code. Using this flags allows the user to set the checkbox to the third state by clicking.
 
 ALIGN_RIGHT: int  # Makes the text appear on the left of the checkbox. ^^
 
@@ -7010,7 +7010,7 @@ class ListBox(Control,ItemContainer):
         """
 
     def MSWSetTabStops(self, tabStops) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.ListBox.html
         """
@@ -7080,7 +7080,7 @@ LB_ALWAYS_SB: int  # Always show a vertical scrollbar.
 
 LB_NEEDED_SB: int  # Only create a vertical scrollbar if needed.
 
-LB_NO_SB: int  # Donât create vertical scrollbar (wxMSW and wxGTK only).
+LB_NO_SB: int  # Don't create vertical scrollbar (wxMSW and wxGTK only).
 
 LB_SORT: int  # The listbox contents are sorted in alphabetical order. ^^
 
@@ -7327,7 +7327,7 @@ window from outside EVT_PAINT() handler.
         """
 
     def SetClippingRect(self, rect: 'Rect') -> None:
-        """ 
+        """
         """
 
 
@@ -7350,7 +7350,7 @@ class Clipboard(Object):
         """
 
     def Clear(self) -> None:
-        """ Clears the global clipboard object and the systemâs clipboard if possible.
+        """ Clears the global clipboard object and the system's clipboard if possible.
 
             Source: https://docs.wxpython.org/wx.Clipboard.html
         """
@@ -7508,7 +7508,7 @@ class TextCtrl(Control,TextEntry):
         """
 
     def HideNativeCaret(self) -> bool:
-        """ Turn off the widgetâs native caret on Windows.
+        """ Turn off the widget's native caret on Windows.
 Ignored on other platforms.
 
             Source: https://docs.wxpython.org/wx.TextCtrl.html
@@ -7624,7 +7624,7 @@ OSX.  Ignored on other platforms.
         """
 
     def ShowNativeCaret(self, show=True) -> bool:
-        """ Turn on the widgetâs native caret on Windows.
+        """ Turn on the widget's native caret on Windows.
 Ignored on other platforms.
 
             Source: https://docs.wxpython.org/wx.TextCtrl.html
@@ -7661,7 +7661,7 @@ Ignored on other platforms.
 
 TE_PROCESS_ENTER: int  # The control will generate the event  wxEVT_TEXT_ENTER   that can be handled by the program. Otherwise, i.e. either if this style not specified at all, or it is used, but there is no event handler for this event or the event handler called  wx.Event.Skip   to avoid overriding the default handling, pressing Enter key is either processed internally by the control or used to activate the default button of the dialog, if any.
 
-TE_PROCESS_TAB: int  # Normally, TAB key is used for keyboard navigation and pressing it in a control switches focus to the next one. With this style, this wonât happen and if the TAB is not otherwise processed (e.g. by  wxEVT_CHAR   event handler), a literal TAB character is inserted into the control. Notice that this style has no effect for single-line text controls when using wxGTK.
+TE_PROCESS_TAB: int  # Normally, TAB key is used for keyboard navigation and pressing it in a control switches focus to the next one. With this style, this won't happen and if the TAB is not otherwise processed (e.g. by  wxEVT_CHAR   event handler), a literal TAB character is inserted into the control. Notice that this style has no effect for single-line text controls when using wxGTK.
 
 TE_MULTILINE: int  # The text control allows multiple lines. If this style is not specified, line break characters should not be used in the controls value.
 
@@ -7675,9 +7675,9 @@ TE_RICH2: int  # Use rich text control version 2.0 or higher under MSW, this sty
 
 TE_AUTO_URL: int  # Highlight the URLs and generate the TextUrlEvents when mouse events occur over them.
 
-TE_NOHIDESEL: int  # By default, the Windows text control doesnât show the selection when it doesnât have focus - use this style to force it to always show it. It doesnât do anything under other platforms.
+TE_NOHIDESEL: int  # By default, the Windows text control doesn't show the selection when it doesn't have focus - use this style to force it to always show it. It doesn't do anything under other platforms.
 
-HSCROLL: int  # A horizontal scrollbar will be created and used, so that text wonât be wrapped.
+HSCROLL: int  # A horizontal scrollbar will be created and used, so that text won't be wrapped.
 
 TE_NO_VSCROLL: int  # For multiline controls only: vertical scrollbar will never be created. This limits the amount of text which can be entered into the control to what can be displayed in it under wxMSW but not under wxGTK or wxOSX. Currently not implemented for the other platforms.
 
@@ -7687,7 +7687,7 @@ TE_CENTRE: int  # The text in the control will be centered (wxMSW, wxGTK, wxOSX)
 
 TE_RIGHT: int  # The text in the control will be right-justified (wxMSW, wxGTK, wxOSX).
 
-TE_DONTWRAP: int  # Same as wx.HSCROLL style: donât wrap at all, show horizontal scrollbar instead.
+TE_DONTWRAP: int  # Same as wx.HSCROLL style: don't wrap at all, show horizontal scrollbar instead.
 
 TE_CHARWRAP: int  # For multiline controls only: wrap the lines too long to be shown entirely at any position (wxUniv, wxGTK, wxOSX).
 
@@ -7728,13 +7728,13 @@ events.
         """
 
     def SetCanVeto(self, canVeto: bool) -> None:
-        """ Sets the âcan vetoâ flag.
+        """ Sets the âcan veto' flag.
 
             Source: https://docs.wxpython.org/wx.CloseEvent.html
         """
 
     def SetLoggingOff(self, loggingOff: bool) -> None:
-        """ Sets the âlogging offâ flag.
+        """ Sets the âlogging off' flag.
 
             Source: https://docs.wxpython.org/wx.CloseEvent.html
         """
@@ -7791,7 +7791,7 @@ EVT_COLLAPSIBLEHEADER_CHANGED: int  # User changed the collapsed state. ^^
 
 class CollapsiblePane(Control):
     """ A collapsible pane is a container with an embedded button-like control
-which can be used by the user to collapse or expand the paneâs
+which can be used by the user to collapse or expand the pane's
 contents.
 
         Source: https://docs.wxpython.org/wx.CollapsiblePane.html
@@ -8060,13 +8060,13 @@ determine drawing colours.
         """
 
     def __getitem__(self, idx) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.Colour.html
         """
 
     def __len__(self) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.Colour.html
         """
@@ -8078,25 +8078,25 @@ determine drawing colours.
         """
 
     def __reduce__(self) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.Colour.html
         """
 
     def __repr__(self) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.Colour.html
         """
 
     def __setitem__(self, idx, val) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.Colour.html
         """
 
     def __str__(self) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.Colour.html
         """
@@ -8231,7 +8231,7 @@ predefined set of named colours.
         """
 
     def FindColour(self, colour) -> 'Colour':
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.ColourDatabase.html
         """
@@ -8648,7 +8648,7 @@ popup.
         """
 
     def GetInsertionPoint(self) -> int:
-        """ Returns the insertion point for the combo controlâs text field.
+        """ Returns the insertion point for the combo control's text field.
 
             Source: https://docs.wxpython.org/wx.ComboCtrl.html
         """
@@ -8905,7 +8905,7 @@ popup.
 
 
 
-CC_SPECIAL_DCLICK: int  # Double-clicking triggers a call to popupâs OnComboDoubleClick. Actual behaviour is defined by a derived class. For instance,   wx.adv.OwnerDrawnComboBox  will cycle an item. This style only applies if wx.CB_READONLY is used as well.
+CC_SPECIAL_DCLICK: int  # Double-clicking triggers a call to popup's OnComboDoubleClick. Actual behaviour is defined by a derived class. For instance,   wx.adv.OwnerDrawnComboBox  will cycle an item. This style only applies if wx.CB_READONLY is used as well.
 
 CC_STD_BUTTON: int  # Drop button will behave more like a standard push button. ^^
 
@@ -9389,7 +9389,7 @@ class ConfigBase(Object):
         """
 
     def Flush(self, bCurrentOnly: bool=False) -> bool:
-        """ Permanently writes all changes (otherwise, theyâre only written from objectâs destructor).
+        """ Permanently writes all changes (otherwise, they're only written from object's destructor).
 
             Source: https://docs.wxpython.org/wx.ConfigBase.html
         """
@@ -9408,7 +9408,7 @@ class ConfigBase(Object):
         """
 
     def GetEntryType(self, name: str) -> 'EntryType':
-        """ Returns the type of the given entry or Unknown  if the entry doesnât exist.
+        """ Returns the type of the given entry or Unknown  if the entry doesn't exist.
 
             Source: https://docs.wxpython.org/wx.ConfigBase.html
         """
@@ -9510,7 +9510,7 @@ class ConfigBase(Object):
         """
 
     def ReadInt(self, key, defaultVal=0) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.ConfigBase.html
         """
@@ -9553,7 +9553,7 @@ class ConfigBase(Object):
         """
 
     def SetPath(self, strPath: str) -> None:
-        """ Set current path: if the first character is â/â, it is the absolute path, otherwise it is a relative path.
+        """ Set current path: if the first character is â/', it is the absolute path, otherwise it is a relative path.
 
             Source: https://docs.wxpython.org/wx.ConfigBase.html
         """
@@ -9631,13 +9631,13 @@ object and restores it in dtor.
         """
 
     def __enter__(self) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.ConfigPathChanger.html
         """
 
     def __exit__(self, exc_type, exc_val, exc_tb) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.ConfigPathChanger.html
         """
@@ -9646,7 +9646,7 @@ object and restores it in dtor.
 
 class ContextHelp(Object):
     """ This class changes the cursor to a query and puts the application into
-a âcontext-sensitive help modeâ.
+a âcontext-sensitive help mode'.
 
         Source: https://docs.wxpython.org/wx.ContextHelp.html
     """
@@ -39651,7 +39651,7 @@ style, for a range of text in a TextCtrl or RichTextCtrl.
         """
 
     def HasFlag(self, flag: int) -> bool:
-        """ Returns True if the flag  is present in the attribute objectâs flag bitlist.
+        """ Returns True if the flag  is present in the attribute object's flag bitlist.
 
             Source: https://docs.wxpython.org/wx.TextAttr.html
         """
@@ -41234,7 +41234,7 @@ below the menu bar in a Frame.
         """
 
     def RemoveTool(self, id: int) -> 'ToolBarToolBase':
-        """ Removes the given tool from the toolbar but doesnât delete it.
+        """ Removes the given tool from the toolbar but doesn't delete it.
 
             Source: https://docs.wxpython.org/wx.ToolBar.html
         """
@@ -41334,7 +41334,7 @@ TB_HORZ_LAYOUT: int  # Shows the text and the icons alongside, not vertically st
 
 TB_HORZ_TEXT: int  # Combination of  TB_HORZ_LAYOUT   and   TB_TEXT .
 
-TB_NO_TOOLTIPS: int  # Donât show the short help tooltips for the tools when the mouse hovers over them.
+TB_NO_TOOLTIPS: int  # Don't show the short help tooltips for the tools when the mouse hovers over them.
 
 TB_BOTTOM: int  # Align the toolbar at the bottom of parent window.
 
@@ -41369,7 +41369,7 @@ class ToolBarToolBase(Object):
         """
 
     def Detach(self) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.ToolBarToolBase.html
         """
@@ -41513,7 +41513,7 @@ class ToolBarToolBase(Object):
         """
 
     def MakeStretchable(self) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.ToolBarToolBase.html
         """
@@ -41867,7 +41867,7 @@ class TopLevelWindow(NonOwnedWindow):
         """
 
     def MacGetTopLevelWindowRef(self) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.TopLevelWindow.html
         """
@@ -41879,7 +41879,7 @@ class TopLevelWindow(NonOwnedWindow):
         """
 
     def MacSetMetalAppearance(self, on) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.TopLevelWindow.html
         """
@@ -41897,7 +41897,7 @@ class TopLevelWindow(NonOwnedWindow):
         """
 
     def OSXSetModified(self, modified: bool) -> None:
-        """ This function sets the   wx.TopLevelWindowâs modified state on macOS, which currently draws a black dot in the   wx.TopLevelWindowâs close button.
+        """ This function sets the   wx.TopLevelWindow's modified state on macOS, which currently draws a black dot in the   wx.TopLevelWindow's close button.
 
             Source: https://docs.wxpython.org/wx.TopLevelWindow.html
         """
@@ -42241,8 +42241,8 @@ may be expanded to show further items.
 
     def GetBoundingRect(self, item, textOnly=False) -> Any:
         """ Returns the rectangle bounding the item. If textOnly is True,
-only the rectangle around the itemâs label will be returned, otherwise
-the itemâs image is also taken into account. The return value may be None
+only the rectangle around the item's label will be returned, otherwise
+the item's image is also taken into account. The return value may be None
 if the rectangle was not successfully retrieved, such as if the item is
 currently not visible.
 
@@ -42323,7 +42323,7 @@ currently not visible.
         """
 
     def GetItemParent(self, item: 'TreeItemId') -> 'TreeItemId':
-        """ Returns the itemâs parent.
+        """ Returns the item's parent.
 
             Source: https://docs.wxpython.org/wx.TreeCtrl.html
         """
@@ -42509,7 +42509,7 @@ currently not visible.
         """
 
     def SetItemBackgroundColour(self, item, col) -> None:
-        """ Sets the colour of the itemâs background.
+        """ Sets the colour of the item's background.
 
             Source: https://docs.wxpython.org/wx.TreeCtrl.html
         """
@@ -42527,13 +42527,13 @@ currently not visible.
         """
 
     def SetItemDropHighlight(self, item, highlight=True) -> None:
-        """ Gives the item the visual feedback for DragânâDrop actions, which is useful if something is dragged from the outside onto the tree control (as opposed to a DnD operation within the tree control, which already is implemented internally).
+        """ Gives the item the visual feedback for Drag'n'Drop actions, which is useful if something is dragged from the outside onto the tree control (as opposed to a DnD operation within the tree control, which already is implemented internally).
 
             Source: https://docs.wxpython.org/wx.TreeCtrl.html
         """
 
     def SetItemFont(self, item, font) -> None:
-        """ Sets the itemâs font.
+        """ Sets the item's font.
 
             Source: https://docs.wxpython.org/wx.TreeCtrl.html
         """
@@ -42545,7 +42545,7 @@ currently not visible.
         """
 
     def SetItemImage(self, item, image, which=TreeItemIcon_Normal) -> None:
-        """ Sets the specified itemâs image.
+        """ Sets the specified item's image.
 
             Source: https://docs.wxpython.org/wx.TreeCtrl.html
         """
@@ -42563,7 +42563,7 @@ currently not visible.
         """
 
     def SetItemTextColour(self, item, col) -> None:
-        """ Sets the colour of the itemâs text.
+        """ Sets the colour of the item's text.
 
             Source: https://docs.wxpython.org/wx.TreeCtrl.html
         """
@@ -42617,7 +42617,7 @@ currently not visible.
         """
 
     def UnselectAll(self) -> None:
-        """ This function either behaves the same as Unselect   if the control doesnât have  TR_MULTIPLE   style, or removes the selection from all items if it does have this style.
+        """ This function either behaves the same as Unselect   if the control doesn't have  TR_MULTIPLE   style, or removes the selection from all items if it does have this style.
 
             Source: https://docs.wxpython.org/wx.TreeCtrl.html
         """
@@ -42752,7 +42752,7 @@ class TreeItemId:
         """
 
     def GetID(self) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.TreeItemId.html
         """
@@ -42764,7 +42764,7 @@ class TreeItemId:
         """
 
     def Unset(self) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.TreeItemId.html
         """
@@ -42782,7 +42782,7 @@ class TreeItemId:
         """
 
     def __hash__(self) -> None:
-        """ 
+        """
 
             Source: https://docs.wxpython.org/wx.TreeItemId.html
         """
@@ -43261,13 +43261,13 @@ class, targeted for horizontal-specific scrolling.
         """
 
     def OnGetColumnsWidthHint(self, columnMin, columnMax) -> None:
-        """ This function doesnât have to be overridden but it may be useful to do so if calculating the columnsâ sizes is a relatively expensive operation as it gives your code a chance to calculate several of them at once and cache the result if necessary.
+        """ This function doesn't have to be overridden but it may be useful to do so if calculating the columns' sizes is a relatively expensive operation as it gives your code a chance to calculate several of them at once and cache the result if necessary.
 
             Source: https://docs.wxpython.org/wx.VarHScrollHelper.html
         """
 
     def RefreshColumn(self, column: int) -> None:
-        """ Triggers a refresh for just the given columnâs area of the window if itâs visible.
+        """ Triggers a refresh for just the given column's area of the window if it's visible.
 
             Source: https://docs.wxpython.org/wx.VarHScrollHelper.html
         """
@@ -43399,7 +43399,7 @@ orientation specific work.
         """
 
     def OnGetUnitsSizeHint(self, unitMin, unitMax) -> None:
-        """ This function doesnât have to be overridden but it may be useful to do so if calculating the unitsâ sizes is a relatively expensive operation as it gives your code a chance to calculate several of them at once and cache the result if necessary.
+        """ This function doesn't have to be overridden but it may be useful to do so if calculating the units' sizes is a relatively expensive operation as it gives your code a chance to calculate several of them at once and cache the result if necessary.
 
             Source: https://docs.wxpython.org/wx.VarScrollHelperBase.html
         """
@@ -43565,13 +43565,13 @@ class, targeted for vertical-specific scrolling.
         """
 
     def OnGetRowsHeightHint(self, rowMin, rowMax) -> None:
-        """ This function doesnât have to be overridden but it may be useful to do so if calculating the rowsâ sizes is a relatively expensive operation as it gives your code a chance to calculate several of them at once and cache the result if necessary.
+        """ This function doesn't have to be overridden but it may be useful to do so if calculating the rows' sizes is a relatively expensive operation as it gives your code a chance to calculate several of them at once and cache the result if necessary.
 
             Source: https://docs.wxpython.org/wx.VarVScrollHelper.html
         """
 
     def RefreshRow(self, row: int) -> None:
-        """ Triggers a refresh for just the given rowâs area of the window if itâs visible.
+        """ Triggers a refresh for just the given row's area of the window if it's visible.
 
             Source: https://docs.wxpython.org/wx.VarVScrollHelper.html
         """
@@ -43790,7 +43790,7 @@ class VisualAttributes:
 class VListBox(VScrolledWindow):
     """ VListBox is a ListBox-like control with the following two main
 differences from a regular ListBox: it can have an arbitrarily huge
-number of items because it doesnât store them itself but uses the
+number of items because it doesn't store them itself but uses the
 OnDrawItem() callback to draw them (so it is a virtual listbox) and
 its items can have variable height as determined by OnMeasureItem()
 (so it is also a listbox with the lines of variable height).
@@ -43895,7 +43895,7 @@ its items can have variable height as determined by OnMeasureItem()
         """
 
     def OnDrawBackground(self, dc, rect, n) -> None:
-        """ This method is used to draw the itemâs background and, maybe, a border around it.
+        """ This method is used to draw the item's background and, maybe, a border around it.
 
             Source: https://docs.wxpython.org/wx.VListBox.html
         """
@@ -43990,7 +43990,7 @@ those which are shown on the screen need to be measured; or even
         """
 
     def Create(self, parent, id=ID_ANY, pos=DefaultPosition, size=DefaultSize, style=0, name=PanelNameStr) -> bool:
-        """ Same as the non-default constructor, but returns a status code: True if ok, False if the window couldnât be created.
+        """ Same as the non-default constructor, but returns a status code: True if ok, False if the window couldn't be created.
 
             Source: https://docs.wxpython.org/wx.VScrolledWindow.html
         """
@@ -44069,7 +44069,7 @@ those which are shown on the screen need to be measured; or even
 
 
 class WindowBase:
-    """ child (wx.WindowBase) â 
+    """ child (wx.WindowBase) â
 
         Source: https://docs.wxpython.org/wx.WindowBase.html
     """
@@ -44289,7 +44289,7 @@ class WindowModalDialogEvent(CommandEvent):
         """
 
     def GetReturnCode(self) -> int:
-        """ Return the dialogâs return code.
+        """ Return the dialog's return code.
 
             Source: https://docs.wxpython.org/wx.WindowModalDialogEvent.html
         """
@@ -44374,7 +44374,7 @@ long as there is space available in that direction.
         """
 
     def CalcMin(self) -> 'Size':
-        """ Implements the calculation of a box sizerâs minimal.
+        """ Implements the calculation of a box sizer's minimal.
 
             Source: https://docs.wxpython.org/wx.WrapSizer.html
         """
