@@ -14,6 +14,24 @@ wxEVT_NULL: Final = 0
 
 FontFamily: TypeAlias = int  # Enumeration
 
+
+# Aliases to avoid conflicts with properties with the same name.
+type MaskCls = Mask
+type PaletteCls = Palette
+type SizeCls = Size
+type ValidatorCls = Validator
+type _AcceleratorTable = AcceleratorTable
+type _BackgroundStyle = BackgroundStyle
+type _Border = Border
+type _Caret = Caret
+type CursorCls = Cursor
+type _DropTarget = DropTarget
+type RectCls = Rect
+type SizerCls = Sizer
+type _ToolTip = ToolTip
+type _Validator = Validator
+
+
 FONTFAMILY_DEFAULT: int
 
 FONTFAMILY_DECORATIVE: int
@@ -2804,12 +2822,6 @@ internal data including the alpha channel (RGBA).
 
 
 
-_Mask: TypeAlias = Mask
-
-_Palette: TypeAlias = Palette
-
-_Size: TypeAlias = Size
-
 class Bitmap(GDIObject):
     """ This class encapsulates the concept of a platform-dependent bitmap,
 either monochrome, colour or colour with alpha channel support.
@@ -2927,7 +2939,7 @@ initialized with the given RGBA values.
             Source: https://docs.wxpython.org/wx.Bitmap.html
         """
 
-    def GetDIPSize(self) -> 'Size':
+    def GetDIPSize(self) -> SizeCls:
         """ Returns the size of bitmap in DPI-independent units.
 
             Source: https://docs.wxpython.org/wx.Bitmap.html
@@ -3146,13 +3158,13 @@ initialized with the given RGBA values.
     LogicalHeight: float  # See GetLogicalHeight
     LogicalSize: 'Size'  # See GetLogicalSize
     LogicalWidth: float  # See GetLogicalWidth
-    Mask: '_Mask'  # See GetMask and SetMask
-    Palette: '_Palette'  # See GetPalette and SetPalette
+    Mask: 'MaskCls'  # See GetMask and SetMask
+    Palette: 'PaletteCls'  # See GetPalette and SetPalette
     ScaleFactor: float  # See GetScaleFactor and SetScaleFactor
     ScaledHeight: float  # See GetScaledHeight
     ScaledSize: 'Size'  # See GetScaledSize
     ScaledWidth: float  # See GetScaledWidth
-    Size: '_Size'  # See GetSize and SetSize
+    Size: 'SizeCls'  # See GetSize and SetSize
     Width: int  # See GetWidth and SetWidth
 
 
@@ -5055,11 +5067,11 @@ currently selected font.
     LogicalFunction: 'RasterOperationMode'  # See GetLogicalFunction and SetLogicalFunction
     MapMode: 'MappingMode'  # See GetMapMode and SetMapMode
     MultiLineTextExtent: None  # See GetMultiLineTextExtent
-    PPI: _Size  # See GetPPI
+    PPI: SizeCls  # See GetPPI
     Pen: _Pen  # See GetPen and SetPen
     Pixel: 'Colour'  # See GetPixel
-    Size: _Size  # See GetSize
-    SizeMM: _Size  # See GetSizeMM
+    Size: SizeCls  # See GetSize
+    SizeMM: SizeCls  # See GetSizeMM
     TextBackground: 'Colour'  # See GetTextBackground and SetTextBackground
     TextExtent: None  # See GetTextExtent
     TextForeground: 'Colour'  # See GetTextForeground and SetTextForeground
@@ -9720,18 +9732,6 @@ application a chance to show a context (popup) menu for a Window.
     Position: 'Point'  # See GetPosition and SetPosition
 
 
-
-type _AcceleratorTable = AcceleratorTable
-type _BackgroundStyle = BackgroundStyle
-type _Border = Border
-type _Caret = Caret
-type _Cursor = Cursor
-type _DropTarget = DropTarget
-type _Rect = Rect
-type _Sizer = Sizer
-type _ToolTip = ToolTip
-type _Validator = Validator
-
 class Window(EvtHandler):
     """ Window is the base class for all windows and represents any visible
 object on screen.
@@ -10004,7 +10004,7 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def FindWindow(self, *args, **kw) -> 'Window':
+    def FindWindow(self, *args, **kw) -> _Window:
         """ Overloaded Implementations:
 
             Source: https://docs.wxpython.org/wx.Window.html
@@ -10049,13 +10049,13 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def FromDIP(self, *args, **kw) -> 'Size':
+    def FromDIP(self, *args, **kw) -> SizeCls:
         """ Overloaded Implementations:
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def FromPhys(self, *args, **kw) -> 'Size':
+    def FromPhys(self, *args, **kw) -> SizeCls:
         """ Overloaded Implementations:
 
             Source: https://docs.wxpython.org/wx.Window.html
@@ -10079,13 +10079,13 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetBackgroundColour(self) -> 'Colour':
+    def GetBackgroundColour(self) -> _Colour:
         """ Returns the background colour of the window.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetBackgroundStyle(self) -> 'BackgroundStyle':
+    def GetBackgroundStyle(self) -> _BackgroundStyle:
         """ Returns the background style of the window.
 
             Source: https://docs.wxpython.org/wx.Window.html
@@ -10097,13 +10097,13 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetBestSize(self) -> 'Size':
+    def GetBestSize(self) -> SizeCls:
         """ This functions returns the best acceptable minimal size for the window.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetBestVirtualSize(self) -> 'Size':
+    def GetBestVirtualSize(self) -> SizeCls:
         """ Return the largest of ClientSize and BestSize (as determined by a sizer, interior children, or other means)
 
             Source: https://docs.wxpython.org/wx.Window.html
@@ -10115,7 +10115,7 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetBorder(self, *args, **kw) -> 'Border':
+    def GetBorder(self, *args, **kw) -> _Border:
         """ Overloaded Implementations:
 
             Source: https://docs.wxpython.org/wx.Window.html
@@ -10146,8 +10146,8 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetChildren(self) -> 'WindowList':
-        """ Returns a reference to the list of the windowâs children.
+    def GetChildren(self) -> WindowList:
+        """ Returns a reference to the list of the window's children.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
@@ -10165,20 +10165,20 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetClientRect(self) -> 'Rect':
+    def GetClientRect(self) -> RectCls:
         """ Get the client rectangle in window (i.e. client) coordinates.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetClientSize(self) -> 'Rect':
-        """ Returns the size of the window âclient areaâ in pixels.
+    def GetClientSize(self) -> RectCls:
+        """ Returns the size of the window's 'client area' in pixels.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
     def GetConstraints(self) -> 'LayoutConstraints':
-        """ Returns a pointer to the windowâs layout constraints, or None if there are none.
+        """ Returns a pointer to the window's layout constraints, or None if there are none.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
@@ -10201,7 +10201,7 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetDPI(self) -> 'Size':
+    def GetDPI(self) -> SizeCls:
         """ Return the DPI of the display used by this window.
 
             Source: https://docs.wxpython.org/wx.Window.html
@@ -10225,8 +10225,8 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetEffectiveMinSize(self) -> 'Size':
-        """ Merges the windowâs best size into the min size and returns the result.
+    def GetEffectiveMinSize(self) -> SizeCls:
+        """ Merges the window's best size into the min size and returns the result.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
@@ -10256,7 +10256,7 @@ object on screen.
         """
 
     def GetGrandParent(self) -> 'Window':
-        """ Returns the grandparent of a window, or None if there isnât one.
+        """ Returns the grandparent of a window, or None if there isn't one.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
@@ -10303,8 +10303,8 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetMaxClientSize(self) -> 'Size':
-        """ Returns the maximum size of windowâs client area.
+    def GetMaxClientSize(self) -> SizeCls:
+        """ Returns the maximum size of window's client area.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
@@ -10327,8 +10327,8 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetMinClientSize(self) -> 'Size':
-        """ Returns the minimum size of windowâs client area, an indication to the sizer layout mechanism that this is the minimum required size of its client area.
+    def GetMinClientSize(self) -> SizeCls:
+        """ Returns the minimum size of window's client area, an indication to the sizer layout mechanism that this is the minimum required size of its client area.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
@@ -10339,7 +10339,7 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetMinSize(self) -> 'Size':
+    def GetMinSize(self) -> SizeCls:
         """ Returns the minimum size of the window, an indication to the sizer layout mechanism that this is the minimum required size.
 
             Source: https://docs.wxpython.org/wx.Window.html
@@ -10352,13 +10352,13 @@ object on screen.
         """
 
     def GetName(self) -> str:
-        """ Returns the windowâs name.
+        """ Returns the window's name.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
     def GetNextSibling(self) -> 'Window':
-        """ Returns the next window after this one among the parentâs children or None if this window is the last child.
+        """ Returns the next window after this one among the parent's children or None if this window is the last child.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
@@ -10382,7 +10382,7 @@ object on screen.
         """
 
     def GetPrevSibling(self) -> 'Window':
-        """ Returns the previous window before this one among the parentâs children or
+        """ Returns the previous window before this one among the parent's children or
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
@@ -10423,7 +10423,7 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetSize(self) -> 'Size':
+    def GetSize(self) -> SizeCls:
         """ Returns the size of the entire window in pixels, including title bar, border, scrollbars, etc.
 
             Source: https://docs.wxpython.org/wx.Window.html
@@ -10483,19 +10483,19 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetValidator(self) -> 'Validator':
+    def GetValidator(self) -> ValidatorCls:
         """ Validator functions.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetVirtualSize(self) -> 'Size':
+    def GetVirtualSize(self) -> SizeCls:
         """ This gets the virtual size of the window in pixels.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def GetWindowBorderSize(self) -> 'Size':
+    def GetWindowBorderSize(self) -> SizeCls:
         """ Returns the size of the left/right and top/bottom borders of this window in x and y components of the result respectively.
 
             Source: https://docs.wxpython.org/wx.Window.html
@@ -10736,7 +10736,7 @@ object on screen.
         """
 
     def MacIsWindowScrollbar(self, sb) -> None:
-        """ Is the given widget one of this windowâs built-in scrollbars?  Only applicable on Mac.
+        """ Is the given widget one of this window's built-in scrollbars?  Only applicable on Mac.
 
             Source: https://docs.wxpython.org/wx.Window.html
         """
@@ -11228,7 +11228,7 @@ object on screen.
             Source: https://docs.wxpython.org/wx.Window.html
         """
 
-    def SetValidator(self, validator: 'Validator') -> None:
+    def SetValidator(self, validator: ValidatorCls) -> None:
         """ Deletes the current validator (if any) and sets the window validator, having called wx.Validator.Clone   to create a new validator of this type.
 
             Source: https://docs.wxpython.org/wx.Window.html
@@ -11402,9 +11402,9 @@ code like this:
     ClientSize: None  # See GetClientSize and SetClientSize
     Constraints: 'LayoutConstraints'  # See GetConstraints and SetConstraints
     ContainingSizer: 'Sizer'  # See GetContainingSizer and SetContainingSizer
-    Cursor: '_Cursor'  # See GetCursor and SetCursor
+    Cursor: CursorCls  # See GetCursor and SetCursor
     DefaultAttributes: 'VisualAttributes'  # See GetDefaultAttributes
-    DropTarget: '_DropTarget'  # See GetDropTarget and SetDropTarget
+    DropTarget: DropTargetCls  # See GetDropTarget and SetDropTarget
     EffectiveMinSize: 'Size'  # See GetEffectiveMinSize
     Enabled: Any  # See IsEnabled and Enable
     EventHandler: 'EvtHandler'  # See GetEventHandler and SetEventHandler
@@ -11428,20 +11428,20 @@ code like this:
     Name: str  # See GetName and SetName
     Parent: Window  # See GetParent
     Position: Point  # See GetPosition and SetPosition
-    Rect: _Rect  # See GetRect and SetRect
+    Rect: RectCls  # See GetRect and SetRect
     ScreenPosition: Point  # See GetScreenPosition
-    ScreenRect: _Rect  # See GetScreenRect
+    ScreenRect: RectCls  # See GetScreenRect
     Shown: Any  # See IsShown and Show
-    Size: '_Size'  # See GetSize and SetSize
-    Sizer: '_Sizer'  # See GetSizer and SetSizer
+    Size: SizeCls  # See GetSize and SetSize
+    Sizer: SizerCls  # See GetSizer and SetSizer
     ThemeEnabled: bool  # See GetThemeEnabled and SetThemeEnabled
     ToolTip: '_ToolTip'  # See GetToolTip and SetToolTip
     TopLevel: Any  # See IsTopLevel
     TopLevelParent: Window  # See GetTopLevelParent
-    UpdateClientRect: _Rect  # See GetUpdateClientRect
+    UpdateClientRect: RectCls  # See GetUpdateClientRect
     UpdateRegion: Region  # See GetUpdateRegion
-    Validator: _Validator  # See GetValidator and SetValidator
-    VirtualSize: _Size  # See GetVirtualSize and SetVirtualSize
+    Validator: ValidatorCls  # See GetValidator and SetValidator
+    VirtualSize: SizeCls  # See GetVirtualSize and SetVirtualSize
     WindowStyle: int  # See GetWindowStyle and SetWindowStyle
     WindowStyleFlag: int  # See GetWindowStyleFlag and SetWindowStyleFlag
     WindowVariant: int  # See GetWindowVariant and SetWindowVariant
@@ -20866,7 +20866,7 @@ code like this:
     ItemCount: int  # See GetItemCount
     MinSize: 'Size'  # See GetMinSize and SetMinSize
     Position: 'Point'  # See GetPosition
-    Size: '_Size'  # See GetSize
+    Size: 'SizeCls'  # See GetSize
 
 
 
@@ -31409,7 +31409,7 @@ this pixel data object.
     Height: int  # See GetHeight
     Origin: 'Point'  # See GetOrigin
     RowStride: int  # See GetRowStride
-    Size: '_Size'  # See GetSize
+    Size: 'SizeCls'  # See GetSize
     Width: int  # See GetWidth
 
 
@@ -34853,7 +34853,7 @@ class Rect:
     Left: int  # See GetLeft and SetLeft
     Position: 'Point'  # See GetPosition and SetPosition
     Right: int  # See GetRight and SetRight
-    Size: '_Size'  # See GetSize and SetSize
+    Size: 'SizeCls'  # See GetSize and SetSize
     Top: int  # See GetTop and SetTop
     TopLeft: 'Point'  # See GetTopLeft and SetTopLeft
     TopRight: 'Point'  # See GetTopRight and SetTopRight
@@ -35232,7 +35232,7 @@ class Rect2D:
     Right: 'Double'  # See GetRight and SetRight
     RightBottom: 'Point2DDouble'  # See GetRightBottom and SetRightBottom
     RightTop: 'Point2DDouble'  # See GetRightTop and SetRightTop
-    Size: '_Size'  # See GetSize
+    Size: 'SizeCls'  # See GetSize
     Top: 'Double'  # See GetTop and SetTop
     m_height: Any  # A public C++ attribute of type Double     .
     m_width: Any  # A public C++ attribute of type Double     .
@@ -36690,7 +36690,7 @@ about to be set as a result of mouse motion.
             Source: https://docs.wxpython.org/wx.SetCursorEvent.html
         """
 
-    Cursor: '_Cursor'  # See GetCursor and SetCursor
+    Cursor: CursorCls  # See GetCursor and SetCursor
     X: 'Coord'  # See GetX
     Y: 'Coord'  # See GetY
 
@@ -37259,7 +37259,7 @@ class SizeEvent(Event):
         """
 
     Rect: '_Rect'  # See GetRect and SetRect
-    Size: '_Size'  # See GetSize and SetSize
+    Size: 'SizeCls'  # See GetSize and SetSize
 
 
 
@@ -37630,14 +37630,14 @@ attributes of each item managed by a Sizer.
     Border: int  # See GetBorder and SetBorder
     Flag: int  # See GetFlag and SetFlag
     Id: int  # See GetId and SetId
-    MinSize: 'Size'  # See GetMinSize and SetMinSize
+    MinSize: SizeCls  # See GetMinSize and SetMinSize
     Position: 'Point'  # See GetPosition
     Proportion: int  # See GetProportion and SetProportion
     Ratio: float  # See GetRatio and SetRatio
-    Rect: '_Rect'  # See GetRect
-    Size: '_Size'  # See GetSize
-    Sizer: '_Sizer'  # See GetSizer
-    Spacer: 'Size'  # See GetSpacer
+    Rect: RectCls  # See GetRect
+    Size: SizeCls  # See GetSize
+    Sizer: SizerCls  # See GetSizer
+    Spacer: SizeCls  # See GetSpacer
     UserData: 'PyUserData'  # See GetUserData and SetUserData
     Window: '_Window'  # See GetWindow
 
