@@ -4043,8 +4043,6 @@ handler to achieve double-buffered drawing.
 
 BG_STYLE_PAINT: int
 
-_Brush: TypeAlias = Brush
-
 _Font: TypeAlias = Font
 
 _FontMetrics: TypeAlias = FontMetrics
@@ -4881,22 +4879,22 @@ currently selected font.
         """
         """
 
-    AsBitmap: 'Bitmap'  # See GetAsBitmap
-    Background: 'Brush'  # See GetBackground and SetBackground
+    AsBitmap: Bitmap  # See GetAsBitmap
+    Background: wx.Brush  # See GetBackground and SetBackground
     BackgroundMode: int  # See GetBackgroundMode and SetBackgroundMode
     BoundingBox: None  # See GetBoundingBox
-    Brush: _Brush  # See GetBrush and SetBrush
+    Brush: wx.Brush  # See GetBrush and SetBrush
     CGContext: int  # See GetCGContext
     CharHeight: Coord  # See GetCharHeight
     CharWidth: Coord  # See GetCharWidth
     ClippingRect: None  # See GetClippingRect
     ContentScaleFactor: float  # See GetContentScaleFactor
     Depth: int  # See GetDepth
-    DeviceOrigin: 'Point'  # See GetDeviceOrigin and SetDeviceOrigin
-    Font: '_Font'  # See GetFont and SetFont
-    FontMetrics: '_FontMetrics'  # See GetFontMetrics
+    DeviceOrigin: Point  # See GetDeviceOrigin and SetDeviceOrigin
+    Font: wx.Font  # See GetFont and SetFont
+    FontMetrics: wx.FontMetrics  # See GetFontMetrics
     GdkDrawable: int  # See GetGdkDrawable
-    GraphicsContext: '_GraphicsContext'  # See GetGraphicsContext and SetGraphicsContext
+    GraphicsContext: wx.GraphicsContext  # See GetGraphicsContext and SetGraphicsContext
     HDC: int  # See GetHDC
     Handle: int  # See GetHandle
     LayoutDirection: int  # See GetLayoutDirection and SetLayoutDirection
@@ -4905,12 +4903,12 @@ currently selected font.
     MultiLineTextExtent: None  # See GetMultiLineTextExtent
     PPI: wx.Size  # See GetPPI
     Pen: _Pen  # See GetPen and SetPen
-    Pixel: 'Colour'  # See GetPixel
+    Pixel: Colour  # See GetPixel
     Size: wx.Size  # See GetSize
     SizeMM: wx.Size  # See GetSizeMM
-    TextBackground: 'Colour'  # See GetTextBackground and SetTextBackground
+    TextBackground: Colour  # See GetTextBackground and SetTextBackground
     TextExtent: None  # See GetTextExtent
-    TextForeground: 'Colour'  # See GetTextForeground and SetTextForeground
+    TextForeground: Colour  # See GetTextForeground and SetTextForeground
     TransformMatrix: 'AffineMatrix2D'  # See GetTransformMatrix and SetTransformMatrix
 
 
@@ -14559,6 +14557,8 @@ class EvtHandler(Object,Trackable):
     @overload
     def Bind(self, event: Literal[_TEVT_IDLE], handler: Callable[[IdleEvent], object], source: EvtHandler | None = None) -> None: ...
     @overload
+    def Bind(self, event: Literal[_TEVT_WINDOW_DESTROY], handler: Callable[[WindowDestroyEvent], object], source: EvtHandler | None = None) -> None: ...
+    @overload
     def Bind(self, event: Literal[_TEVT_MENU_CLOSE, _TEVT_MENU_OPEN, _TEVT_MENU_HIGHLIGHT], handler: Callable[[MenuEvent], object], source: EvtHandler | MenuItem | None = None) -> None: ...
     @overload
     def Bind(self, event: Literal[_TEVT_KEY_DOWN, _TEVT_KEY_UP, _TEVT_CHAR, _TEVT_CHAR_HOOK], handler: Callable[[KeyEvent], object], source: EvtHandler | None = None) -> None: ...
@@ -14570,7 +14570,7 @@ class EvtHandler(Object,Trackable):
         _TEVT_LISTBOX, _TEVT_LISTBOX_DCLICK, _TEVT_CHECKLISTBOX, _TEVT_MENU,
         _TEVT_CONTEXT_MENU, _TEVT_RADIOBOX, _TEVT_RADIOBUTTON, _TEVT_SCROLLBAR,
         _TEVT_SLIDER, _TEVT_TEXT, _TEVT_TEXT_ENTER, _TEVT_TEXT_MAXLEN, _TEVT_TOGGLEBUTTON,
-        _TEVT_TOOL, _TEVT_TOOL_RANGE, _TEVT_TOOL_RCLICKED, _TEVT_TOOL_ENTER,
+        _TEVT_TOOL, _TEVT_TOOL_RCLICKED, _TEVT_TOOL_ENTER,
         _TEVT_COMMAND_LEFT_CLICK, _TEVT_COMMAND_LEFT_DCLICK, _TEVT_COMMAND_RIGHT_CLICK,
         _TEVT_COMMAND_SET_FOCUS, _TEVT_COMMAND_KILL_FOCUS, _TEVT_COMMAND_ENTER,
         #_TEVT_MENU_RANGE, _TEVT_COMMAND, _TEVT_COMMAND_RANGE,
@@ -17158,8 +17158,9 @@ class FontDialog(Dialog):
             Source: https://docs.wxpython.org/wx.FontDialog.html
         """
 
-    FontData: '_FontData'  # See GetFontData
-
+    @property
+    def FontData(self) -> wx.FontData:
+        """See GetFontData"""
 
 
 class FontEnumerator:
@@ -17590,7 +17591,7 @@ class FontPickerEvent(CommandEvent):
             Source: https://docs.wxpython.org/wx.FontPickerEvent.html
         """
 
-    Font: '_Font'  # See GetFont and SetFont
+    Font: wx.Font  # See GetFont and SetFont
 
 
 
@@ -23473,9 +23474,9 @@ with multiple items such as e.g.
             Source: https://docs.wxpython.org/wx.ItemAttr.html
         """
 
-    BackgroundColour: 'Colour'  # See GetBackgroundColour and SetBackgroundColour
-    Font: '_Font'  # See GetFont and SetFont
-    TextColour: 'Colour'  # See GetTextColour and SetTextColour
+    BackgroundColour: wx.Colour  # See GetBackgroundColour and SetBackgroundColour
+    Font: wx.Font  # See GetFont and SetFont
+    TextColour: wx.Colour  # See GetTextColour and SetTextColour
 
 
 
@@ -26914,7 +26915,7 @@ class ListItem(Object):
     BackgroundColour: 'Colour'  # See GetBackgroundColour and SetBackgroundColour
     Column: int  # See GetColumn and SetColumn
     Data: int  # See GetData and SetData
-    Font: '_Font'  # See GetFont and SetFont
+    Font: wx.Font  # See GetFont and SetFont
     Id: int  # See GetId and SetId
     Image: int  # See GetImage and SetImage
     Mask: int  # See GetMask and SetMask
@@ -28535,7 +28536,7 @@ class MenuEvent(Event):
             Source: https://docs.wxpython.org/wx.MenuEvent.html
         """
 
-    def GetMenu(self) -> 'Menu':
+    def GetMenu(self) -> wx.Menu:
         """ Returns the menu which is being opened or closed, or the menu containing the highlighted item.
 
             Source: https://docs.wxpython.org/wx.MenuEvent.html
@@ -28553,8 +28554,18 @@ class MenuEvent(Event):
             Source: https://docs.wxpython.org/wx.MenuEvent.html
         """
 
-    Menu: '_Menu'  # See GetMenu
-    MenuId: int  # See GetMenuId
+    @property
+    def Menu(self) -> wx.Menu:
+        """Returns the menu which is being opened or closed, or the menu containing the highlighted item.
+
+            Source: https://docs.wxpython.org/wx.MenuEvent.html
+        """
+    @property
+    def MenuId(self) -> int:
+        """Returns the menu identifier associated with the event.
+
+        Source: https://docs.wxpython.org/wx.MenuEvent.html
+        """
 
 
 
@@ -28593,37 +28604,37 @@ class MenuItem(Object):
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def GetAccel(self) -> 'AcceleratorEntry':
+    def GetAccel(self) -> AcceleratorEntry:
         """ Get our accelerator or None (caller must delete the pointer)
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def GetBackgroundColour(self) -> 'Colour':
+    def GetBackgroundColour(self) -> Colour:
         """ Returns the background colour associated with the menu item.
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def GetBitmap(self, *args, **kw) -> 'Bitmap':
+    def GetBitmap(self, *args, **kw) -> wx.Bitmap:
         """ Overloaded Implementations:
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def GetBitmapBundle(self) -> 'BitmapBundle':
+    def GetBitmapBundle(self) -> wx.BitmapBundle:
         """ Returns the bitmap bundle containing the bitmap used for this item.
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def GetDisabledBitmap(self) -> 'Bitmap':
+    def GetDisabledBitmap(self) -> wx.Bitmap:
         """ Returns the bitmap used for disabled items.
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def GetFont(self) -> 'Font':
+    def GetFont(self) -> wx.Font:
         """ Returns the font associated with the menu item.
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
@@ -28672,19 +28683,19 @@ class MenuItem(Object):
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def GetMenu(self) -> 'Menu':
+    def GetMenu(self) -> wx.Menu:
         """ Returns the menu this menu item is in, or None if this menu item is not attached.
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def GetSubMenu(self) -> 'Menu':
+    def GetSubMenu(self) -> wx.Menu:
         """ Returns the submenu associated with the menu item, or None if there isn't one.
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def GetTextColour(self) -> 'Colour':
+    def GetTextColour(self) -> Colour:
         """ Returns the text colour associated with the menu item.
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
@@ -28732,13 +28743,13 @@ class MenuItem(Object):
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def SetAccel(self, accel: 'AcceleratorEntry') -> None:
+    def SetAccel(self, accel: wx.AcceleratorEntry) -> None:
         """ Set the accel for this item - this may also be done indirectly with SetText
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def SetBackgroundColour(self, colour: Union[int, str, 'Colour']) -> None:
+    def SetBackgroundColour(self, colour: Union[int, str, wx.Colour]) -> None:
         """ Sets the background colour associated with the menu item.
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
@@ -28756,13 +28767,13 @@ class MenuItem(Object):
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def SetDisabledBitmap(self, disabled: 'BitmapBundle') -> None:
+    def SetDisabledBitmap(self, disabled: wx.BitmapBundle) -> None:
         """ Sets the to be used for disabled menu items.
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def SetFont(self, font: 'Font') -> None:
+    def SetFont(self, font: wx.Font) -> None:
         """ Sets the font associated with the menu item.
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
@@ -28786,40 +28797,40 @@ class MenuItem(Object):
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def SetMenu(self, menu: 'Menu') -> None:
+    def SetMenu(self, menu: wx.Menu) -> None:
         """ Sets the parent menu which will contain this menu item.
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def SetSubMenu(self, menu: 'Menu') -> None:
+    def SetSubMenu(self, menu: wx.Menu) -> None:
         """ Sets the submenu of this menu item.
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    def SetTextColour(self, colour: Union[int, str, 'Colour']) -> None:
+    def SetTextColour(self, colour: Union[int, str, Colour]) -> None:
         """ Sets the text colour associated with the menu item.
 
             Source: https://docs.wxpython.org/wx.MenuItem.html
         """
 
-    Accel: 'AcceleratorEntry'  # See GetAccel and SetAccel
-    BackgroundColour: 'Colour'  # See GetBackgroundColour and SetBackgroundColour
-    Bitmap: '_Bitmap'  # See GetBitmap and SetBitmap
-    BitmapBundle: '_BitmapBundle'  # See GetBitmapBundle
-    DisabledBitmap: 'Bitmap'  # See GetDisabledBitmap and SetDisabledBitmap
+    Accel: AcceleratorEntry  # See GetAccel and SetAccel
+    BackgroundColour: Colour  # See GetBackgroundColour and SetBackgroundColour
+    Bitmap: wx.Bitmap  # See GetBitmap and SetBitmap
+    BitmapBundle: wx.BitmapBundle  # See GetBitmapBundle
+    DisabledBitmap: wx.Bitmap  # See GetDisabledBitmap and SetDisabledBitmap
     Enabled: Any  # See IsEnabled and Enable
-    Font: '_Font'  # See GetFont and SetFont
+    Font: wx.Font  # See GetFont and SetFont
     Help: str  # See GetHelp and SetHelp
     Id: int  # See GetId
     ItemLabel: str  # See GetItemLabel and SetItemLabel
     ItemLabelText: str  # See GetItemLabelText
-    Kind: 'ItemKind'  # See GetKind
+    Kind: ItemKind  # See GetKind
     MarginWidth: int  # See GetMarginWidth and SetMarginWidth
-    Menu: '_Menu'  # See GetMenu and SetMenu
-    SubMenu: 'Menu'  # See GetSubMenu and SetSubMenu
-    TextColour: 'Colour'  # See GetTextColour and SetTextColour
+    Menu: wx.Menu  # See GetMenu and SetMenu
+    SubMenu: wx.Menu  # See GetSubMenu and SetSubMenu
+    TextColour: Colour  # See GetTextColour and SetTextColour
 
 
 
@@ -39924,7 +39935,7 @@ style, for a range of text in a TextCtrl or RichTextCtrl.
     BulletText: str  # See GetBulletText and SetBulletText
     CharacterStyleName: str  # See GetCharacterStyleName and SetCharacterStyleName
     Flags: int  # See GetFlags and SetFlags
-    Font: '_Font'  # See GetFont and SetFont
+    Font: wx.Font  # See GetFont and SetFont
     FontEncoding: int  # See GetFontEncoding and SetFontEncoding
     FontFaceName: str  # See GetFontFaceName and SetFontFaceName
     FontFamily: int  # See GetFontFamily and SetFontFamily
