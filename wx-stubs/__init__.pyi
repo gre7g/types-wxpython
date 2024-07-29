@@ -82,7 +82,7 @@ CURSOR_COPY_ARROW: Final[StockCursor]
 CURSOR_ARROWWAIT: Final[StockCursor]
 CURSOR_MAX: Final[StockCursor]
 
-class StandardID(int):
+class StockID(int):
     """ID_* enumeration."""
 
 ID_AUTO_LOWEST: Final[StockID]
@@ -221,6 +221,14 @@ ID_MDI_WINDOW_LAST: Final[StockID]
 ID_FILEDLGG: Final[StockID]
 ID_FILECTRL: Final[StockID]
 ID_HIGHEST: Final[StockID]
+
+
+class BitmapBufferFormat(int):
+    """BitmapBufferFormat_* enumeration."""
+BitmapBufferFormat_ARGB32: Final[BitmapBufferFormat]
+BitmapBufferFormat_RGB: Final[BitmapBufferFormat]
+BitmapBufferFormat_RGB32: Final[BitmapBufferFormat]
+BitmapBufferFormat_RGBA: Final[BitmapBufferFormat]
 
 FontEncoding: TypeAlias = int  # Enumeration
 FontStyle: TypeAlias = int  # Enumeration
