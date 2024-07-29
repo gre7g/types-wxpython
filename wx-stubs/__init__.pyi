@@ -4155,8 +4155,24 @@ drawn.
             Source: https://docs.wxpython.org/wx.DC.html
         """
 
-    def DrawBitmap(self, *args, **kw) -> None:
-        """ Overloaded Implementations:
+    @overload
+    def DrawBitmap(self, bitmap: Bitmap, x: int, y: int, useMask: bool = False) -> None:
+        """Draw a bitmap on the device context at the specified point.
+
+        If useMask is True and the bitmap has a transparency mask, the bitmap will be drawn transparently.
+        When drawing a mono-bitmap, the current text foreground colour will be used to draw the foreground
+        of the bitmap (all bits set to 1), and the current text background colour to draw the background (all bits set to 0).
+
+            Source: https://docs.wxpython.org/wx.DC.html
+        """
+
+    @overload
+    def DrawBitmap(self, bitmap: Bitmap, pt: Point, useMask: bool = False) -> None:
+        """Draw a bitmap on the device context at the specified point.
+
+        If useMask is True and the bitmap has a transparency mask, the bitmap will be drawn transparently.
+        When drawing a mono-bitmap, the current text foreground colour will be used to draw the foreground
+        of the bitmap (all bits set to 1), and the current text background colour to draw the background (all bits set to 0).
 
             Source: https://docs.wxpython.org/wx.DC.html
         """
@@ -4203,10 +4219,21 @@ drawn.
             Source: https://docs.wxpython.org/wx.DC.html
         """
 
-    def DrawLine(self, *args, **kw) -> None:
-        """ Overloaded Implementations:
+    @overload
+    def DrawLine(self, x1: int, y1: int, x2: int, y2: int) -> None:
+        """Draws a line from the first point to the second.
 
-            Source: https://docs.wxpython.org/wx.DC.html
+        The current pen is used for drawing the line.
+        Note that the point (x2, y2) is not part of the line and is not drawn by this function
+        (this is consistent with the behaviour of many other toolkits).
+
+        Source: https://docs.wxpython.org/wx.DC.html
+        """
+    @overload
+    def DrawLine(self, pt1: Point, pt2: Point) -> None:
+        """Draws a line from the first point to the second.
+
+        Source: https://docs.wxpython.org/wx.DC.html
         """
 
     def DrawLineList(self, lines, pens=None) -> None:
