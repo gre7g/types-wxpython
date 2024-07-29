@@ -553,10 +553,10 @@ EVT_SLIDER: int
 type _TEVT_CONTEXT_MENU = Literal[10112]
 EVT_CONTEXT_MENU: _TEVT_CONTEXT_MENU = 10112  # Process the event generated when the user has requested a popup menu to appear by pressing a special keyboard key (under Windows) or by right clicking the mouse.
 
-type _TEVT_CREATE = Literal[10098]
-EVT_CREATE: _TEVT_CREATE = 10098
-type _TEVT_DESTROY = Literal[10099]
-EVT_DESTROY: _TEVT_DESTROY = 10099
+type _TEVT_WINDOW_CREATE = Literal[10098]
+EVT_WINDOW_CREATE: _TEVT_WINDOW_CREATE = 10098
+type _TEVT_WINDOW_DESTROY = Literal[10099]
+EVT_WINDOW_DESTROY: _TEVT_WINDOW_DESTROY = 10099
 
 type _TEVT_DETAILED_HELP = Literal[10136]
 EVT_DETAILED_HELP: _TEVT_DETAILED_HELP = 10136
