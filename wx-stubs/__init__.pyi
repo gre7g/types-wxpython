@@ -28235,7 +28235,9 @@ menu).
             Source: https://docs.wxpython.org/wx.Menu.html
         """
 
-    def FindItem(self, *args, **kw) -> int:
+    @overload
+    def FindItem(self, itemString: str) -> int: ...
+    def FindItem(self, id: int) -> tuple[MenuItem, Menu | None]:
         """ Overloaded Implementations:
 
             Source: https://docs.wxpython.org/wx.Menu.html
@@ -28247,7 +28249,7 @@ menu).
             Source: https://docs.wxpython.org/wx.Menu.html
         """
 
-    def FindItemByPosition(self, position: int) -> 'MenuItem':
+    def FindItemByPosition(self, position: int) -> MenuItem:
         """ Returns the   wx.MenuItem  given a position in the menu.
 
             Source: https://docs.wxpython.org/wx.Menu.html
