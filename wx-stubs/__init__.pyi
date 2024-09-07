@@ -1,7 +1,7 @@
     # -*- coding: utf-8 -*-
 # mypy: disable-error-code=override
 from typing import Any, ContextManager, Callable, Optional, TypeAlias, Union, Iterator, Final, Literal, overload
-from enum import IntEnum, auto
+from enum import IntEnum, auto, Flag
 
 from .ActivateEvent import Reason
 from .ConfigBase import EntryType
@@ -10,442 +10,570 @@ from .HelpEvent import Origin
 from .StandardPaths import FileLayout
 from .StockPreferencesPage import Kind
 
+# Import WX again to allow disambiguating when properties exist with the same name as the class.
+import wx
+
 DefaultCoord: Final = -1  # Unsure, seems right
 wxEVT_NULL: Final = 0
 
 
-# Import WX again to allow disambiguating when properties exist with the same name as the class.
-import wx
-
-
-class FontFamily(int):
+class FontFamily(Enum):
     """FONTFAMILY_* enumeration."""
+    DEFAULT = auto()
+    DECORATIVE = auto()
+    ROMAN = auto()
+    SCRIPT = auto()
+    SWISS = auto()
+    MODERN = auto()
+    TELETYPE = auto()
+    MAX = auto()
+    UNKNOWN = auto()
 
-FONTFAMILY_DEFAULT: Final[FontFamily]
-FONTFAMILY_DECORATIVE: Final[FontFamily]
-FONTFAMILY_ROMAN: Final[FontFamily]
-FONTFAMILY_SCRIPT: Final[FontFamily]
-FONTFAMILY_SWISS: Final[FontFamily]
-FONTFAMILY_MODERN: Final[FontFamily]
-FONTFAMILY_TELETYPE: Final[FontFamily]
-FONTFAMILY_MAX: Final[FontFamily]
-FONTFAMILY_UNKNOWN: Final[FontFamily]
+FONTFAMILY_DEFAULT: Final = FontFamily.DEFAULT
+FONTFAMILY_DECORATIVE: Final = FontFamily.DECORATIVE
+FONTFAMILY_ROMAN: Final = FontFamily.ROMAN
+FONTFAMILY_SCRIPT: Final = FontFamily.SCRIPT
+FONTFAMILY_SWISS: Final = FontFamily.SWISS
+FONTFAMILY_MODERN: Final = FontFamily.MODERN
+FONTFAMILY_TELETYPE: Final = FontFamily.TELETYPE
+FONTFAMILY_MAX: Final = FontFamily.MAX
+FONTFAMILY_UNKNOWN: Final = FontFamily.UNKNOWN
 
-class FontWeight(int):
+class FontWeight(Enum):
     """FONTWEIGHT_* enumeration."""
+    INVALID = auto()
+    THIN = auto()
+    EXTRALIGHT = auto()
+    LIGHT = auto()
+    NORMAL = auto()
+    MEDIUM = auto()
+    SEMIBOLD = auto()
+    BOLD = auto()
+    EXTRABOLD = auto()
+    HEAVY = auto()
+    EXTRAHEAVY = auto()
+    MAX = auto()
 
-FONTWEIGHT_INVALID: Final[FontWeight]
-FONTWEIGHT_THIN: Final[FontWeight]
-FONTWEIGHT_EXTRALIGHT: Final[FontWeight]
-FONTWEIGHT_LIGHT: Final[FontWeight]
-FONTWEIGHT_NORMAL: Final[FontWeight]
-FONTWEIGHT_MEDIUM: Final[FontWeight]
-FONTWEIGHT_SEMIBOLD: Final[FontWeight]
-FONTWEIGHT_BOLD: Final[FontWeight]
-FONTWEIGHT_EXTRABOLD: Final[FontWeight]
-FONTWEIGHT_HEAVY: Final[FontWeight]
-FONTWEIGHT_EXTRAHEAVY: Final[FontWeight]
-FONTWEIGHT_MAX: Final[FontWeight]
+FONTWEIGHT_INVALID: Final = FontWeight.INVALID
+FONTWEIGHT_THIN: Final = FontWeight.THIN
+FONTWEIGHT_EXTRALIGHT: Final = FontWeight.EXTRALIGHT
+FONTWEIGHT_LIGHT: Final = FontWeight.LIGHT
+FONTWEIGHT_NORMAL: Final = FontWeight.NORMAL
+FONTWEIGHT_MEDIUM: Final = FontWeight.MEDIUM
+FONTWEIGHT_SEMIBOLD: Final = FontWeight.SEMIBOLD
+FONTWEIGHT_BOLD: Final = FontWeight.BOLD
+FONTWEIGHT_EXTRABOLD: Final = FontWeight.EXTRABOLD
+FONTWEIGHT_HEAVY: Final = FontWeight.HEAVY
+FONTWEIGHT_EXTRAHEAVY: Final = FontWeight.EXTRAHEAVY
+FONTWEIGHT_MAX: Final = FontWeight.MAX
 
-class StockCursor(int):
+class StockCursor(Enum):
     """CURSOR_* enumeration."""
+    NONE = auto()
+    ARROW = auto()
+    RIGHT_ARROW = auto()
+    BULLSEYE = auto()
+    CHAR = auto()
+    CROSS = auto()
+    HAND = auto()
+    IBEAM = auto()
+    LEFT_BUTTON = auto()
+    MAGNIFIER = auto()
+    MIDDLE_BUTTON = auto()
+    NO_ENTRY = auto()
+    PAINT_BRUSH = auto()
+    PENCIL = auto()
+    POINT_LEFT = auto()
+    POINT_RIGHT = auto()
+    QUESTION_ARROW = auto()
+    RIGHT_BUTTON = auto()
+    SIZENESW = auto()
+    SIZENS = auto()
+    SIZENWSE = auto()
+    SIZEWE = auto()
+    SIZING = auto()
+    SPRAYCAN = auto()
+    WAIT = auto()
+    WATCH = auto()
+    BLANK = auto()
+    DEFAULT = auto()
+    COPY_ARROW = auto()
+    ARROWWAIT = auto()
+    MAX = auto()
 
-CURSOR_NONE: Final[StockCursor]
-CURSOR_ARROW: Final[StockCursor]
-CURSOR_RIGHT_ARROW: Final[StockCursor]
-CURSOR_BULLSEYE: Final[StockCursor]
-CURSOR_CHAR: Final[StockCursor]
-CURSOR_CROSS: Final[StockCursor]
-CURSOR_HAND: Final[StockCursor]
-CURSOR_IBEAM: Final[StockCursor]
-CURSOR_LEFT_BUTTON: Final[StockCursor]
-CURSOR_MAGNIFIER: Final[StockCursor]
-CURSOR_MIDDLE_BUTTON: Final[StockCursor]
-CURSOR_NO_ENTRY: Final[StockCursor]
-CURSOR_PAINT_BRUSH: Final[StockCursor]
-CURSOR_PENCIL: Final[StockCursor]
-CURSOR_POINT_LEFT: Final[StockCursor]
-CURSOR_POINT_RIGHT: Final[StockCursor]
-CURSOR_QUESTION_ARROW: Final[StockCursor]
-CURSOR_RIGHT_BUTTON: Final[StockCursor]
-CURSOR_SIZENESW: Final[StockCursor]
-CURSOR_SIZENS: Final[StockCursor]
-CURSOR_SIZENWSE: Final[StockCursor]
-CURSOR_SIZEWE: Final[StockCursor]
-CURSOR_SIZING: Final[StockCursor]
-CURSOR_SPRAYCAN: Final[StockCursor]
-CURSOR_WAIT: Final[StockCursor]
-CURSOR_WATCH: Final[StockCursor]
-CURSOR_BLANK: Final[StockCursor]
-CURSOR_DEFAULT: Final[StockCursor]
-CURSOR_COPY_ARROW: Final[StockCursor]
-CURSOR_ARROWWAIT: Final[StockCursor]
-CURSOR_MAX: Final[StockCursor]
+CURSOR_NONE: Final = StockCursor.NONE
+CURSOR_ARROW: Final = StockCursor.ARROW
+CURSOR_RIGHT_ARROW: Final = StockCursor.RIGHT_ARROW
+CURSOR_BULLSEYE: Final = StockCursor.BULLSEYE
+CURSOR_CHAR: Final = StockCursor.CHAR
+CURSOR_CROSS: Final = StockCursor.CROSS
+CURSOR_HAND: Final = StockCursor.HAND
+CURSOR_IBEAM: Final = StockCursor.IBEAM
+CURSOR_LEFT_BUTTON: Final = StockCursor.LEFT_BUTTON
+CURSOR_MAGNIFIER: Final = StockCursor.MAGNIFIER
+CURSOR_MIDDLE_BUTTON: Final = StockCursor.MIDDLE_BUTTON
+CURSOR_NO_ENTRY: Final = StockCursor.NO_ENTRY
+CURSOR_PAINT_BRUSH: Final = StockCursor.PAINT_BRUSH
+CURSOR_PENCIL: Final = StockCursor.PENCIL
+CURSOR_POINT_LEFT: Final = StockCursor.POINT_LEFT
+CURSOR_POINT_RIGHT: Final = StockCursor.POINT_RIGHT
+CURSOR_QUESTION_ARROW: Final = StockCursor.QUESTION_ARROW
+CURSOR_RIGHT_BUTTON: Final = StockCursor.RIGHT_BUTTON
+CURSOR_SIZENESW: Final = StockCursor.SIZENESW
+CURSOR_SIZENS: Final = StockCursor.SIZENS
+CURSOR_SIZENWSE: Final = StockCursor.SIZENWSE
+CURSOR_SIZEWE: Final = StockCursor.SIZEWE
+CURSOR_SIZING: Final = StockCursor.SIZING
+CURSOR_SPRAYCAN: Final = StockCursor.SPRAYCAN
+CURSOR_WAIT: Final = StockCursor.WAIT
+CURSOR_WATCH: Final = StockCursor.WATCH
+CURSOR_BLANK: Final = StockCursor.BLANK
+CURSOR_DEFAULT: Final = StockCursor.DEFAULT
+CURSOR_COPY_ARROW: Final = StockCursor.COPY_ARROW
+CURSOR_ARROWWAIT: Final = StockCursor.ARROWWAIT
+CURSOR_MAX: Final = StockCursor.MAX
 
-class StockID(int):
+class StockID(Enum):
     """ID_* enumeration."""
+    AUTO_LOWEST = auto()
+    ANY = auto()
+    AUTO_HIGHEST = auto()
+    NONE = auto()
+    SEPARATOR = auto()
+    LOWEST = auto()
+    OPEN = auto()
+    CLOSE = auto()
+    NEW = auto()
+    SAVE = auto()
+    SAVEAS = auto()
+    REVERT = auto()
+    EXIT = auto()
+    UNDO = auto()
+    REDO = auto()
+    HELP = auto()
+    PRINT = auto()
+    PRINT_SETUP = auto()
+    PAGE_SETUP = auto()
+    PREVIEW = auto()
+    ABOUT = auto()
+    HELP_CONTENTS = auto()
+    HELP_INDEX = auto()
+    HELP_SEARCH = auto()
+    HELP_COMMANDS = auto()
+    HELP_PROCEDURES = auto()
+    HELP_CONTEXT = auto()
+    CLOSE_ALL = auto()
+    PREFERENCES = auto()
+    EDIT = auto()
+    CUT = auto()
+    COPY = auto()
+    PASTE = auto()
+    CLEAR = auto()
+    FIND = auto()
+    DUPLICATE = auto()
+    SELECTALL = auto()
+    DELETE = auto()
+    REPLACE = auto()
+    REPLACE_ALL = auto()
+    PROPERTIES = auto()
+    VIEW_DETAILS = auto()
+    VIEW_LARGEICONS = auto()
+    VIEW_SMALLICONS = auto()
+    VIEW_LIST = auto()
+    VIEW_SORTDATE = auto()
+    VIEW_SORTNAME = auto()
+    VIEW_SORTSIZE = auto()
+    VIEW_SORTTYPE = auto()
+    FILE = auto()
+    FILE1 = auto()
+    FILE2 = auto()
+    FILE3 = auto()
+    FILE4 = auto()
+    FILE5 = auto()
+    FILE6 = auto()
+    FILE7 = auto()
+    FILE8 = auto()
+    FILE9 = auto()
+    OK = auto()
+    CANCEL = auto()
+    APPLY = auto()
+    YES = auto()
+    NO = auto()
+    STATIC = auto()
+    FORWARD = auto()
+    BACKWARD = auto()
+    DEFAULT = auto()
+    MORE = auto()
+    SETUP = auto()
+    RESET = auto()
+    CONTEXT_HELP = auto()
+    YESTOALL = auto()
+    NOTOALL = auto()
+    ABORT = auto()
+    RETRY = auto()
+    IGNORE = auto()
+    ADD = auto()
+    REMOVE = auto()
+    UP = auto()
+    DOWN = auto()
+    HOME = auto()
+    REFRESH = auto()
+    STOP = auto()
+    INDEX = auto()
+    BOLD = auto()
+    ITALIC = auto()
+    JUSTIFY_CENTER = auto()
+    JUSTIFY_FILL = auto()
+    JUSTIFY_RIGHT = auto()
+    JUSTIFY_LEFT = auto()
+    UNDERLINE = auto()
+    INDENT = auto()
+    UNINDENT = auto()
+    ZOOM_100 = auto()
+    ZOOM_FIT = auto()
+    ZOOM_IN = auto()
+    ZOOM_OUT = auto()
+    UNDELETE = auto()
+    REVERT_TO_SAVED = auto()
+    CDROM = auto()
+    CONVERT = auto()
+    EXECUTE = auto()
+    FLOPPY = auto()
+    HARDDISK = auto()
+    BOTTOM = auto()
+    FIRST = auto()
+    LAST = auto()
+    TOP = auto()
+    INFO = auto()
+    JUMP_TO = auto()
+    NETWORK = auto()
+    SELECT_COLOR = auto()
+    SELECT_FONT = auto()
+    SORT_ASCENDING = auto()
+    SORT_DESCENDING = auto()
+    SPELL_CHECK = auto()
+    STRIKETHROUGH = auto()
+    SYSTEM_MENU = auto()
+    CLOSE_FRAME = auto()
+    MOVE_FRAME = auto()
+    RESIZE_FRAME = auto()
+    MAXIMIZE_FRAME = auto()
+    ICONIZE_FRAME = auto()
+    RESTORE_FRAME = auto()
+    MDI_WINDOW_FIRST = auto()
+    MDI_WINDOW_CASCADE = auto()
+    MDI_WINDOW_TILE_HORZ = auto()
+    MDI_WINDOW_TILE_VERT = auto()
+    MDI_WINDOW_ARRANGE_ICONS = auto()
+    MDI_WINDOW_PREV = auto()
+    MDI_WINDOW_NEXT = auto()
+    MDI_WINDOW_LAST = auto()
+    FILEDLGG = auto()
+    FILECTRL = auto()
+    HIGHEST = auto()
 
-ID_AUTO_LOWEST: Final[StockID]
-ID_ANY: Final[StockID]
-ID_AUTO_HIGHEST: Final[StockID]
-ID_NONE: Final[StockID]
-ID_SEPARATOR: Final[StockID]
-ID_LOWEST: Final[StockID]
-ID_OPEN: Final[StockID]
-ID_CLOSE: Final[StockID]
-ID_NEW: Final[StockID]
-ID_SAVE: Final[StockID]
-ID_SAVEAS: Final[StockID]
-ID_REVERT: Final[StockID]
-ID_EXIT: Final[StockID]
-ID_UNDO: Final[StockID]
-ID_REDO: Final[StockID]
-ID_HELP: Final[StockID]
-ID_PRINT: Final[StockID]
-ID_PRINT_SETUP: Final[StockID]
-ID_PAGE_SETUP: Final[StockID]
-ID_PREVIEW: Final[StockID]
-ID_ABOUT: Final[StockID]
-ID_HELP_CONTENTS: Final[StockID]
-ID_HELP_INDEX: Final[StockID]
-ID_HELP_SEARCH: Final[StockID]
-ID_HELP_COMMANDS: Final[StockID]
-ID_HELP_PROCEDURES: Final[StockID]
-ID_HELP_CONTEXT: Final[StockID]
-ID_CLOSE_ALL: Final[StockID]
-ID_PREFERENCES: Final[StockID]
-ID_EDIT: Final[StockID]
-ID_CUT: Final[StockID]
-ID_COPY: Final[StockID]
-ID_PASTE: Final[StockID]
-ID_CLEAR: Final[StockID]
-ID_FIND: Final[StockID]
-ID_DUPLICATE: Final[StockID]
-ID_SELECTALL: Final[StockID]
-ID_DELETE: Final[StockID]
-ID_REPLACE: Final[StockID]
-ID_REPLACE_ALL: Final[StockID]
-ID_PROPERTIES: Final[StockID]
-ID_VIEW_DETAILS: Final[StockID]
-ID_VIEW_LARGEICONS: Final[StockID]
-ID_VIEW_SMALLICONS: Final[StockID]
-ID_VIEW_LIST: Final[StockID]
-ID_VIEW_SORTDATE: Final[StockID]
-ID_VIEW_SORTNAME: Final[StockID]
-ID_VIEW_SORTSIZE: Final[StockID]
-ID_VIEW_SORTTYPE: Final[StockID]
-ID_FILE: Final[StockID]
-ID_FILE1: Final[StockID]
-ID_FILE2: Final[StockID]
-ID_FILE3: Final[StockID]
-ID_FILE4: Final[StockID]
-ID_FILE5: Final[StockID]
-ID_FILE6: Final[StockID]
-ID_FILE7: Final[StockID]
-ID_FILE8: Final[StockID]
-ID_FILE9: Final[StockID]
-ID_OK: Final[StockID]
-ID_CANCEL: Final[StockID]
-ID_APPLY: Final[StockID]
-ID_YES: Final[StockID]
-ID_NO: Final[StockID]
-ID_STATIC: Final[StockID]
-ID_FORWARD: Final[StockID]
-ID_BACKWARD: Final[StockID]
-ID_DEFAULT: Final[StockID]
-ID_MORE: Final[StockID]
-ID_SETUP: Final[StockID]
-ID_RESET: Final[StockID]
-ID_CONTEXT_HELP: Final[StockID]
-ID_YESTOALL: Final[StockID]
-ID_NOTOALL: Final[StockID]
-ID_ABORT: Final[StockID]
-ID_RETRY: Final[StockID]
-ID_IGNORE: Final[StockID]
-ID_ADD: Final[StockID]
-ID_REMOVE: Final[StockID]
-ID_UP: Final[StockID]
-ID_DOWN: Final[StockID]
-ID_HOME: Final[StockID]
-ID_REFRESH: Final[StockID]
-ID_STOP: Final[StockID]
-ID_INDEX: Final[StockID]
-ID_BOLD: Final[StockID]
-ID_ITALIC: Final[StockID]
-ID_JUSTIFY_CENTER: Final[StockID]
-ID_JUSTIFY_FILL: Final[StockID]
-ID_JUSTIFY_RIGHT: Final[StockID]
-ID_JUSTIFY_LEFT: Final[StockID]
-ID_UNDERLINE: Final[StockID]
-ID_INDENT: Final[StockID]
-ID_UNINDENT: Final[StockID]
-ID_ZOOM_100: Final[StockID]
-ID_ZOOM_FIT: Final[StockID]
-ID_ZOOM_IN: Final[StockID]
-ID_ZOOM_OUT: Final[StockID]
-ID_UNDELETE: Final[StockID]
-ID_REVERT_TO_SAVED: Final[StockID]
-ID_CDROM: Final[StockID]
-ID_CONVERT: Final[StockID]
-ID_EXECUTE: Final[StockID]
-ID_FLOPPY: Final[StockID]
-ID_HARDDISK: Final[StockID]
-ID_BOTTOM: Final[StockID]
-ID_FIRST: Final[StockID]
-ID_LAST: Final[StockID]
-ID_TOP: Final[StockID]
-ID_INFO: Final[StockID]
-ID_JUMP_TO: Final[StockID]
-ID_NETWORK: Final[StockID]
-ID_SELECT_COLOR: Final[StockID]
-ID_SELECT_FONT: Final[StockID]
-ID_SORT_ASCENDING: Final[StockID]
-ID_SORT_DESCENDING: Final[StockID]
-ID_SPELL_CHECK: Final[StockID]
-ID_STRIKETHROUGH: Final[StockID]
-ID_SYSTEM_MENU: Final[StockID]
-ID_CLOSE_FRAME: Final[StockID]
-ID_MOVE_FRAME: Final[StockID]
-ID_RESIZE_FRAME: Final[StockID]
-ID_MAXIMIZE_FRAME: Final[StockID]
-ID_ICONIZE_FRAME: Final[StockID]
-ID_RESTORE_FRAME: Final[StockID]
-ID_MDI_WINDOW_FIRST: Final[StockID]
-ID_MDI_WINDOW_CASCADE: Final[StockID]
-ID_MDI_WINDOW_TILE_HORZ: Final[StockID]
-ID_MDI_WINDOW_TILE_VERT: Final[StockID]
-ID_MDI_WINDOW_ARRANGE_ICONS: Final[StockID]
-ID_MDI_WINDOW_PREV: Final[StockID]
-ID_MDI_WINDOW_NEXT: Final[StockID]
-ID_MDI_WINDOW_LAST: Final[StockID]
-ID_FILEDLGG: Final[StockID]
-ID_FILECTRL: Final[StockID]
-ID_HIGHEST: Final[StockID]
+ID_AUTO_LOWEST: Final = StockID.AUTO_LOWEST
+ID_ANY: Final = StockID.ANY
+ID_AUTO_HIGHEST: Final = StockID.AUTO_HIGHEST
+ID_NONE: Final = StockID.NONE
+ID_SEPARATOR: Final = StockID.SEPARATOR
+ID_LOWEST: Final = StockID.LOWEST
+ID_OPEN: Final = StockID.OPEN
+ID_CLOSE: Final = StockID.CLOSE
+ID_NEW: Final = StockID.NEW
+ID_SAVE: Final = StockID.SAVE
+ID_SAVEAS: Final = StockID.SAVEAS
+ID_REVERT: Final = StockID.REVERT
+ID_EXIT: Final = StockID.EXIT
+ID_UNDO: Final = StockID.UNDO
+ID_REDO: Final = StockID.REDO
+ID_HELP: Final = StockID.HELP
+ID_PRINT: Final = StockID.PRINT
+ID_PRINT_SETUP: Final = StockID.PRINT_SETUP
+ID_PAGE_SETUP: Final = StockID.PAGE_SETUP
+ID_PREVIEW: Final = StockID.PREVIEW
+ID_ABOUT: Final = StockID.ABOUT
+ID_HELP_CONTENTS: Final = StockID.HELP_CONTENTS
+ID_HELP_INDEX: Final = StockID.HELP_INDEX
+ID_HELP_SEARCH: Final = StockID.HELP_SEARCH
+ID_HELP_COMMANDS: Final = StockID.HELP_COMMANDS
+ID_HELP_PROCEDURES: Final = StockID.HELP_PROCEDURES
+ID_HELP_CONTEXT: Final = StockID.HELP_CONTEXT
+ID_CLOSE_ALL: Final = StockID.CLOSE_ALL
+ID_PREFERENCES: Final = StockID.PREFERENCES
+ID_EDIT: Final = StockID.EDIT
+ID_CUT: Final = StockID.CUT
+ID_COPY: Final = StockID.COPY
+ID_PASTE: Final = StockID.PASTE
+ID_CLEAR: Final = StockID.CLEAR
+ID_FIND: Final = StockID.FIND
+ID_DUPLICATE: Final = StockID.DUPLICATE
+ID_SELECTALL: Final = StockID.SELECTALL
+ID_DELETE: Final = StockID.DELETE
+ID_REPLACE: Final = StockID.REPLACE
+ID_REPLACE_ALL: Final = StockID.REPLACE_ALL
+ID_PROPERTIES: Final = StockID.PROPERTIES
+ID_VIEW_DETAILS: Final = StockID.VIEW_DETAILS
+ID_VIEW_LARGEICONS: Final = StockID.VIEW_LARGEICONS
+ID_VIEW_SMALLICONS: Final = StockID.VIEW_SMALLICONS
+ID_VIEW_LIST: Final = StockID.VIEW_LIST
+ID_VIEW_SORTDATE: Final = StockID.VIEW_SORTDATE
+ID_VIEW_SORTNAME: Final = StockID.VIEW_SORTNAME
+ID_VIEW_SORTSIZE: Final = StockID.VIEW_SORTSIZE
+ID_VIEW_SORTTYPE: Final = StockID.VIEW_SORTTYPE
+ID_FILE: Final = StockID.FILE
+ID_FILE1: Final = StockID.FILE1
+ID_FILE2: Final = StockID.FILE2
+ID_FILE3: Final = StockID.FILE3
+ID_FILE4: Final = StockID.FILE4
+ID_FILE5: Final = StockID.FILE5
+ID_FILE6: Final = StockID.FILE6
+ID_FILE7: Final = StockID.FILE7
+ID_FILE8: Final = StockID.FILE8
+ID_FILE9: Final = StockID.FILE9
+ID_OK: Final = StockID.OK
+ID_CANCEL: Final = StockID.CANCEL
+ID_APPLY: Final = StockID.APPLY
+ID_YES: Final = StockID.YES
+ID_NO: Final = StockID.NO
+ID_STATIC: Final = StockID.STATIC
+ID_FORWARD: Final = StockID.FORWARD
+ID_BACKWARD: Final = StockID.BACKWARD
+ID_DEFAULT: Final = StockID.DEFAULT
+ID_MORE: Final = StockID.MORE
+ID_SETUP: Final = StockID.SETUP
+ID_RESET: Final = StockID.RESET
+ID_CONTEXT_HELP: Final = StockID.CONTEXT_HELP
+ID_YESTOALL: Final = StockID.YESTOALL
+ID_NOTOALL: Final = StockID.NOTOALL
+ID_ABORT: Final = StockID.ABORT
+ID_RETRY: Final = StockID.RETRY
+ID_IGNORE: Final = StockID.IGNORE
+ID_ADD: Final = StockID.ADD
+ID_REMOVE: Final = StockID.REMOVE
+ID_UP: Final = StockID.UP
+ID_DOWN: Final = StockID.DOWN
+ID_HOME: Final = StockID.HOME
+ID_REFRESH: Final = StockID.REFRESH
+ID_STOP: Final = StockID.STOP
+ID_INDEX: Final = StockID.INDEX
+ID_BOLD: Final = StockID.BOLD
+ID_ITALIC: Final = StockID.ITALIC
+ID_JUSTIFY_CENTER: Final = StockID.JUSTIFY_CENTER
+ID_JUSTIFY_FILL: Final = StockID.JUSTIFY_FILL
+ID_JUSTIFY_RIGHT: Final = StockID.JUSTIFY_RIGHT
+ID_JUSTIFY_LEFT: Final = StockID.JUSTIFY_LEFT
+ID_UNDERLINE: Final = StockID.UNDERLINE
+ID_INDENT: Final = StockID.INDENT
+ID_UNINDENT: Final = StockID.UNINDENT
+ID_ZOOM_100: Final = StockID.ZOOM_100
+ID_ZOOM_FIT: Final = StockID.ZOOM_FIT
+ID_ZOOM_IN: Final = StockID.ZOOM_IN
+ID_ZOOM_OUT: Final = StockID.ZOOM_OUT
+ID_UNDELETE: Final = StockID.UNDELETE
+ID_REVERT_TO_SAVED: Final = StockID.REVERT_TO_SAVED
+ID_CDROM: Final = StockID.CDROM
+ID_CONVERT: Final = StockID.CONVERT
+ID_EXECUTE: Final = StockID.EXECUTE
+ID_FLOPPY: Final = StockID.FLOPPY
+ID_HARDDISK: Final = StockID.HARDDISK
+ID_BOTTOM: Final = StockID.BOTTOM
+ID_FIRST: Final = StockID.FIRST
+ID_LAST: Final = StockID.LAST
+ID_TOP: Final = StockID.TOP
+ID_INFO: Final = StockID.INFO
+ID_JUMP_TO: Final = StockID.JUMP_TO
+ID_NETWORK: Final = StockID.NETWORK
+ID_SELECT_COLOR: Final = StockID.SELECT_COLOR
+ID_SELECT_FONT: Final = StockID.SELECT_FONT
+ID_SORT_ASCENDING: Final = StockID.SORT_ASCENDING
+ID_SORT_DESCENDING: Final = StockID.SORT_DESCENDING
+ID_SPELL_CHECK: Final = StockID.SPELL_CHECK
+ID_STRIKETHROUGH: Final = StockID.STRIKETHROUGH
+ID_SYSTEM_MENU: Final = StockID.SYSTEM_MENU
+ID_CLOSE_FRAME: Final = StockID.CLOSE_FRAME
+ID_MOVE_FRAME: Final = StockID.MOVE_FRAME
+ID_RESIZE_FRAME: Final = StockID.RESIZE_FRAME
+ID_MAXIMIZE_FRAME: Final = StockID.MAXIMIZE_FRAME
+ID_ICONIZE_FRAME: Final = StockID.ICONIZE_FRAME
+ID_RESTORE_FRAME: Final = StockID.RESTORE_FRAME
+ID_MDI_WINDOW_FIRST: Final = StockID.MDI_WINDOW_FIRST
+ID_MDI_WINDOW_CASCADE: Final = StockID.MDI_WINDOW_CASCADE
+ID_MDI_WINDOW_TILE_HORZ: Final = StockID.MDI_WINDOW_TILE_HORZ
+ID_MDI_WINDOW_TILE_VERT: Final = StockID.MDI_WINDOW_TILE_VERT
+ID_MDI_WINDOW_ARRANGE_ICONS: Final = StockID.MDI_WINDOW_ARRANGE_ICONS
+ID_MDI_WINDOW_PREV: Final = StockID.MDI_WINDOW_PREV
+ID_MDI_WINDOW_NEXT: Final = StockID.MDI_WINDOW_NEXT
+ID_MDI_WINDOW_LAST: Final = StockID.MDI_WINDOW_LAST
+ID_FILEDLGG: Final = StockID.FILEDLGG
+ID_FILECTRL: Final = StockID.FILECTRL
+ID_HIGHEST: Final = StockID.HIGHEST
 
 
-class BitmapBufferFormat(int):
+class BitmapBufferFormat(Enum):
     """BitmapBufferFormat_* enumeration."""
-BitmapBufferFormat_ARGB32: Final[BitmapBufferFormat]
-BitmapBufferFormat_RGB: Final[BitmapBufferFormat]
-BitmapBufferFormat_RGB32: Final[BitmapBufferFormat]
-BitmapBufferFormat_RGBA: Final[BitmapBufferFormat]
+    ARGB32 = auto()
+    RGB = auto()
+    RGB32 = auto()
+    RGBA = auto()
+
+BitmapBufferFormat_ARGB32: Final = BitmapBufferFormat.ARGB32
+BitmapBufferFormat_RGB: Final = BitmapBufferFormat.RGB
+BitmapBufferFormat_RGB32: Final = BitmapBufferFormat.RGB32
+BitmapBufferFormat_RGBA: Final = BitmapBufferFormat.RGBA
+
+
+class StockLabelQueryFlag(Flag):
+    """Bitflags for GetStockLabel()."""
+    NOFLAGS = 0
+    WITH_MNEMONIC = 1
+    WITH_ACCELERATOR = 2
+    WITHOUT_ELLIPSIS = 4
+    FOR_BUTTON = WITH_MNEMONIC | WITHOUT_ELLIPSIS
+
+STOCK_NOFLAGS: Final = StockLabelQueryFlag.NOFLAGS
+STOCK_WITH_MNEMONIC: Final = StockLabelQueryFlag.WITH_MNEMONIC
+STOCK_WITH_ACCELERATOR: Final = StockLabelQueryFlag.WITH_ACCELERATOR
+STOCK_WITHOUT_ELLIPSIS: Final = StockLabelQueryFlag.WITHOUT_ELLIPSIS
+STOCK_FOR_BUTTON: Final = StockLabelQueryFlag.FOR_BUTTON
+
+
 
 FontEncoding: TypeAlias = int  # Enumeration
-FontStyle: TypeAlias = int  # Enumeration
 
 FONTENCODING_SYSTEM: int
-
 FONTENCODING_DEFAULT: int
-
 FONTENCODING_ISO8859_1: int
-
 FONTENCODING_ISO8859_2: int
-
 FONTENCODING_ISO8859_3: int
-
 FONTENCODING_ISO8859_4: int
-
 FONTENCODING_ISO8859_5: int
-
 FONTENCODING_ISO8859_6: int
-
 FONTENCODING_ISO8859_7: int
-
 FONTENCODING_ISO8859_8: int
-
 FONTENCODING_ISO8859_9: int
-
 FONTENCODING_ISO8859_10: int
-
 FONTENCODING_ISO8859_11: int
-
 FONTENCODING_ISO8859_12: int
-
 FONTENCODING_ISO8859_13: int
-
 FONTENCODING_ISO8859_14: int
-
 FONTENCODING_ISO8859_15: int
-
 FONTENCODING_ISO8859_MAX: int
-
 FONTENCODING_KOI8: int
-
 FONTENCODING_KOI8_U: int
-
 FONTENCODING_ALTERNATIVE: int
-
 FONTENCODING_BULGARIAN: int
-
 FONTENCODING_CP437: int
-
 FONTENCODING_CP850: int
-
 FONTENCODING_CP852: int
-
 FONTENCODING_CP855: int
-
 FONTENCODING_CP866: int
-
 FONTENCODING_CP874: int
-
 FONTENCODING_CP932: int
-
 FONTENCODING_CP936: int
-
 FONTENCODING_CP949: int
-
 FONTENCODING_CP950: int
-
 FONTENCODING_CP1250: int
-
 FONTENCODING_CP1251: int
-
 FONTENCODING_CP1252: int
-
 FONTENCODING_CP1253: int
-
 FONTENCODING_CP1254: int
-
 FONTENCODING_CP1255: int
-
 FONTENCODING_CP1256: int
-
 FONTENCODING_CP1257: int
-
 FONTENCODING_CP1258: int
-
 FONTENCODING_CP1361: int
-
 FONTENCODING_CP12_MAX: int
-
 FONTENCODING_UTF7: int
-
 FONTENCODING_UTF8: int
-
 FONTENCODING_EUC_JP: int
-
 FONTENCODING_UTF16BE: int
-
 FONTENCODING_UTF16LE: int
-
 FONTENCODING_UTF32BE: int
-
 FONTENCODING_UTF32LE: int
-
 FONTENCODING_MACROMAN: int
-
 FONTENCODING_MACJAPANESE: int
-
 FONTENCODING_MACCHINESETRAD: int
-
 FONTENCODING_MACKOREAN: int
-
 FONTENCODING_MACARABIC: int
-
 FONTENCODING_MACHEBREW: int
-
 FONTENCODING_MACGREEK: int
-
 FONTENCODING_MACCYRILLIC: int
-
 FONTENCODING_MACDEVANAGARI: int
-
 FONTENCODING_MACGURMUKHI: int
-
 FONTENCODING_MACGUJARATI: int
-
 FONTENCODING_MACORIYA: int
-
 FONTENCODING_MACBENGALI: int
-
 FONTENCODING_MACTAMIL: int
-
 FONTENCODING_MACTELUGU: int
-
 FONTENCODING_MACKANNADA: int
-
 FONTENCODING_MACMALAJALAM: int
-
 FONTENCODING_MACSINHALESE: int
-
 FONTENCODING_MACBURMESE: int
-
 FONTENCODING_MACKHMER: int
-
 FONTENCODING_MACTHAI: int
-
 FONTENCODING_MACLAOTIAN: int
-
 FONTENCODING_MACGEORGIAN: int
-
 FONTENCODING_MACARMENIAN: int
-
 FONTENCODING_MACCHINESESIMP: int
-
 FONTENCODING_MACTIBETAN: int
-
 FONTENCODING_MACMONGOLIAN: int
-
 FONTENCODING_MACETHIOPIC: int
-
 FONTENCODING_MACCENTRALEUR: int
-
 FONTENCODING_MACVIATNAMESE: int
-
 FONTENCODING_MACARABICEXT: int
-
 FONTENCODING_MACSYMBOL: int
-
 FONTENCODING_MACDINGBATS: int
-
 FONTENCODING_MACTURKISH: int
-
 FONTENCODING_MACCROATIAN: int
-
 FONTENCODING_MACICELANDIC: int
-
 FONTENCODING_MACROMANIAN: int
-
 FONTENCODING_MACCELTIC: int
-
 FONTENCODING_MACGAELIC: int
-
 FONTENCODING_MACKEYBOARD: int
-
 FONTENCODING_ISO2022_JP: int
-
 FONTENCODING_MAX: int
-
 FONTENCODING_MACMIN: int
-
 FONTENCODING_MACMAX: int
-
 FONTENCODING_UTF16: int
-
 FONTENCODING_UTF32: int
-
 FONTENCODING_UNICODE: int
-
 FONTENCODING_GB2312: int
-
 FONTENCODING_BIG5: int
-
 FONTENCODING_SHIFT_JIS: int
-
 FONTENCODING_EUC_KR: int
-
 FONTENCODING_JOHAB: int
-
 FONTENCODING_VIETNAMESE: int
 
-FONTSTYLE_NORMAL: int
 
-FONTSTYLE_ITALIC: int
+class FontStyle(Enum):
+    NORMAL = auto()
+    ITALIC = auto()
+    SLANT = auto()
+    MAX = auto()
 
-FONTSTYLE_SLANT: int
+FONTSTYLE_NORMAL: Final = FontStyle.NORMAL
+FONTSTYLE_ITALIC: Final = FontStyle.ITALIC
+FONTSTYLE_SLANT: Final = FontStyle.SLANT
+FONTSTYLE_MAX: Final = FontStyle.MAX
 
-FONTSTYLE_MAX: int
+# Bitflags for NativeControl operations.
+CONTROL_NONE: Final[int]
+CONTROL_DISABLED: Final[int]
+CONTROL_FOCUSED: Final[int]
+CONTROL_PRESSED: Final[int]
+CONTROL_SPECIAL: Final[int]
+CONTROL_ISDEFAULT: Final[int]
+CONTROL_ISSUBMENU: Final[int]
+CONTROL_EXPANDED: Final[int]
+CONTROL_SIZEGRIP: Final[int]
+CONTROL_FLAT: Final[int]
+CONTROL_CELL: Final[int]
+CONTROL_CURRENT: Final[int]
+CONTROL_SELECTED: Final[int]
+CONTROL_CHECKED: Final[int]
+CONTROL_CHECKABLE: Final[int]
+CONTROL_UNDETERMINED: Final[int]
 
 
 # TODO: These aren't actually ints, they're PyEventBinder objects.
@@ -8754,12 +8882,6 @@ popup.
 CC_SPECIAL_DCLICK: int  # Double-clicking triggers a call to popup's OnComboDoubleClick. Actual behaviour is defined by a derived class. For instance,   wx.adv.OwnerDrawnComboBox  will cycle an item. This style only applies if wx.CB_READONLY is used as well.
 
 CC_STD_BUTTON: int  # Drop button will behave more like a standard push button. ^^
-
-CONTROL_ISSUBMENU: int
-
-CONTROL_SELECTED: int
-
-CONTROL_DISABLED: int
 
 class ComboCtrlFeatures:
     """ Features enabled for ComboCtrl.
