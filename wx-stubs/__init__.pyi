@@ -557,7 +557,7 @@ FONTSTYLE_ITALIC: Final = FontStyle.ITALIC
 FONTSTYLE_SLANT: Final = FontStyle.SLANT
 FONTSTYLE_MAX: Final = FontStyle.MAX
 
-# Bitflags for NativeControl operations.
+# Bitflags for NativeControl operations. These are real ints.
 CONTROL_NONE: Final[int]
 CONTROL_DISABLED: Final[int]
 CONTROL_FOCUSED: Final[int]
@@ -13227,121 +13227,121 @@ class RendererNative:
 
         Source: https://docs.wxpython.org/wx.RendererNative.html
     """
-    def DrawCheckBox(self, win, dc, rect, flags=0) -> None:
+    def DrawCheckBox(self, win: Window, dc: DC, rect: Rect, flags: int = 0) -> None:
         """ Draw a check box.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawCheckMark(self, win, dc, rect, flags=0) -> None:
+    def DrawCheckMark(self, win: Window, dc: DC, rect: Rect, flags: int = 0) -> None:
         """ Draw a check mark.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawChoice(self, win, dc, rect, flags=0) -> None:
+    def DrawChoice(self, win: Window, dc: DC, rect: Rect, flags: int = 0) -> None:
         """ Draw a native   wx.Choice.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawCollapseButton(self, win, dc, rect, flags=0) -> None:
+    def DrawCollapseButton(self, win: Window, dc: DC, rect: Rect, flags: int = 0) -> None:
         """ Draw a collapse button.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawComboBox(self, win, dc, rect, flags=0) -> None:
+    def DrawComboBox(self, win: Window, dc: DC, rect: Rect, flags: int = 0) -> None:
         """ Draw a native   wx.ComboBox.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawComboBoxDropButton(self, win, dc, rect, flags=0) -> None:
+    def DrawComboBoxDropButton(self, win: Window, dc: DC, rect: Rect, flags: int = 0) -> None:
         """ Draw a button like the one used by   wx.ComboBox  to show a drop down window.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawDropArrow(self, win, dc, rect, flags=0) -> None:
+    def DrawDropArrow(self, win: Window, dc: DC, rect: Rect, flags: int = 0) -> None:
         """ Draw a drop down arrow that is suitable for use outside a combo box.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawFocusRect(self, win, dc, rect, flags=0) -> None:
+    def DrawFocusRect(self, win: Window, dc: DC, rect: Rect, flags: int = 0) -> None:
         """ Draw a focus rectangle using the specified rectangle.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawGauge(self, win, dc, rect, value, max, flags=0) -> None:
+    def DrawGauge(self, win: Window, dc: DC, rect: Rect, value: float, max: float, flags: int = 0) -> None:
         """ Draw a progress bar in the specified rectangle.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawHeaderButton(self, win, dc, rect, flags=0, sortArrow=HDR_SORT_ICON_NONE, params=None) -> int:
+    def DrawHeaderButton(self, win: Window, dc: DC, rect: Rect, flags: int = 0, sortArrow=HDR_SORT_ICON_NONE, params=None) -> int:
         """ Draw the header control button (used, for example, by   wx.ListCtrl).
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawHeaderButtonContents(self, win, dc, rect, flags=0, sortArrow=HDR_SORT_ICON_NONE, params=None) -> int:
+    def DrawHeaderButtonContents(self, win: Window, dc: DC, rect: Rect, flags: int = 0, sortArrow=HDR_SORT_ICON_NONE, params=None) -> int:
         """ Draw the contents of a header control button (label, sort arrows, etc.).
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawItemSelectionRect(self, win, dc, rect, flags=0) -> None:
+    def DrawItemSelectionRect(self, win: Window, dc: DC, rect: Rect, flags: int = 0) -> None:
         """ Draw a selection rectangle underneath the text as used e.g.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawItemText(self, win, dc, text, rect, align=ALIGN_LEFT|ALIGN_TOP, flags=0, ellipsizeMode=ELLIPSIZE_END) -> None:
+    def DrawItemText(self, win: Window, dc: DC, rect: Rect, align=ALIGN_LEFT|ALIGN_TOP, flags=0, ellipsizeMode=ELLIPSIZE_END) -> None:
         """ Draw item text in the correct color based on selection status.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawPushButton(self, win, dc, rect, flags=0) -> None:
+    def DrawPushButton(self, win: Window, dc: DC, rect: Rect, flags=0) -> None:
         """ Draw a blank push button that looks very similar to   wx.Button.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawRadioBitmap(self, win, dc, rect, flags=0) -> None:
+    def DrawRadioBitmap(self, win: Window, dc: DC, rect: Rect, flags=0) -> None:
         """ Draw a native   wx.RadioButton  bitmap.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawSplitterBorder(self, win, dc, rect, flags=0) -> None:
+    def DrawSplitterBorder(self, win: Window, dc: DC, rect: Rect, flags=0) -> None:
         """ Draw the border for sash window: this border must be such that the sash drawn by DrawSplitterSash   blends into it well.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawSplitterSash(self, win, dc, size, position, orient, flags=0) -> None:
+    def DrawSplitterSash(self, win: Window, dc: DC, size, position, orient, flags=0) -> None:
         """ Draw a sash.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawTextCtrl(self, win, dc, rect, flags=0) -> None:
+    def DrawTextCtrl(self, win: Window, dc: DC, rect: Rect, flags=0) -> None:
         """ Draw a native   wx.TextCtrl  frame.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawTitleBarBitmap(self, win, dc, rect, button, flags=0) -> None:
+    def DrawTitleBarBitmap(self, win: Window, dc: DC, rect: Rect, button, flags=0) -> None:
         """ Draw a title bar button in the given state.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def DrawTreeItemButton(self, win, dc, rect, flags=0) -> None:
+    def DrawTreeItemButton(self, win: Window, dc: DC, rect: Rect, flags=0) -> None:
         """ Draw the expanded/collapsed icon for a tree control item.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
@@ -13354,19 +13354,19 @@ class RendererNative:
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def GetCheckBoxSize(self, win, flags=0) -> 'Size':
+    def GetCheckBoxSize(self, win: Window, flags: int = 0) -> Size:
         """ Returns the size of a check box.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def GetCheckMarkSize(self, win: 'Window') -> 'Size':
+    def GetCheckMarkSize(self, win: Window) -> Size:
         """ Returns the size of a check mark.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def GetCollapseButtonSize(self, win, dc) -> 'Size':
+    def GetCollapseButtonSize(self, win: Window, dc: DC) -> Size:
         """ Returns the size of a collapse button.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
@@ -13374,31 +13374,34 @@ class RendererNative:
 
     @staticmethod
     def GetDefault() -> 'RendererNative':
-        """ Return the default (native) implementation for this platform â  this is also the one used by default but this may be changed by calling Set   in which case the return value of this method may be different from the return value of Get .
+        """ Return the default (native) implementation for this platform.
+
+        This is also the one used by default but this may be changed by calling Set(),
+        in which case the return value of this method may be different from the return value of Get().
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def GetExpanderSize(self, win: 'Window') -> 'Size':
+    def GetExpanderSize(self, win: Window) -> Size:
         """ Returns the size of the expander used in tree-like controls.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
     @staticmethod
-    def GetGeneric() -> 'RendererNative':
+    def GetGeneric() -> RendererNative:
         """ Return the generic implementation of the renderer.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def GetHeaderButtonHeight(self, win: 'Window') -> int:
+    def GetHeaderButtonHeight(self, win: Window) -> int:
         """ Returns the height of a header button, either a fixed platform height if available, or a generic height based on the win  window's font.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    def GetHeaderButtonMargin(self, win: 'Window') -> int:
+    def GetHeaderButtonMargin(self, win: Window) -> int:
         """ Returns the horizontal margin on the left and right sides of header button's label.
 
             Source: https://docs.wxpython.org/wx.RendererNative.html
@@ -13430,7 +13433,9 @@ class RendererNative:
             Source: https://docs.wxpython.org/wx.RendererNative.html
         """
 
-    Version: 'RendererVersion'  # See GetVersion
+    @property
+    def Version(self) -> 'RendererVersion':
+        """See GetVersion()."""
 
 
 
