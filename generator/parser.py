@@ -4,7 +4,8 @@ import re
 from queue import Queue
 from typing import Optional
 
-import requests
+# import requests
+import .cached_requests as requests
 from bs4 import BeautifulSoup, Tag
 
 from .interfaces import ITyping, ITypingClass, ITypingFunction, ITypingLiteral, TypingType
@@ -255,11 +256,11 @@ class Parser:
 					# Check if header
 					if part.name == "dt":
 						# Check if the next part will be parameters
-						if part.get_text() == "Parameters":
+						if part.get_text().lower().startswith("parameters"):
 							nextPart = "params"
 
 						# Check if the next part will be return type
-						elif part.get_text() == "Return type":
+						elif part.get_text().lower().startswith("return type"):
 							nextPart = "return"
 
 						else:
@@ -273,9 +274,11 @@ class Parser:
 							# Check if there is a list of params
 							if part.find("ul"):
 								# Find all the params
-								paramElems = part.find_all("li", recursive=False)
+								paramElems = part.find_all("li")
 								for paramElem in paramElems:
 									# Retrieve the information
+									if paramElem.find("strong") is None:
+										continue
 									paramName = paramElem.find("strong").get_text().strip()
 									paramType = "Any"
 									if paramElem.find("em"):
@@ -308,7 +311,7 @@ class Parser:
 				methodType["name"] = methodName
 
 			# Build the param list
-			methodType["paramStr"] = methodName[methodName.find("(") + 1: -1]
+			methodType["paramStr"] = methodName[methodName.find("(") + 1: -1].replace("\\", "")
 			methodName = methodName[:methodName.find("(")]
 			methodType["name"] = methodName
 

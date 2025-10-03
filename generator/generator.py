@@ -6,7 +6,8 @@ import sys
 from enum import Enum
 from queue import Queue
 
-import requests
+# import requests
+import generator.cached_requests as requests
 from bs4 import BeautifulSoup, Tag
 
 from .extras import EXTRA_KNOWN_ITEMS
